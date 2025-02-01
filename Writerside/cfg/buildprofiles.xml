@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE buildprofiles SYSTEM "https://resources.jetbrains.com/writerside/1.0/build-profiles.dtd">
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables>
+        <noindex-content>true</noindex-content>
+        <primary-color>forest</primary-color>
+        <custom-css>custom.css</custom-css>
+    </variables>
+    <build-profile instance="poao">
+        <variables>
+            <noindex-content>true</noindex-content>
+        </variables>
+    </build-profile>
+
+    <footer>
+        <copyright>M. en E. Jesús Aurelio Castro Magaña</copyright>
+        <social type="email" href="mailto:jesus.cm@toluca.tecnm.,x"/>
+    </footer>
+
+</buildprofiles>
