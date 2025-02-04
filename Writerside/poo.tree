@@ -11,9 +11,11 @@
     <toc-element toc-title="Conceptos Básicos">
         <toc-element topic="Clases-y-Objetos.md"/>
         <toc-element topic="Función-Ejecutora.md"/>
+        <toc-element topic="convenciones.md"/>
     </toc-element>
     <toc-element toc-title="Diagramas de Clase">
         <toc-element topic="¿Qué-son-los-diagramas-de-Clases.md"/>
         <toc-element topic="Plant-UML.md"/>
+        <toc-element topic="relaciones.md"/>
     </toc-element>
 </instance-profile>
