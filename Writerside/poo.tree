@@ -12,6 +12,10 @@
         <toc-element topic="Clases-y-Objetos.md"/>
         <toc-element topic="Función-Ejecutora.md"/>
         <toc-element topic="convenciones.md"/>
+        <toc-element topic="operadores.md"/>
+        <toc-element topic="presedencia.md"/>
+        <toc-element topic="function-call.md"/>
+        <toc-element topic="reading.md"/>
     </toc-element>
     <toc-element toc-title="Diagramas de Clase">
         <toc-element topic="¿Qué-son-los-diagramas-de-Clases.md"/>
