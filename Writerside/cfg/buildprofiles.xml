@@ -6,10 +6,11 @@
     <variables>
         <noindex-content>true</noindex-content>
         <primary-color>forest</primary-color>
+        <color-preset>vivid</color-preset>
         <custom-css>custom.css</custom-css>
         <color-preset>vivid</color-preset>
     </variables>
-    <build-profile instance="poao">
+    <build-profile instance="poo">
         <variables>
             <noindex-content>true</noindex-content>
         </variables>
