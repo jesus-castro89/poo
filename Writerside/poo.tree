@@ -28,6 +28,7 @@
         <toc-element topic="modularidad.md"/>
         <toc-element topic="reading.md"/>
         <toc-element topic="ventanas-flotantes.md"/>
+        <toc-element topic="ui-manager.md"/>
     </toc-element>
     <toc-element toc-title="Clases">
         <toc-element topic="clases-java.md"/>
