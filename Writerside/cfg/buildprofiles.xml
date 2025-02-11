@@ -7,6 +7,7 @@
         <noindex-content>true</noindex-content>
         <primary-color>forest</primary-color>
         <custom-css>custom.css</custom-css>
+        <color-preset>vivid</color-preset>
     </variables>
     <build-profile instance="poao">
         <variables>
