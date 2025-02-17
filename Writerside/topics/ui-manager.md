@@ -45,8 +45,12 @@ import javax.swing.*;
 public class UIManagerExample {
 
     public static void main(String[] args) {
-        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD, 24));
-        UIManager.put("OptionPane.buttonFont", new Font("Arial", Font.BOLD, 24));
+        UIManager.put("OptionPane.messageFont", 
+                new Font("Arial", Font.BOLD, 24));
+        UIManager.put("OptionPane.buttonFont", 
+                new Font("Arial", Font.BOLD, 24));
+        UIManager.put("TextField.font",
+                new Font("Arial", Font.PLAIN, 24));
         UIManager.put("OptionPane.messageForeground", Color.RED);
 
         JOptionPane.showMessageDialog(null, "Hello, World!");
