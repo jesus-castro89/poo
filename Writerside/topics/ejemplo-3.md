@@ -354,8 +354,11 @@ public class Company {
     private void addEmployee() {
 
         boolean employeesFull = true;
+        // Recorre el arreglo de empleados para agregar un empleado.
         for (int i = 0; i < employees.length; i++) {
+            // Si encuentra un espacio vacío, agrega un empleado.
             if (employees[i] == null) {
+                // Trtará de agregar un empleado, si el ID no es válido, se vuelve a llamar a la función.
                 try {
                     employees[i] = new Employee();
                     employeesFull = false;
@@ -365,6 +368,7 @@ public class Company {
                 }
             }
         }
+        // Si el arreglo de empleados está lleno, muestra un mensaje al usuario.
         if (employeesFull)
             JOptionPane.showMessageDialog(null,
                     "No se pueden agregar más empleados");
@@ -374,8 +378,10 @@ public class Company {
     private void showEmployees() {
 
         StringBuilder employeesList = new StringBuilder();
+        // Recorre el arreglo de empleados para mostrar la información de los empleados.
+        // Y lo hacemos con el foreach
         for (Employee employee : employees) {
-
+            // Si el empleado no es nulo, agrega la información del empleado a la lista.
             if (employee != null) {
 
                 employeesList.append(employee.getEmployeeInfo()).append("\n");
@@ -387,8 +393,9 @@ public class Company {
 
     private Employee selectEmployee() {
 
+        // Se tratará de seleccionar un empleado, si no se selecciona un empleado, se vuelve a llamar a la función.
         try {
-
+            // Se nos muestra un cuadro de dialogo con los empleados de los cuales seleccionaremos uno
             return (Employee) JOptionPane.showInputDialog(null,
                     "Seleccione un empleado", "Empleados",
                     JOptionPane.QUESTION_MESSAGE, null, employees,
@@ -402,12 +409,16 @@ public class Company {
 
     private void getEmployeeSalary() {
 
+        // Selecciona un empleado con la función selectEmployee.
         Employee employee = selectEmployee();
+        // Muestra el salario del empleado seleccionado.
         JOptionPane.showMessageDialog(null,
                 "El salario del empleado es: " + employee.getSalary());
         showMenu();
     }
 
+    // Esta función hace lo mismo que la anterior y solo sirve como muestra de sobrecarga de métodos
+    // Ya que esta función recibe un parámetro booleano y llama a la función getSalaryWithBonus
     private void getEmployeeSalary(boolean withBonus) {
 
         Employee employee = selectEmployee();
