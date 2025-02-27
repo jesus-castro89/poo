@@ -6,6 +6,7 @@ Ha sido contratado por una librería para realizar un sistema para gestionar su 
 existencia, además de gestionar las ventas realizadas. La librería tiene una lista de los libros que tienen en
 existencia, tomando en cuenta lo siguiente:
 
+* El limite de libros en la librería es de 50, mientras el total de libros en la compra no puede superar los 15.
 * Cada libro tiene un título, un autor, un género y un precio.
 * Cada libro tiene un identificador único (ISBN) que es un entero largo de 13 dígitos. El cual no se repite ni se
   modifica. Este identificador se genera automáticamente al agregar un libro a la lista.
