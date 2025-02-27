@@ -9,6 +9,7 @@ existencia, tomando en cuenta lo siguiente:
 * Cada libro tiene un título, un autor, un género y un precio.
 * Cada libro tiene un identificador único (ISBN) que es un entero largo de 13 dígitos. El cual no se repite ni se
   modifica. Este identificador se genera automáticamente al agregar un libro a la lista.
+* Los datos ingresados deberán ser validados, por lo que no se permitirá ingresar datos vacíos, nulos o incorrectos.
 * Los géneros disponibles son: `Ficción`, `No Ficción`, `Terror`, `Fantasía`, `Ciencia Ficción`, `Romance`, `Misterio`,
   `Aventura`.
 * Al listar cada libro se deberá mostrar el ISBN, título, autor, género y precio con el siguiente formato:
@@ -43,3 +44,9 @@ existencia, tomando en cuenta lo siguiente:
     6. Eliminar libro de la compra
     7. Realizar compra
     8. Salir
+
+## Entregables
+
+* Diagrama de clases UML del proyecto.
+* Código fuente del proyecto.
+* Captura de pantalla de la ejecución del programa con datos de prueba.
