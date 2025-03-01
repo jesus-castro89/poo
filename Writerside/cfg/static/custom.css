@@ -12,14 +12,10 @@ article.layout.layout--grow.app__article {
     height: 5px;
 }
 
-.plantuml {
-    text-align: center;
-}
-
 pre[class*=language-]  {
     font-family: "Fira Code", monospace;
-    font-size: 1rem;
-    line-height: 1.25;
+    font-size: 1.35rem;
+    line-height: 1.05;
     font-weight: 400;
     font-optical-sizing: auto;
     font-style: normal;
@@ -28,6 +24,11 @@ pre[class*=language-]  {
 
 .code{
     font-family: "Fira Code", monospace;
+    font-size: 1.15rem;
+}
+
+.plantuml {
+    text-align: center;
 }
 
 .title__content {
@@ -71,13 +72,14 @@ pre[class*=language-]  {
 }
 
 .article__p {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
     line-height: 1.25;
     font-weight: 400;
     font-family: "Rosario", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "wdth" 100;
+    text-align: justify;
 }
 
 .toc-item {
