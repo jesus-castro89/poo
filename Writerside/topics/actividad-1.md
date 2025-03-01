@@ -48,6 +48,35 @@ existencia, tomando en cuenta lo siguiente:
 
 ## Entregables
 
-* Diagrama de clases UML del proyecto.
+* Portada con datos de identificación de los integrantes del equipo.
 * Código fuente del proyecto.
 * Captura de pantalla de la ejecución del programa con datos de prueba.
+
+## Criterios de evaluación
+
+| Criterio    | Descripción                                                                                                       | Puntaje |
+|-------------|-------------------------------------------------------------------------------------------------------------------|---------|
+| Portada     | Contiene los datos de identificación de los integrantes del equipo (nombres completos, grupo, número de control). | 5%      |
+| Menú        | El menú de opciones se despliaga y muestra adecuadamente.                                                         | 5%      |
+| Agregar     | Se permite agregar un libro a la lista.                                                                           | 5%      |
+| Eliminar    | Se permite eliminar un libro de la lista.                                                                         | 5%      |
+| Modificar   | Se permite modificar un libro de la lista.                                                                        | 10%     |
+| Compra      | Se permite abrir una compra y agregar/eliminar libros de la compra.                                               | 30%     |
+| Realizar    | Se permite realizar una compra y muestra el detalle de la compra.                                                 | 10%     |
+| Validación  | Se valida que los datos ingresados sean correctos.                                                                | 10%     |
+| Descuentos  | Se aplican los descuentos correctamente.                                                                          | 10%     |
+| Excepciones | Se manejan correctamente las excepciones.                                                                         | 10%     |
+| Total       |                                                                                                                   | 100%    |
+
+## Fecha de entrega
+
+Miércoles 5 de marzo de 2025, 12:00 PM (mediodía).
+
+> **Trabajos entregados después de la fecha y hora límite serán calificados sobre 70 puntos.**
+> {style="warning"}
+
+## Recursos
+
+* [Gestión de Empleados](ejemplo-3.md)
+* [Validando datos](ejemplo-4.md)
+* [Manejo de excepciones](ejemplo-5.md)
