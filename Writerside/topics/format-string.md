@@ -82,6 +82,33 @@ bloques de texto facilita la escritura de cadenas de texto largas y complejas si
 nueva línea y comillas. Así mismo, pueden ser usadas en conjunto a las cadenas de formato para crear mensajes más
 complejos y detallados.
 
+## Bloques de texto con formato
+
+Los bloques de texto con formato en Java permiten combinar texto con valores de variables de una manera más legible y
+flexible. Para crear un bloque de texto con formato, se utiliza la notación `"""` seguida de la cadena de texto y luego
+`"""` y se pueden incluir especificadores de formato dentro del bloque de texto.
+
+```java
+String texto = """
+    Hola, %s.
+    Tu edad es %d años
+    y mides %.2f metros.
+    """;
+
+String mensaje = String.format(texto, nombre, edad, altura);
+System.out.println(mensaje);
+```
+
+En este ejemplo, se crea un bloque de texto con formato que incluye especificadores de formato para combinar texto con
+valores de variables, y luego se utiliza el método `String.format()` para reemplazar los especificadores de formato con
+los valores de las variables.
+
+Los bloques de texto con formato son útiles para incluir mensajes con formato en el código fuente de una manera más
+legible y mantenible.
+
+> **Nota:** Los bloques de texto con formato se introdujeron en Java 15 como una característica del lenguaje para
+> mejorar la legibilidad y mantenibilidad del código fuente.
+
 ## Conclusión
 
 En resumen, las cadenas de formato en Java son una forma de crear cadenas de texto con formato que contienen marcadores
