@@ -268,4 +268,3 @@ manejar de manera eficiente los diferentes tipos de datos que pueden ser introdu
 
 Puedes descargar el código fuente de este artículo desde el siguiente enlace:
 
-[Descargar código fuente](/static/libs.jar)
