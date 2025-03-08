@@ -12,7 +12,7 @@ article.layout.layout--grow.app__article {
     height: 5px;
 }
 
-pre[class*=language-]  {
+pre[class*=language-] {
     font-family: "Fira Code", monospace;
     font-size: 1.35rem;
     line-height: 1.05;
@@ -22,13 +22,14 @@ pre[class*=language-]  {
     font-variation-settings: "wdth" 100;
 }
 
-.code{
+.code {
     font-family: "Fira Code", monospace;
     font-size: 1.15rem;
 }
 
 .plantuml {
     text-align: center;
+    max-width: var(--wh-max-width-l);
 }
 
 .title__content {
