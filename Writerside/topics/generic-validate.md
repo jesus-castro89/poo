@@ -264,7 +264,22 @@ dato a otro de forma genérica. Al utilizar métodos estáticos y genéricos, po
 conversión de valores en nuestras aplicaciones de escritorio en Java. Este enfoque nos permite reutilizar el código y
 manejar de manera eficiente los diferentes tipos de datos que pueden ser introducidos por el usuario.
 
-## Descarga el código fuente
+## Descarga la librería
 
-Puedes descargar el código fuente de este artículo desde el siguiente enlace:
+Puedes descargar la librería que contiene la clase `Validator` y otros métodos útiles para trabajar con `JOptionPane` en
+Java desde el siguiente enlace: [Descargar JAR](https://jesus-castro89.github.io/poo/static/libs.jar).
 
+Para poder utilizar la librería en tus proyectos de IntelliJ IDEA, sigue estos pasos:
+
+1. Abre tu proyecto en IntelliJ IDEA.
+2. Crea una carpeta llamada `libs` en la raíz del proyecto.
+3. Copia el archivo JAR descargado en la carpeta `libs`.
+4. Haz clic con el botón derecho del ratón sobre el nombre del proyecto en el panel de la izquierda.
+5. Selecciona la opción `Open Module Settings`.
+6. Haz clic en la pestaña `Libraries`.
+7. Haz clic en el botón `+` y selecciona `Java`.
+8. Selecciona el archivo JAR descargado en la carpeta `libs`.
+9. Haz clic en `OK` para cerrar la ventana de configuración.
+10. Ahora puedes importar la clase `Validator` en tus clases Java y utilizarla para validar y convertir valores de forma
+    genérica.
+11. ¡Disfruta de la simplicidad y eficiencia de tu nuevo validador genérico en Java!
