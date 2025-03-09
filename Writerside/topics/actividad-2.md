@@ -102,17 +102,32 @@ Total a Pagar: $84.00
     - Ejemplos de ejecución del programa.
 3. Portada con datos de identificación de los miembros del equipo.
 
-## Evaluación
+## Criterios de Evaluación
 
-| Criterio                                                   | Puntaje  |
-|------------------------------------------------------------|----------|
-| Implementación de clases y objetos                         | 20%      |
-| Implementación de menú de opciones                         | 20%      |
-| Implementación de ciclo de pedido                          | 20%      |
-| Validación de entrada del usuario                          | 20%      |
-| Documentación del programa (JavaDoc, Portada y Evidencias) | 20%      |
-| **Total**                                                  | **100%** |
+| Criterio                           | Descripción                                                                                         | Puntaje  |
+|------------------------------------|-----------------------------------------------------------------------------------------------------|----------|
+| Portada                            | Incluye los datos de identificación de los miembros del equipo.                                     | 5%       |
+| Diagrama de Clases                 | Representa las clases y sus relaciones de manera clara y concisa.                                   | 10%      |
+| Modularidad del Código             | El código está organizado en clases y archivos diferentes, además de contar con métodos coherentes. | 10%      |
+| Implementación de Clases y Objetos | Las clases y objetos están correctamente implementados.                                             | 10%      |
+| Implementación de Menú de Opciones | El menú de opciones permite al usuario realizar las acciones.                                       | 15%      |
+| Implementación de Ciclo de Pedido  | El ciclo de pedido permite agregar múltiples bebidas y postres.                                     | 15%      |
+| Validación de Entrada del Usuario  | Se valida la entrada del usuario para evitar errores.                                               | 15%      |
+| Documentación del Programa         | Incluye JavaDoc, portada y evidencias de ejecución.                                                 | 25%      |
+| **Total**                          |                                                                                                     | **100%** |
+
+> **La evaluación se realizará con base en los criterios establecidos en la rúbrica. Se considerará la claridad,
+> organización, comentarios y estilo del código, así como la calidad de la documentación. Además, se tomará en cuenta
+> el cumplimiento de los requerimientos y la funcionalidad del programa.**
+> {style="note"}
+
+> **Actividad entregada en lenguaje distinto a Java o sin el uso de clases y objetos, así como de modularidad, no será
+> evaluada.**
+> {style="warning"}
 
 ## Fecha de Entrega
 
 Viernes 14 de marzo de 2025, 11:59 p.m. (medianoche)
+
+> **Trabajos entregados después de la fecha y hora límite serán calificados sobre 70 puntos.**
+> {style="warning"}

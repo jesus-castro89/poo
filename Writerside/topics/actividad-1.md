@@ -54,19 +54,30 @@ existencia, tomando en cuenta lo siguiente:
 
 ## Criterios de evaluación
 
-| Criterio    | Descripción                                                                                                       | Puntaje |
-|-------------|-------------------------------------------------------------------------------------------------------------------|---------|
-| Portada     | Contiene los datos de identificación de los integrantes del equipo (nombres completos, grupo, número de control). | 5%      |
-| Menú        | El menú de opciones se despliaga y muestra adecuadamente.                                                         | 5%      |
-| Agregar     | Se permite agregar un libro a la lista.                                                                           | 5%      |
-| Eliminar    | Se permite eliminar un libro de la lista.                                                                         | 5%      |
-| Modificar   | Se permite modificar un libro de la lista.                                                                        | 10%     |
-| Compra      | Se permite abrir una compra y agregar/eliminar libros de la compra.                                               | 30%     |
-| Realizar    | Se permite realizar una compra y muestra el detalle de la compra.                                                 | 10%     |
-| Validación  | Se valida que los datos ingresados sean correctos.                                                                | 10%     |
-| Descuentos  | Se aplican los descuentos correctamente.                                                                          | 10%     |
-| Excepciones | Se manejan correctamente las excepciones.                                                                         | 10%     |
-| Total       |                                                                                                                   | 100%    |
+| Criterio               | Descripción                                                                                                       | Puntaje |
+|------------------------|-------------------------------------------------------------------------------------------------------------------|---------|
+| Portada                | Contiene los datos de identificación de los integrantes del equipo (nombres completos, grupo, número de control). | 5%      |
+| Menú                   | El menú de opciones se despliaga y muestra adecuadamente.                                                         | 5%      |
+| Agregar                | Se permite agregar un libro a la lista.                                                                           | 5%      |
+| Eliminar               | Se permite eliminar un libro de la lista.                                                                         | 5%      |
+| Modificar              | Se permite modificar un libro de la lista.                                                                        | 10%     |
+| Compra                 | Se permite abrir una compra y agregar/eliminar libros de la compra.                                               | 10%     |
+| Modularidad del Código | El código está organizado en clases y archivos diferentes, además de contar con métodos coherentes.               | 10%     |
+| Diagrama de Clases     | Representa las clases y sus relaciones de manera clara y concisa.                                                 | 10%     |
+| Realizar               | Se permite realizar una compra y muestra el detalle de la compra.                                                 | 10%     |
+| Validación             | Se valida que los datos ingresados sean correctos.                                                                | 10%     |
+| Descuentos             | Se aplican los descuentos correctamente.                                                                          | 10%     |
+| Excepciones            | Se manejan correctamente las excepciones.                                                                         | 10%     |
+| Total                  |                                                                                                                   | 100%    |
+
+> **La evaluación se realizará con base en los criterios establecidos en la rúbrica. Se considerará la claridad,
+> organización, comentarios y estilo del código, así como la calidad de la documentación. Además, se tomará en cuenta
+> el cumplimiento de los requerimientos y la funcionalidad del programa.**
+> {style="note"}
+
+> **Actividad entregada en lenguaje distinto a Java o sin el uso de clases y objetos, así como de modularidad, no será
+> evaluada.**
+> {style="warning"}
 
 ## Fecha de entrega
 
