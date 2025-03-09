@@ -8,7 +8,8 @@
         <primary-color>forest</primary-color>
         <color-preset>vivid</color-preset>
         <custom-css>custom.css</custom-css>
-        <color-preset>vivid</color-preset>
+        <header-logo>poo.png</header-logo>
+        <custom-favicons>poo.png</custom-favicons>
     </variables>
     <build-profile instance="poo">
         <variables>

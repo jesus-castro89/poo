@@ -1,4 +1,8 @@
-# ¡Bienvenido a Programación Orientada a Objetos!
+# Inicio
+
+## ¡Bienvenido a Programación Orientada a Objetos!
+
+![poo.jpeg](poo.jpeg){style="block"}
 
 ## ¿Qué es la Programación Orientada a Objetos?
 
