@@ -11,4 +11,10 @@
         </description>
         <accepts>static.html</accepts>
     </rule>
+    <rule id="54b94857">
+        <description>Created after removal of "¿Qué son los diagramas de Clases?" from Programación Orientada a
+            Objetos
+        </description>
+        <accepts>¿Qué-son-los-diagramas-de-Clases.html</accepts>
+    </rule>
 </rules>
