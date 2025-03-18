@@ -76,6 +76,11 @@
         <toc-element topic="generic-validate.md"/>
     </toc-element>
     <toc-element topic="varargs.md"/>
+    <toc-element toc-title="Herencia y Polimorfismo">
+        <toc-element topic="herencia.md"/>
+        <toc-element topic="tipos-herencia.md"/>
+        <toc-element topic="object.md"/>
+    </toc-element>
     <toc-element toc-title="Ejemplos Prácticos">
         <toc-element topic="ejemplo-veterinaria.md"/>
         <toc-element topic="ejemplo-2.md"/>
