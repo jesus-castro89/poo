@@ -18,9 +18,17 @@ Además, la clase `Animal` debe tener los siguientes métodos:
 - Un constructor que inicialice los atributos de la clase.
 - Un método `comer` que reciba como parámetro la cantidad de comida que el animal va a comer y que incremente el peso
   del animal en función de la cantidad de comida.
+    - Cada animal tiene un límite de comida que puede comer en función de su especie. Por lo cual si la cantidad de
+      comida
+      supera el límite, el animal no debe comer.
+    - Cada animal tiene un límite de peso y altura en función de su especie. Por lo cual si el peso o la altura superan
+      el límite, el animal no debe comer.
 - Un método `crecer` que incremente la edad del animal en un año y la altura en 10 cm.
+    - Cada animal tiene un límite de edad en función de su especie. Por lo cual si el animal supera su límite de edad,
+      debe morir.
 - Un método `dormir` que haga que el animal descanse y que disminuya su peso en 1 kg.
 - Un método `hablar` que haga que el animal emita un sonido característico de su especie.
+    - Cada animal debe tener un sonido característico de su especie.
 - Un método `mostrar_informacion` que muestre en pantalla la información del animal.
 
 De esta clase deberás crear al menos 4 subclases que representen diferentes tipos de animales (por ejemplo, `Perro`,
