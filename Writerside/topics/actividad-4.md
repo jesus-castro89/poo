@@ -90,6 +90,10 @@ eliminado de la lista de animales, tomando en cuenta un total de 10 animales en 
 > el cumplimiento de los requerimientos y la funcionalidad del programa.**
 > {style="note"}
 
+> Deberás anexar por separado las capturas de pantalla de las pruebas realizadas junto a la portada del código fuente.
+> Mismo que debera estar en un archivo comprimido y con los archivos `.java` correspondientes.
+> {style="warning"}
+
 > **Actividad entregada en lenguaje distinto a Java o sin el uso de clases y objetos, así como de modularidad, no será
 > evaluada.**
 > {style="warning"}
