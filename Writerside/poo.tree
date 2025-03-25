@@ -42,12 +42,12 @@
         <toc-element topic="constructor-input.md"/>
         <toc-element topic="paquetes.md"/>
     </toc-element>
+    <toc-element toc-title="Modificadores">
+        <toc-element topic="static.md"/>
+        <toc-element topic="final.md"/>
+    </toc-element>
     <toc-element toc-title="Métodos">
         <toc-element topic="que-es-metodo.md"/>
-        <toc-element toc-title="Modificadores">
-            <toc-element topic="static.md"/>
-            <toc-element topic="final.md"/>
-        </toc-element>
         <toc-element topic="metodos-clase-instance.md"/>
         <toc-element topic="ambito.md"/>
         <toc-element topic="argumentos.md"/>
@@ -81,6 +81,11 @@
         <toc-element topic="tipos-herencia.md"/>
         <toc-element topic="object.md"/>
         <toc-element topic="polimorfismo.md"/>
+    </toc-element>
+    <toc-element toc-title="Clases Abstractas e Interfaces">
+        <toc-element topic="abstract-class.md"/>
+        <toc-element topic="abstract-ejemplo.md"/>
+        <toc-element topic="final-functions.md"/>
     </toc-element>
     <toc-element toc-title="Ejemplos Prácticos">
         <toc-element topic="ejemplo-veterinaria.md"/>
