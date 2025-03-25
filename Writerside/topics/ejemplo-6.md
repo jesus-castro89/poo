@@ -361,7 +361,7 @@ public class StoreManager {
                     "Nuevo Producto");
             double price = Validator.validate(Double.class, (Double d) -> d > 0.0, "Ingrese el precio del producto", "Precio inválido",
                     "Nuevo Producto");
-            Category category = (Category) Validator.validate(Category.values(), "Seleccione la categoría del producto",);
+            Category category = (Category) Validator.validate(Category.values(), "Seleccione la categoría del producto",
                     "Categoría inválida", "Nuevo Producto");
             products[counter++] = new Product(code, name, price, category);
             JOptionPane.showMessageDialog(null, "Producto agregado a la tienda", "Nuevo Producto",
