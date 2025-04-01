@@ -88,6 +88,9 @@
         <toc-element topic="abstract-ejemplo.md"/>
         <toc-element topic="final-functions.md"/>
         <toc-element topic="modificadores.md"/>
+        <toc-element topic="interface.md"/>
+        <toc-element topic="interface-constant.md"/>
+        <toc-element topic="interfaz-funcional.md"/>
     </toc-element>
     <toc-element toc-title="Ejemplos Prácticos">
         <toc-element topic="ejemplo-veterinaria.md"/>
