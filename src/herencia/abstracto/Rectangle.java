@@ -1,6 +1,8 @@
 package herencia.abstracto;
 
-public class Rectangle extends Shape {
+import interfaz.Vendible;
+
+public class Rectangle extends Shape implements Vendible {
 
     private final double width;
     private final double height;
@@ -19,5 +21,20 @@ public class Rectangle extends Shape {
     @Override
     public double calculatePerimeter() {
         return 2 * (width + height);
+    }
+
+    @Override
+    public double getPrecio() {
+        return 0;
+    }
+
+    @Override
+    public void setPrecio(double precio) {
+
+    }
+
+    @Override
+    public String getNombre() {
+        return "";
     }
 }

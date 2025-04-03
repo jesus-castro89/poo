@@ -35,16 +35,16 @@ Deberás definir las nacionalidades posibles de los productos.
 
 ## Critrerios de evaluación
 
-| Criterio                             | Descripción                                                                        | Puntaje |
-|--------------------------------------|------------------------------------------------------------------------------------|---------|
-| Portada                              | El archivo contiene una portada con los datos del equipo.                          | 5%      |
-| Código                               | El código cumple con los requisitos solicitados.                                   | 50%     |
-| Documentación                        | El código contiene comentarios que facilitan su comprensión.                       | 10%     |
-| Pruebas                              | El código contiene pruebas que demuestran su correcto funcionamiento.              | 10%     |
-| Capturas de pantalla                 | Se anexan capturas de pantalla de las pruebas realizadas.                          | 5%      |
-| Uso de clases abstractas y concretas | Se utilizan clases abstractas y concretas para la implementación de los productos. | 10%     |
-| Modularidad                          | El código está modularizado.                                                       | 10%     |
-| Total                                |                                                                                    | 100%    |
+| Criterio                             | Descripción                                                                             | Puntaje |
+|--------------------------------------|-----------------------------------------------------------------------------------------|---------|
+| Portada                              | El archivo contiene una portada con los datos del equipo.                               | 5%      |
+| Código                               | El código cumple con los requisitos solicitados.                                        | 50%     |
+| Documentación                        | El código contiene comentarios que facilitan su comprensión. Incluye Diagrama de clases | 10%     |
+| Pruebas                              | El código contiene pruebas que demuestran su correcto funcionamiento.                   | 10%     |
+| Capturas de pantalla                 | Se anexan capturas de pantalla de las pruebas realizadas.                               | 5%      |
+| Uso de clases abstractas y concretas | Se utilizan clases abstractas y concretas para la implementación de los productos.      | 10%     |
+| Modularidad                          | El código está modularizado.                                                            | 10%     |
+| Total                                |                                                                                         | 100%    |
 
 > **La evaluación se realizará con base en los criterios establecidos en la rúbrica. Se considerará la claridad,
 > organización, comentarios y estilo del código, así como la calidad de la documentación. Además, se tomará en cuenta
@@ -61,7 +61,7 @@ Deberás definir las nacionalidades posibles de los productos.
 
 ## Fecha de Entrega
 
-Lunes 4 de abril de 2025, 11:59 p.m. (medianoche)
+Lunes 7 de abril de 2025, 11:59 p.m. (medianoche)
 
 > **Trabajos entregados después de la fecha y hora límite serán calificados sobre 70 puntos.**
 > {style="warning"}

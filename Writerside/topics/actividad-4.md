@@ -46,7 +46,6 @@ contendrá los siguientes métodos:
 - Un método `mostrar_animales` que muestre en pantalla la información de cada animal.
 - Un método `hacer_sonar_animales` que haga que cada animal emita un sonido característico de su especie.
 - Un método `mostrar_informacion` que muestre en pantalla la información de cada animal.
-- Un método `mostrar_informacion` que muestre en pantalla la información de cada animal.
 
 Toma en cuenta un límite de comida que puede comer un animal, así como un límite de peso y altura, siguiendo la
 siguiente tabla:
