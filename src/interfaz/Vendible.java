@@ -2,7 +2,7 @@ package interfaz;
 
 public interface Vendible {
 
-    static final String nombre="";
+    String nombre="";
 
     static void mostrar(){
         System.out.println("Nombre: " + nombre);

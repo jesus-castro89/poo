@@ -1,148 +1,266 @@
-# La clase `Arrays`
+# La clase `Arrays` en Java
 
-## Descripción
+La clase `Arrays` en Java es una clase de utilidad que proporciona una serie de métodos estáticos para trabajar con
+arreglos. Estos métodos incluyen operaciones como ordenar, buscar, comparar y llenar arreglos, entre otros. La clase
+`Arrays` es parte del paquete `java.util` y se importa automáticamente en los programas de Java.
 
-En Java, la clase `Arrays` es una clase de utilidad que proporciona métodos estáticos para trabajar con arreglos. Esta
-clase no puede ser instanciada, ya que todos sus métodos son estáticos. Algunos de los métodos más comunes que
-proporciona
-son:
+## Métodos comunes de la clase `Arrays`
 
-### Ordenamiento `sort()`
+La clase `Arrays` en Java proporciona una serie de métodos útiles para trabajar con arreglos. Algunos de los métodos más
+comunes de la clase `Arrays` incluyen:
 
-El método `sort()` se utiliza para ordenar un arreglo de elementos. Este método ordena los elementos en orden ascendente
-utilizando el orden natural de los elementos o un comparador personalizado.
+### Función de ordenamiento de arreglos `sort()`
 
-```java
-int[] numeros = {5, 3, 8, 2, 1, 4};
-Arrays.
+El método `sort()` de la clase `Arrays` se utiliza para ordenar un arreglo en orden ascendente, descendente o según un
+criterio específico.
 
-sort(numeros);
-System.out.
+Por sí misma la función se encuentra sobrecargada, es decir, existen varias versiones de la función `sort()` que
+permiten ordenar arreglos de diferentes tipos de datos, como arreglos de enteros, arreglos de cadenas, arreglos de
+objetos, entre otros.
 
-println(Arrays.toString(numeros)); // [1, 2, 3, 4, 5, 8]
-```
-
-Existen otras variantes del método `sort()` que permiten ordenar un rango específico de elementos o un arreglo de
-objetos que son los siguientes:
-
-| Firma del método                                                            | Descripción                                                                                                                   |
-|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| `void sort(int[] a)`                                                        | Ordena el arreglo especificado de enteros en orden ascendente.                                                                |
-| `void sort(int[] a, int fromIndex, int toIndex)`                            | Ordena el rango especificado de elementos en el arreglo de enteros en orden ascendente.                                       |
-| `void sort(Object[] a)`                                                     | Ordena el arreglo especificado de objetos en orden ascendente.                                                                |
-| `void sort(Object[] a, int fromIndex, int toIndex)`                         | Ordena el rango especificado de elementos en el arreglo de objetos en orden ascendente.                                       |
-| `<T> void sort(T[] a, Comparator<? super T> c)`                             | Ordena el arreglo especificado de objetos en orden ascendente utilizando el comparador especificado.                          |
-| `<T> void sort(T[] a, int fromIndex, int toIndex, Comparator<? super T> c)` | Ordena el rango especificado de elementos en el arreglo de objetos en orden ascendente utilizando el comparador especificado. |
-
-#### Ejemplo de uso de `sort()`
+Vemos estas versiones de la función `sort()` en el siguiente ejemplo:
 
 ```java
-import java.util.Collections;
+import java.util.Arrays;
 
-String[] nombres1 = {"Juan", "Pedro", "María", "Ana", "Carlos"};
-Arrays.
-
-sort(nombres);
-System.out.
-
-println(Arrays.toString(nombres)); // [Ana, Carlos, Juan, María, Pedro]
-
-String[] nombres2 = {"Juan", "Pedro", "María", "Ana", "Carlos"};
-Arrays.
-
-sort(nombres, 1,4);
-System.out.
-
-println(Arrays.toString(nombres)); // [Juan, Ana, María, Pedro, Carlos]
-
-String[] nombres3 = {"Juan", "Pedro", "María", "Ana", "Carlos"};
-Arrays.
-
-sort(nombres, Collections.reverseOrder());
-        System.out.
-
-println(Arrays.toString(nombres)); // [Pedro, María, Juan, Carlos, Ana]
-
-String[] nombres4 = {"Juan", "Pedro", "María", "Ana", "Carlos"};
-Arrays.
-
-sort(nombres, 1,4,Collections.reverseOrder());
-        System.out.
-
-println(Arrays.toString(nombres)); // [Juan, Pedro, María, Ana, Carlos]
+public class Main {
+    public static void main(String[] args) {
+        int[] numeros = {4, 2, 7, 1, 5, 3, 6};
+        int[] numerosOrdenados = Arrays.copyOf(numeros, numeros.length);
+        int[] numerosInvertidos = Arrays.copyOf(numeros, numeros.length);
+        int[] numerosOrdenadosConRango = Arrays.copyOf(numeros, numeros.length);
+        int[] numerosOrdenadosInvertidosConRango = Arrays.copyOf(numeros, numeros.length);
+        Integer[] numerosObjeto = {4, 2, 7, 1, 5, 3, 6};
+        // Ordenar el arreglo de enteros en orden ascendente
+        Arrays.sort(numerosOrdenados)
+        // Imprimir el arreglo ordenado
+        System.out.println(Arrays.toString(numerosOrdenados));
+        // Ordenar el arreglo de enteros en orden descendente
+        Arrays.sort(numerosInvertidos, Collections.reverseOrder());
+        // Imprimir el arreglo ordenado en orden descendente
+        System.out.println(Arrays.toString(numerosInvertidos));
+        // Ordenar el arreglo en un rango específico
+        Arrays.sort(numerosOrdenadosConRango, 1, 4);
+        // Imprimir el arreglo ordenado en un rango específico
+        System.out.println(Arrays.toString(numerosOrdenadosConRango));
+        // Ordenar el arreglo en un rango específico en orden descendente
+        Arrays.sort(numerosOrdenadosInvertidosConRango, 1, 4, Collections.reverseOrder());
+        // Imprimir el arreglo ordenado en un rango específico en orden descendente
+        System.out.println(Arrays.toString(numerosOrdenadosInvertidosConRango));
+        // Ordenar el arreglo con un criterio específico (primero par, luego impar)
+        Arrays.sort(numerosObjeto, (a, b) -> {
+            if (a % 2 == 0 && b % 2 != 0) {
+                return -1;
+            } else if (a % 2 != 0 && b % 2 == 0) {
+                return 1;
+            } else {
+                return a.compareTo(b);
+            }
+        });
+        // Imprimir el arreglo ordenado con el criterio específico
+        System.out.println(Arrays.toString(numerosObjeto));
+    }
+}
 ```
 
-### Búsqueda binaria `binarySearch()`
+En este ejemplo, se muestra cómo ordenar un arreglo de enteros en orden ascendente, descendente, en un rango específico
+y con un criterio específico utilizando el método `sort()` de la clase `Arrays`.
 
-El método `binarySearch()` se utiliza para buscar un elemento en un arreglo ordenado. Este método devuelve el índice del
-elemento buscado si se encuentra en el arreglo, de lo contrario, devuelve un valor negativo.
+En resumen, la función `sort()` de la clase `Arrays` es una herramienta útil para ordenar arreglos de diferentes tipos
+de datos en Java. Siendo sus versiones en concreto las siguientes:
+
+| Método `sort()`                                                            | Descripción                                                                                                                             |
+|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `sort(int[] a)`                                                            | Ordena el arreglo de enteros `a` en orden ascendente.                                                                                   |
+| `sort(int[] a, int fromIndex, int toIndex)`                                | Ordena el arreglo de enteros `a` desde el índice `fromIndex` (inclusive) hasta el índice `toIndex` (exclusivo) en orden ascendente.     |
+| `sort(int[] a, Comparator<? super Integer> c)`                             | Ordena el arreglo de enteros `a` según el comparador `c`.                                                                               |
+| `sort(int[] a, int fromIndex, int toIndex, Comparator<? super Integer> c)` | Ordena el arreglo de enteros `a` desde el índice `fromIndex` (inclusive) hasta el índice `toIndex` (exclusivo) según el comparador `c`. |
+| `sort(T[] a, Comparator<? super T> c)`                                     | Ordena el arreglo de objetos `a` según el comparador `c`.                                                                               |
+| `sort(T[] a, int fromIndex, int toIndex, Comparator<? super T> c)`         | Ordena el arreglo de objetos `a` desde el índice `fromIndex` (inclusive) hasta el índice `toIndex` (exclusivo) según el comparador `c`. |
+| `sort(T[] a)`                                                              | Ordena el arreglo de objetos `a` en orden ascendente.                                                                                   |
+| `sort(T[] a, int fromIndex, int toIndex)`                                  | Ordena el arreglo de objetos `a` desde el índice `fromIndex` (inclusive) hasta el índice `toIndex` (exclusivo) en orden ascendente.     |
+
+### Función de búsqueda en arreglos `binarySearch()`
+
+El método `binarySearch()` de la clase `Arrays` se utiliza para buscar un elemento en un arreglo ordenado. Este método
+utiliza el algoritmo de búsqueda binaria para encontrar el elemento en el arreglo.
+
+Por sí misma la función se encuentra sobrecargada, es decir, existen varias versiones de la función `binarySearch()`
+que permiten buscar elementos en arreglos de diferentes tipos de datos, como arreglos de enteros, arreglos de cadenas,
+arreglos de objetos, entre otros.
+
+Vemos estas versiones de la función `binarySearch()` en el siguiente ejemplo:
 
 ```java
-int[] numeros = {1, 2, 3, 4, 5, 8};
-int indice = Arrays.binarySearch(numeros, 3);
-System.out.
+import java.util.Arrays;
 
-println(indice); // 2
+public class Main {
+    public static void main(String[] args) {
+        int[] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        // Imprimir el índice del elemento 5 en el arreglo
+        int indice = Arrays.binarySearch(numeros, 5);
+        System.out.println("El índice del elemento 5 es: " + indice);
+        // Imprimir el índice del elemento 5 en el rango del arreglo
+        int indiceRango = Arrays.binarySearch(numeros, 1, 5, 5);
+        System.out.println("El índice del elemento 5 en el rango del arreglo es: " + indiceRango);
+        // Imprimir el índice del primer elemento par en el arreglo
+        int indiceEstablecido = Arrays.binarySearch(numeros, 0, numeros.length, 0, (a, b) -> {
+            if (a % 2 == 0 && b % 2 != 0) {
+                return -1;
+            } else if (a % 2 != 0 && b % 2 == 0) {
+                return 1;
+            } else {
+                return a.compareTo(b);
+            }
+        });
+        System.out.println("El índice del primer elemento par en el arreglo es: " + indiceEstablecido);
+    }
+}
 ```
 
-Existen otras variantes del método `binarySearch()` que permiten buscar un rango específico de elementos o un arreglo de
-objetos que son los siguientes:
+En este ejemplo, se muestra cómo buscar un elemento en un arreglo de enteros utilizando el método `binarySearch()` de la
+clase `Arrays`. Además, se muestra cómo buscar un elemento en un rango específico del arreglo y cómo buscar un elemento
+con un criterio específico utilizando el método `binarySearch()`.
 
-| Firma del método                                                                          | Descripción                                                                                                                                                                                              |
-|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `int binarySearch(int[] a, int key)`                                                      | Busca la clave especificada en el arreglo de enteros. Devuelve el índice de la clave si se encuentra, de lo contrario, un valor negativo.                                                                |
-| `int binarySearch(int[] a, int fromIndex, int toIndex, int key)`                          | Busca la clave especificada en el rango de elementos en el arreglo de enteros. Devuelve el índice de la clave si se encuentra, de lo contrario, un valor negativo.                                       |
-| `int binarySearch(Object[] a, Object key)`                                                | Busca la clave especificada en el arreglo de objetos. Devuelve el índice de la clave si se encuentra, de lo contrario, un valor negativo.                                                                |
-| `int binarySearch(Object[] a, int fromIndex, int toIndex, Object key)`                    | Busca la clave especificada en el rango de elementos en el arreglo de objetos. Devuelve el índice de la clave si se encuentra, de lo contrario, un valor negativo.                                       |
-| `<T> int binarySearch(T[] a, T key, Comparator<? super T> c)`                             | Busca la clave especificada en el arreglo de objetos utilizando el comparador especificado. Devuelve el índice de la clave si se encuentra, de lo contrario, un valor negativo.                          |
-| `<T> int binarySearch(T[] a, int fromIndex, int toIndex, T key, Comparator<? super T> c)` | Busca la clave especificada en el rango de elementos en el arreglo de objetos utilizando el comparador especificado. Devuelve el índice de la clave si se encuentra, de lo contrario, un valor negativo. |
+En resumen, la función `binarySearch()` de la clase `Arrays` es una herramienta útil para buscar elementos en arreglos
+ordenados de diferentes tipos de datos en Java. Siendo sus versiones en concreto las siguientes:
 
-### Comparación de arreglos `equals()`
+| Método `binarySearch()`                                                           | Descripción                                                                                                                                                                                                                              |
+|-----------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `binarySearch(T[] a, T key)`                                                      | Busca el elemento `key` en el arreglo de enteros `a` y devuelve su índice si se encuentra, o un valor negativo si no se encuentra.                                                                                                       |
+| `binarySearch(T[] a, int fromIndex, int toIndex, T key)`                          | Busca el elemento `key` en el arreglo de enteros `a` desde el índice `fromIndex` (inclusive) hasta el índice `toIndex` (exclusivo) y devuelve su índice si se encuentra, o un valor negativo si no se encuentra.                         |
+| `binarySearch(T[] a, int key, Comparator<? super T> c)`                           | Busca el elemento `key` en el arreglo de enteros `a` según el comparador `c` y devuelve su índice si se encuentra, o un valor negativo si no se encuentra.                                                                               |
+| `binarySearch(T[] a, int fromIndex, int toIndex, T key, Comparator<? super T> c)` | Busca el elemento `key` en el arreglo de enteros `a` desde el índice `fromIndex` (inclusive) hasta el índice `toIndex` (exclusivo) según el comparador `c` y devuelve su índice si se encuentra, o un valor negativo si no se encuentra. |
 
-El método `equals()` se utiliza para comparar dos arreglos de elementos. Este método devuelve `true` si los arreglos son
-iguales, es decir, si tienen la misma longitud y los mismos elementos en el mismo orden, de lo contrario, devuelve
-`false`.
+### Función de comparación de arreglos `equals()`
+
+El método `equals()` de la clase `Arrays` se utiliza para comparar dos arreglos y determinar si son iguales o no. Este
+método compara los elementos de los arreglos uno por uno y devuelve `true` si los arreglos son iguales y `false` si no
+lo son.
+
+Veamos un ejemplo de cómo utilizar el método `equals()` de la clase `Arrays`:
 
 ```java
-int[] numeros1 = {1, 2, 3, 4, 5};
-int[] numeros2 = {1, 2, 3, 4, 5};
-System.out.println(Arrays.equals(numeros1, numeros2)); // true
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] numeros1 = {1, 2, 3, 4, 5};
+        int[] numeros2 = {1, 2, 3, 4, 5};
+        int[] numeros3 = {5, 4, 3, 2, 1};
+        // Comparar los arreglos numeros1 y numeros2
+        boolean iguales1 = Arrays.equals(numeros1, numeros2);
+        System.out.println("¿Los arreglos numeros1 y numeros2 son iguales? " + iguales1);
+        // Comparar los arreglos numeros1 y numeros3
+        boolean iguales2 = Arrays.equals(numeros1, numeros3);
+        System.out.println("¿Los arreglos numeros1 y numeros3 son iguales? " + iguales2);
+    }
+}
 ```
 
-### Conversión a cadena `toString()`
+En este ejemplo, se muestra cómo comparar dos arreglos de enteros utilizando el método `equals()` de la clase `Arrays`.
 
-El método `toString()` se utiliza para convertir un arreglo de elementos en una cadena de texto. Este método devuelve una
-cadena que representa los elementos del arreglo.
+### Función de llenado de arreglos `fill()`
+
+El método `fill()` de la clase `Arrays` se utiliza para llenar un arreglo con un valor específico. Este método asigna el
+valor especificado a todos los elementos del arreglo.
+
+Veamos un ejemplo de cómo utilizar el método `fill()` de la clase `Arrays`:
 
 ```java
-int[] numeros = {1, 2, 3, 4, 5};
-System.out.println(Arrays.toString(numeros)); // [1, 2, 3, 4, 5]
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] numeros = new int[5];
+        // Llenar el arreglo con el valor 10
+        Arrays.fill(numeros, 10);
+        // Imprimir el arreglo lleno
+        System.out.println(Arrays.toString(numeros));
+    }
+}
 ```
 
-### Rellenado de arreglos `fill()`
+En este ejemplo, se muestra cómo llenar un arreglo de enteros con el valor `10` utilizando el método `fill()` de la
+clase `Arrays`.
 
-El método `fill()` se utiliza para rellenar un arreglo de elementos con un valor específico. Este método asigna el valor
-especificado a todos los elementos del arreglo.
+### Función de copia de arreglos `copyOf()` y `copyOfRange()`
+
+El método `copyOf()` de la clase `Arrays` se utiliza para copiar un arreglo en otro arreglo de tamaño diferente. Este
+método copia los elementos del arreglo original en el nuevo arreglo y rellena los elementos restantes con el valor
+predeterminado del tipo de dato.
+
+Por sí misma la función se encuentra sobrecargada, es decir, existen varias versiones de la función `copyOf()` que
+permiten copiar arreglos de diferentes tipos de datos, y copiar solo una parte del arreglo original.
+
+Veamos estas versiones de la función `copyOf()` en el siguiente ejemplo:
 
 ```java
-int[] numeros = new int[5];
-Arrays.fill(numeros, 0);
-System.out.println(Arrays.toString(numeros)); // [0, 0, 0, 0, 0]
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] numeros = {1, 2, 3, 4, 5};
+        // Copiar el arreglo de enteros
+        int[] copiaNumeros = Arrays.copyOf(numeros, numeros.length);
+        // Imprimir la copia del arreglo
+        System.out.println(Arrays.toString(copiaNumeros));
+        // Copiar solo una parte del arreglo de enteros
+        int[] copiaNumerosRango = Arrays.copyOfRange(numeros, 1, 4);
+        // Imprimir la copia del arreglo en un rango específico
+        System.out.println(Arrays.toString(copiaNumerosRango));
+    }
+}
 ```
 
-### Copia de arreglos `copyOf()`
+En este ejemplo, se muestra cómo copiar un arreglo de enteros y cómo copiar solo una parte del arreglo utilizando el
+método `copyOf()` de la clase `Arrays`.
 
-El método `copyOf()` se utiliza para copiar un arreglo de elementos en un nuevo arreglo con una longitud específica. Este
-método devuelve un nuevo arreglo que contiene los elementos copiados del arreglo original.
+En resumen, la función `copyOf()` de la clase `Arrays` es una herramienta útil para copiar arreglos de diferentes tipos
+de datos en Java. Siendo sus versiones en concreto las siguientes:
+
+| Método `copyOf()`                             | Descripción                                                                                                                     |
+|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `copyOf(T[] original, int newLength)`         | Copia el arreglo `original` en un nuevo arreglo de longitud `newLength`.                                                        |    
+| `copyOfRange(T[] original, int from, int to)` | Copia una parte del arreglo `original` desde el índice `from` (inclusive) hasta el índice `to` (exclusivo) en un nuevo arreglo. |
+
+### Función de conversión de arreglos a cadenas `toString()`
+
+El método `toString()` de la clase `Arrays` se utiliza para convertir un arreglo en una cadena de texto. Este método
+devuelve una representación en forma de cadena de los elementos del arreglo.
+
+### Función de comparación de arreglos `deepEquals()`
+
+El método `deepEquals()` de la clase `Arrays` se utiliza para comparar dos arreglos multidimensionales y determinar si
+son iguales o no. Este método compara los elementos de los arreglos uno por uno y devuelve `true` si los arreglos son
+iguales y `false` si no lo son.
+
+Veamos un ejemplo de cómo utilizar el método `deepEquals()` de la clase `Arrays`:
 
 ```java
-int[] numeros1 = {1, 2, 3, 4, 5};
-int[] numeros2 = Arrays.copyOf(numeros1, 3);
-System.out.println(Arrays.toString(numeros2)); // [1, 2, 3]
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] matriz1 = {{1, 2}, {3, 4}};
+        int[][] matriz2 = {{1, 2}, {3, 4}};
+        int[][] matriz3 = {{4, 3}, {2, 1}};
+        // Comparar las matrices matriz1 y matriz2
+        boolean iguales1 = Arrays.deepEquals(matriz1, matriz2);
+        System.out.println("¿Las matrices matriz1 y matriz2 son iguales? " + iguales1);
+        // Comparar las matrices matriz1 y matriz3
+        boolean iguales2 = Arrays.deepEquals(matriz1, matriz3);
+        System.out.println("¿Las matrices matriz1 y matriz3 son iguales? " + iguales2);
+    }
+}
 ```
 
-### Comparación de arreglos `deepEquals()`
+En este ejemplo, se muestra cómo comparar dos arreglos multidimensionales utilizando el método `deepEquals()` de la
+clase `Arrays`.
 
-El método `deepEquals()` se utiliza para comparar dos arreglos multidimensionales de elementos. Este método devuelve `true`
-si los arreglos son iguales, es decir, si tienen la misma longitud y los mismos elementos en el mismo orden, de lo
-contrario, devuelve `false`.
+## Conclusión
+
+La clase `Arrays` en Java proporciona una serie de métodos útiles para trabajar con arreglos de diferentes tipos de
+datos. Estos métodos incluyen operaciones como ordenar, buscar, comparar, llenar, copiar y convertir arreglos, entre
+otros. Al conocer y utilizar los métodos de la clase `Arrays`, los programadores pueden realizar operaciones comunes
+sobre arreglos de manera eficiente y efectiva en Java.

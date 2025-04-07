@@ -62,7 +62,6 @@
         <toc-element topic="random.md"/>
         <toc-element topic="math.md"/>
         <toc-element topic="wrappers.md"/>
-        <toc-element topic="arrays.md"/>
     </toc-element>
     <toc-element toc-title="Enum &amp; Record">
         <toc-element topic="enum.md"/>
@@ -91,6 +90,13 @@
         <toc-element topic="interface.md"/>
         <toc-element topic="interface-constant.md"/>
         <toc-element topic="interfaz-funcional.md"/>
+    </toc-element>
+    <toc-element toc-title="Arreglos">
+        <toc-element topic="arreglos.md"/>
+        <toc-element topic="matriz.md"/>
+        <toc-element topic="dimension-n.md"/>
+        <toc-element topic="arrays.md"/>
+        <toc-element topic="arreglos-dinamicos.md"/>
     </toc-element>
     <toc-element toc-title="Ejemplos Prácticos">
         <toc-element topic="ejemplo-veterinaria.md"/>

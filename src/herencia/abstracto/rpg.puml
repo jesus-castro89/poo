@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Item{
+    #nombre: String
+    #descripcion: String
+}
+
+abstract class Arma extends Item{
+    +ataque: int
+    +defensa: int
+}
+
+abstract class Armadura extends Item{
+    +defensa: int
+}
+
+abstract class Potion extends Item{
+    +vida: int
+}
+
+class LifePotion extends Potion{
+
+}
+
+class VenomPotion extends Potion{
+
+}
+
+class Sword extends Arma{
+
+}
+
+class Shield extends Arma{
+
+}
+
+class Helmet extends Armadura{
+
+}
+
+class Chest extends Armadura{
+
+}
+
+class ForceOrb extends Item{
+    +incrementarAtaque(): void
+}
+
+interface equipable{
+    +equipar(item: Item): void
+    +desarmar(item: Item): void
+}
+
+Sword -down-> equipable
+Shield -down-> equipable
+ForceOrb -down-> equipable
+
+@enduml
