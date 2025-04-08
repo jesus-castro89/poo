@@ -43,9 +43,12 @@ public class HangedMan {
     private int remainingAttempts;
 
     static {
-        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 20));
-        UIManager.put("OptionPane.buttonFont", new Font("Arial", Font.BOLD, 20));
-        UIManager.put("TextField.font", new Font("Arial", Font.PLAIN, 20));
+        UIManager.put("OptionPane.messageFont",
+                new Font("Arial", Font.PLAIN, 20));
+        UIManager.put("OptionPane.buttonFont",
+                new Font("Arial", Font.BOLD, 20));
+        UIManager.put("TextField.font",
+                new Font("Arial", Font.PLAIN, 20));
     }
 
     /**
@@ -116,7 +119,7 @@ public class HangedMan {
                 "Juego terminado", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
             resetGame();
-            askForNewGame();
+            askForLetter();
         } else {
             JOptionPane.showMessageDialog(null,
                     "Gracias por jugar. ¡Hasta luego!",
@@ -131,8 +134,12 @@ public class HangedMan {
 
         try {
             // Pedimos al usuario que ingrese una letra.
-            char letter = JOptionPane.showInputDialog(null, displayGameStatus() + "\n" +
-                    "Ingrese una letra:").charAt(0);
+            char letter = JOptionPane.showInputDialog(null,
+                    displayGameStatus() +
+                            "Ingrese una letra:").charAt(0);
+            // Validamos que el caracter ingresado sea una letra.
+            if (!Character.isLetter(letter))
+                throw new Exception("No es una letra");
             // Verificamos si la letra es correcta o incorrecta.
             if (guessLetter(letter)) {
 
@@ -151,12 +158,15 @@ public class HangedMan {
                     JOptionPane.showMessageDialog(null,
                             "¡Ganaste! La palabra era: " + wordToGuess,
                             "¡Victoria!", JOptionPane.INFORMATION_MESSAGE);
-                    askForNewGame();
                 } else {
+                    // Si el juego ha terminado y no se ha adivinado la palabra,
+                    // mostramos un mensaje de derrota.
                     JOptionPane.showMessageDialog(null,
                             "Perdiste. La palabra era: " + wordToGuess,
                             "¡Derrota!", JOptionPane.ERROR_MESSAGE);
                 }
+                // Preguntamos al usuario si quiere jugar de nuevo.
+                askForNewGame();
             } else {
                 // Si el juego no ha terminado, pedimos al usuario que ingrese otra letra.
                 askForLetter();
@@ -191,13 +201,9 @@ public class HangedMan {
     private String displayIncorrectLetters() {
 
         StringBuilder display = new StringBuilder();
-        for (char letter : incorrectLetters) {
-
-            if (letter != '_') {
-
+        for (char letter : incorrectLetters)
+            if (letter != '_')
                 display.append(letter).append(" ");
-            }
-        }
         return display.toString().trim();
     }
 
@@ -207,14 +213,8 @@ public class HangedMan {
     private String displayGuessedLetters() {
 
         StringBuilder display = new StringBuilder();
-        for (char letter : guessedLetters) {
-
-            if (letter == '_') {
-                display.append("_ ");
-            } else {
-                display.append(letter).append(" ");
-            }
-        }
+        for (char letter : guessedLetters)
+            display.append(letter == '_' ? "_ " : letter + " ");
         return display.toString().trim();
     }
 
@@ -229,17 +229,14 @@ public class HangedMan {
         // Convertimos la letra a minúscula.
         letter = Character.toUpperCase(letter);
         // Verificamos si la letra ya ha sido adivinada.
-        if (isLetterGuessed(letter)) {
+        if (isLetterGuessed(letter))
             return false;
-        }
         // Verificamos si la letra está en la palabra a adivinar.
         if (wordToGuess.indexOf(letter) != -1) {
             // Si la letra es correcta, actualizamos las letras adivinadas.
-            for (int i = 0; i < wordToGuess.length(); i++) {
-                if (wordToGuess.charAt(i) == letter) {
+            for (int i = 0; i < wordToGuess.length(); i++)
+                if (wordToGuess.charAt(i) == letter)
                     guessedLetters[i] = letter;
-                }
-            }
             return true;
         } else {
             // Si la letra es incorrecta, actualizamos las letras incorrectas y los intentos restantes.
@@ -259,11 +256,9 @@ public class HangedMan {
         // Convertimos la letra a minúscula.
         letter = Character.toUpperCase(letter);
         // Verificamos si la letra está en las letras adivinadas.
-        for (char guessedLetter : guessedLetters) {
-            if (guessedLetter == letter) {
+        for (char guessedLetter : guessedLetters)
+            if (guessedLetter == letter)
                 return true;
-            }
-        }
         return false;
     }
 
@@ -286,11 +281,9 @@ public class HangedMan {
     public boolean isWordGuessed() {
 
         // Verificamos si todas las letras de la palabra a adivinar han sido adivinadas.
-        for (int i = 0; i < wordToGuess.length(); i++) {
-            if (guessedLetters[i] != wordToGuess.charAt(i)) {
+        for (int i = 0; i < wordToGuess.length(); i++)
+            if (guessedLetters[i] != wordToGuess.charAt(i))
                 return false;
-            }
-        }
         return true;
     }
 }
