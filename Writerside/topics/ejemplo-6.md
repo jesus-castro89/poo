@@ -337,6 +337,7 @@ Para esta clase tomaremos en consideración la librería de validación genéric
 
 ```java
 import javax.swing.JOptionPane;
+
 import org.tec.utils.Validator;
 
 public class StoreManager {
@@ -347,18 +348,18 @@ public class StoreManager {
     private final Sale sale = new Sale();
 
     public StoreManager() {
-    
+
         menu();
     }
 
     private void addProduct() {
-    
+
         if (counter < MAX_PRODUCTS) {
-        
-            String code = Validator.validate(String.class, "Ingrese el código del producto", "Código inválido",
-                    "Nuevo Producto");
-            String name = Validator.validate(String.class, "Ingrese el nombre del producto", "Nombre inválido",
-                    "Nuevo Producto");
+
+            String code = Validator.validate(String.class, "Ingrese el código del producto", "Código inválido"
+            );
+            String name = Validator.validate(String.class, "Ingrese el nombre del producto", "Nombre inválido"
+            );
             double price = Validator.validate(Double.class, (Double d) -> d > 0.0, "Ingrese el precio del producto", "Precio inválido",
                     "Nuevo Producto");
             Category category = (Category) Validator.validate(Category.values(), "Seleccione la categoría del producto",
@@ -366,24 +367,24 @@ public class StoreManager {
             products[counter++] = new Product(code, name, price, category);
             JOptionPane.showMessageDialog(null, "Producto agregado a la tienda", "Nuevo Producto",
                     JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No se pueden agregar más productos a la tienda", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private String listProducts() {
-    
+
         StringBuilder builder = new StringBuilder();
         Product product;
-        
+
         if (counter == 0) {
-        
+
             return "No hay productos en la tienda";
         }
 
         for (Product product : products) {
-        
+
             builder.append(product).append("\n");
         }
 
@@ -391,13 +392,13 @@ public class StoreManager {
     }
 
     private Product searchProduct(String code) {
-    
+
         Product product;
-        
-        for(Product product : products) {
-        
+
+        for (Product product : products) {
+
             if (product.code().equals(code)) {
-            
+
                 return product;
             }
         }
@@ -406,55 +407,58 @@ public class StoreManager {
     }
 
     private void addProductToSale() {
-        
-        try{
-        
-            String code = Validator.validate(String.class, "Ingrese el código del producto", "Código inválido", "Venta");
+
+        try {
+
+            String code = Validator.validate(String.class, "Ingrese el código del producto", "Código inválido");
             Product product = searchProduct(code);
             if (product == null) {
-            
+
                 JOptionPane.showMessageDialog(null, "Producto no encontrado", "Venta", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             sale.addProduct(product);
             JOptionPane.showMessageDialog(null, "Producto agregado a la venta", "Venta", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalStateException e) {
-        
+
             JOptionPane.showMessageDialog(null, e.getMessage(), "Venta", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private String generateSaleTicket() {
-    
+
         return sale.generateTicket();
     }
 
     private String makeSale() {
-    
+
         return sale.makeSale();
     }
 
     public void menu() {
-    
-        MenuOption selectedOption= Validator.validate(MenuOption.values(), "Seleccione una opción", "Opción inválida", "Menú");
-        
+
+        MenuOption selectedOption = Validator.validate(MenuOption.values(), "Seleccione una opción", "Opción inválida", "Menú");
+
         switch (selectedOption) {
             case ADD_PRODUCT -> addProduct();
-            case LIST_PRODUCTS -> JOptionPane.showMessageDialog(null, listProducts(), "Productos en la tienda", JOptionPane.INFORMATION_MESSAGE);
+            case LIST_PRODUCTS ->
+                    JOptionPane.showMessageDialog(null, listProducts(), "Productos en la tienda", JOptionPane.INFORMATION_MESSAGE);
             case SEARCH_PRODUCT -> {
-                String code = Validator.validate(String.class, "Ingrese el código del producto", "Código inválido", "Buscar Producto");
+                String code = Validator.validate(String.class, "Ingrese el código del producto", "Código inválido");
                 Product product = searchProduct(code);
                 JOptionPane.showMessageDialog(null, product != null ? product : "Producto no encontrado", "Buscar Producto", JOptionPane.INFORMATION_MESSAGE);
             }
             case ADD_PRODUCT_TO_SALE -> addProductToSale();
-            case GENERATE_SALE_TICKET -> JOptionPane.showMessageDialog(null, generateSaleTicket(), "Ticket de Venta", JOptionPane.INFORMATION_MESSAGE);
-            case MAKE_SALE -> JOptionPane.showMessageDialog(null, makeSale(), "Venta Realizada", JOptionPane.INFORMATION_MESSAGE);
+            case GENERATE_SALE_TICKET ->
+                    JOptionPane.showMessageDialog(null, generateSaleTicket(), "Ticket de Venta", JOptionPane.INFORMATION_MESSAGE);
+            case MAKE_SALE ->
+                    JOptionPane.showMessageDialog(null, makeSale(), "Venta Realizada", JOptionPane.INFORMATION_MESSAGE);
             case EXIT -> {
                 JOptionPane.showMessageDialog(null, "Saliendo de la aplicación", "Salir", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
             }
+        }
     }
-}
 ```
 
 En este caso se tiene una clase que representa el manager de la tienda, la cual tiene un conjunto de funciones que se
