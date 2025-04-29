@@ -179,4 +179,4 @@ public boolean fillboard(int row, int column) {
 ## Notas
 
 - El sistema debe ser entregado en un archivo comprimido (zip) que contenga el código fuente y las pruebas.
-- La fecha de entrega es el 14 de mayo de 2025 a las 23:59 horas.
+- La fecha de entrega es el 9 de mayo de 2025 a las 23:59 horas.
