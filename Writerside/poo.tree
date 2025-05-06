@@ -102,6 +102,10 @@
         <toc-element topic="solid.md"/>
         <toc-element topic="srp.md"/>
     </toc-element>
+    <toc-element toc-title="Streams">
+        <toc-element topic="stream-class.md"/>
+        <toc-element topic="intstream.md"/>
+    </toc-element>
     <toc-element toc-title="Ejemplos Prácticos">
         <toc-element topic="ejemplo-veterinaria.md"/>
         <toc-element topic="ejemplo-2.md"/>
