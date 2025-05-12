@@ -14,11 +14,11 @@ public class SudokuValidator {
     }
 
     private static boolean isValidRow(int row, int number) {
-        return IntStream.range(0, 9).noneMatch(i -> sudoku[row][i] == number);
+        return IntStream.range(0, 9).noneMatch(column -> sudoku[row][column] == number);
     }
 
     private static boolean isValidColumn(int column, int number) {
-        return IntStream.range(0, 9).noneMatch(i -> sudoku[i][column] == number);
+        return IntStream.range(0, 9).noneMatch(row -> sudoku[row][column] == number);
     }
 
     private static boolean isValidBox(int row, int column, int number) {

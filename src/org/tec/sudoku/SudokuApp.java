@@ -21,9 +21,7 @@ public class SudokuApp {
             }
         } while (difficultyLevel == null);
         int visibleCells = difficultyLevel.getVisibleCells();
-        SudokuGenerator generator = new SudokuGenerator();
-        int[][] fullBoard = generator.generateSudoku();
-        SudokuPuzzle puzzle = new SudokuPuzzle(fullBoard, visibleCells);
+        SudokuPuzzle puzzle = new SudokuPuzzle(visibleCells);
         SudokuFileManager.exportToFile(puzzle, "org/tec/sudoku/sudoku_output.txt");
     }
 

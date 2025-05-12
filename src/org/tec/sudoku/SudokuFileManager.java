@@ -37,7 +37,7 @@ public class SudokuFileManager {
             reader.close();
 //            JOptionPane.showMessageDialog(null, "Sudoku importado con éxito desde " + filePath,
 //                    "Importación exitosa", JOptionPane.INFORMATION_MESSAGE);
-            return new SudokuPuzzle(puzzle, 0);
+            return new SudokuPuzzle();
         } catch (IOException e) {
             System.err.println("Error importando Sudoku puzzle: " + e.getMessage());
         }

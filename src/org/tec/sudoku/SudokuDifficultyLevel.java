@@ -1,6 +1,7 @@
 package org.tec.sudoku;
 
 public enum SudokuDifficultyLevel {
+    SOLVED(81),
     EASY(40),
     MEDIUM(32),
     HARD(26),

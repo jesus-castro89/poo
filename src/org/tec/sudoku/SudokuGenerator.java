@@ -7,38 +7,31 @@ import java.util.stream.IntStream;
 
 public class SudokuGenerator {
 
-    private final int[][] sudoku;
+    private static final int[][] sudoku = new int[9][9];
 
-    public SudokuGenerator() {
-
-        this.sudoku = new int[9][9];
-    }
-
-    public int[][] generateSudoku() {
+    public static int[][] generateSudoku() {
         clearBoard();
         fillBoard(0, 0);
         return sudoku;
     }
 
-    private void clearBoard() {
-        IntStream.range(0, 9).forEach(i ->
-                IntStream.range(0, 9).forEach(k ->
-                        sudoku[i][k] = 0));
+    private static void clearBoard() {
+        Arrays.stream(sudoku).forEach(row -> Arrays.fill(row, 0));
     }
 
-    private Integer[] shuffledNumbers() {
-        Integer[] numbers = IntStream.range(0, 10).boxed().toArray(Integer[]::new);
+    private static Integer[] shuffledNumbers() {
+        Integer[] numbers = IntStream.range(1, 10).boxed().toArray(Integer[]::new);
         List<Integer> intList = Arrays.asList(numbers);
         Collections.shuffle(intList);
         intList.toArray(numbers);
         return numbers;
     }
 
-    private boolean fillBoard(int row, int column) {
+    private static boolean fillBoard(int row, int column) {
         int nextRow;
         int nextColumn;
         Integer[] numbers;
-        if (row != 9) {
+        if (row >= 0 && row < 9) {
             nextRow = (column == 8) ? row + 1 : row;
             nextColumn = (column + 1) % 9;
             numbers = shuffledNumbers();
