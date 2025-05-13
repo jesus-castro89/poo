@@ -17,7 +17,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-       // SudokuApp.start();
-        SudokuApp.loadSudoku();
+       SudokuPuzzle puzzle = new SudokuPuzzle();
+       puzzle.printPuzzle();
     }
 }

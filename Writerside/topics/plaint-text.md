@@ -3,9 +3,9 @@
 ## Introducción
 
 Los archivos de texto son una forma común de almacenar datos en un formato legible por humanos. En Java, se pueden
-utilizar varias clases y métodos para trabajar con archivos de texto, como `File`, `FileReader`, `BufferedReader`,
-`FileWriter` y `BufferedWriter`. En este artículo, exploraremos cómo guardar datos en archivos de texto utilizando estas
-clases.
+utilizar varias clases y métodos para trabajar con archivos de texto, como `File`, `FileOutputStream`, `FileReader`,
+`FileWriter`, `FileInputStream`, `BufferedReader` y `BufferedWriter`. Estas clases permiten leer y escribir datos en
+archivos de
 
 ## Guardando datos en archivos de texto
 
