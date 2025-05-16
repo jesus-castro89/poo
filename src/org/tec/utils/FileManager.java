@@ -39,9 +39,8 @@ public class FileManager {
                      new BufferedReader(
                              new FileReader(FILE_PATH + fileName))) {
             String line;
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null)
                 content.append(line).append("\n");
-            }
             bufferedReader.close();
             JOptionPane.showMessageDialog(null,
                     "Archivo leído: " + content);
