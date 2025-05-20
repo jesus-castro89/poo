@@ -1,24 +1,33 @@
 package org.tec.sudoku;
 
 public enum SudokuDifficultyLevel {
-    SOLVED(81),
-    EASY(40),
-    MEDIUM(32),
-    HARD(26),
-    EXPERT(20);
+    SOLVED(81, "Resuelto"),
+    EASY(70, "Fácil"),
+    MEDIUM(65, "Medio"),
+    HARD(50, "Difícil");
 
     private final int visibleCells;
+    private final String name;
 
-    SudokuDifficultyLevel(int visibleCells) {
+    SudokuDifficultyLevel(int visibleCells, String name) {
         this.visibleCells = visibleCells;
+        this.name = name;
+    }
+
+    public static SudokuDifficultyLevel[] getValues() {
+        return new SudokuDifficultyLevel[]{EASY, MEDIUM, HARD};
     }
 
     public int getVisibleCells() {
         return visibleCells;
     }
 
+    public int getCellsToRemove() {
+        return 81 - visibleCells;
+    }
+
     @Override
     public String toString() {
-        return "%d. %s(Celdas visibles: %d)".formatted(ordinal() + 1, name(), visibleCells);
+        return "%s(Celdas visibles: %d)".formatted(name, visibleCells);
     }
 }

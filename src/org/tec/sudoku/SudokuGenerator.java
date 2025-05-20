@@ -49,4 +49,32 @@ public class SudokuGenerator {
             return true;
         }
     }
+
+    public static SudokuPuzzle solveSudoku(SudokuPuzzle puzzle) {
+        System.arraycopy(puzzle.getPuzzle(), 0, sudoku, 0, 9);
+        fillBoard(0, 0);
+        puzzle.setPuzzle(sudoku);
+        return puzzle;
+    }
+
+    public static SudokuPuzzle generateOneSolutionPuzzle(SudokuDifficultyLevel difficultyLevel) throws ManySolutionsException {
+        SudokuPuzzle puzzle = new SudokuPuzzle();
+        int[][] board = puzzle.getPuzzle();
+        int cellsToRemove = difficultyLevel.getCellsToRemove();
+        int row, col, attempts = 0;
+        do {
+            if (attempts++ > 10) {
+                throw new ManySolutionsException();
+            }
+            while (cellsToRemove > 0 && cellsToRemove < 81) {
+                row = (int) (Math.random() * 9);
+                col = (int) (Math.random() * 9);
+                if (board[row][col] != 0) {
+                    board[row][col] = 0;
+                    cellsToRemove--;
+                }
+            }
+        } while (!SudokuValidator.hasUniqueSolution(board));
+        return puzzle;
+    }
 }

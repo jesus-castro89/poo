@@ -1,10 +1,11 @@
 package org.tec.sudoku;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 
-public class SudokuPuzzle {
+public class SudokuPuzzle implements Serializable {
 
     private final int[][] puzzle;
 
@@ -15,6 +16,17 @@ public class SudokuPuzzle {
     public SudokuPuzzle(int visibleCells) {
         this.puzzle = SudokuGenerator.generateSudoku();
         applyDifficulty(visibleCells);
+    }
+
+    public boolean isSolved() {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (puzzle[row][col] == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void applyDifficulty(int visibleCells) {
@@ -31,11 +43,17 @@ public class SudokuPuzzle {
         }
     }
 
+    public void setPuzzle(int[][] puzzle) {
+        for (int i = 0; i < 9; i++) {
+            System.arraycopy(puzzle[i], 0, this.puzzle[i], 0, 9);
+        }
+    }
+
     public int[][] getPuzzle() {
         return puzzle;
     }
 
-    public void printPuzzle() {
+    public String getPrintablePuzzle() {
         StringBuilder sb = new StringBuilder();
         sb.append("╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗\n");
         for (int row = 0; row < 9; row++) {
@@ -44,8 +62,8 @@ public class SudokuPuzzle {
                     sb.append("║");
                 else
                     sb.append("│");
-                sb.append(String.format(" %s ", puzzle[row][column]!= 0 ? puzzle[row][column] : " "));
-                if(column == 8)
+                sb.append(String.format(" %s ", puzzle[row][column] != 0 ? puzzle[row][column] : " "));
+                if (column == 8)
                     sb.append("║\n");
             }
             switch (row) {
@@ -54,7 +72,11 @@ public class SudokuPuzzle {
                 default -> sb.append("║───┼───┼───║───┼───┼───║───┼───┼───║\n");
             }
         }
-        JOptionPane.showMessageDialog(null, sb.toString());
-        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    public void printPuzzle() {
+        JOptionPane.showMessageDialog(null, getPrintablePuzzle());
+        System.out.println(getPrintablePuzzle());
     }
 }

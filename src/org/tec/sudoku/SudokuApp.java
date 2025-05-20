@@ -1,34 +1,43 @@
 package org.tec.sudoku;
 
+import org.tec.utils.FileManager;
+
 import javax.swing.*;
 
 public class SudokuApp {
 
-    public static void start() {
+    private static SudokuPuzzle solution;
+    private static SudokuDifficultyLevel selectedDifficultyLevel;
 
-        SudokuDifficultyLevel difficultyLevel;
+    public static void start() {
         do {
-            difficultyLevel = (SudokuDifficultyLevel) JOptionPane.showInputDialog(null,
+            selectedDifficultyLevel = (SudokuDifficultyLevel) JOptionPane.showInputDialog(null,
                     "Selecciona dificultad:",
                     "Sudoku",
                     JOptionPane.QUESTION_MESSAGE,
                     null,
-                    SudokuDifficultyLevel.values(),
+                    SudokuDifficultyLevel.getValues(),
                     SudokuDifficultyLevel.EASY);
-            if (difficultyLevel == null) {
+            if (selectedDifficultyLevel == null) {
                 JOptionPane.showMessageDialog(null, "Selección invalidada, intente de nuevo.");
                 start();
             }
-        } while (difficultyLevel == null);
-        int visibleCells = difficultyLevel.getVisibleCells();
-        SudokuPuzzle puzzle = new SudokuPuzzle(visibleCells);
-        SudokuFileManager.exportToFile(puzzle, "org/tec/sudoku/sudoku_output.txt");
+        } while (selectedDifficultyLevel == null);
+        populateSolution();
     }
 
-    public static void loadSudoku() {
-        String filePath = "org/tec/sudoku/sudoku_output.txt";
-        SudokuPuzzle puzzle = SudokuFileManager.importFromFile(filePath);
-        if (puzzle != null)
-            puzzle.printPuzzle();
+    private static void populateSolution() {
+        try {
+            SudokuPuzzle puzzle = SudokuGenerator.generateOneSolutionPuzzle(selectedDifficultyLevel);
+            solution = SudokuSolver.solve(puzzle);
+            exportSudoku();
+        } catch (ManySolutionsException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void exportSudoku() {
+        FileManager.createFile("Sudoku.txt", solution.getPrintablePuzzle(), false);
+        FileManager.writeObject("SudokuPuzzle.sudoku", solution);
     }
 }
