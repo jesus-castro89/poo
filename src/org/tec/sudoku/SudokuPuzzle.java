@@ -4,29 +4,31 @@ import javax.swing.*;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class SudokuPuzzle implements Serializable {
 
-    private final int[][] puzzle;
+    private int[][] puzzle;
 
     public SudokuPuzzle() {
-        this.puzzle = SudokuGenerator.generateSudoku();
+        this.puzzle = new SudokuGenerator().generateSudoku();
+    }
+
+    public SudokuPuzzle(int[][] puzzle) {
+        this.puzzle = new int[9][9];
+        System.arraycopy(puzzle, 0, this.puzzle, 0, 9);
     }
 
     public SudokuPuzzle(int visibleCells) {
-        this.puzzle = SudokuGenerator.generateSudoku();
+        this.puzzle = new SudokuGenerator().generateSudoku();
         applyDifficulty(visibleCells);
     }
 
     public boolean isSolved() {
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-                if (puzzle[row][col] == 0) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return Arrays.stream(puzzle)
+                .flatMapToInt(Arrays::stream)
+                .allMatch(cell -> cell != 0);
+
     }
 
     private void applyDifficulty(int visibleCells) {
@@ -40,12 +42,6 @@ public class SudokuPuzzle implements Serializable {
                 puzzle[row][col] = 0;
                 cellsToRemove--;
             }
-        }
-    }
-
-    public void setPuzzle(int[][] puzzle) {
-        for (int i = 0; i < 9; i++) {
-            System.arraycopy(puzzle[i], 0, this.puzzle[i], 0, 9);
         }
     }
 

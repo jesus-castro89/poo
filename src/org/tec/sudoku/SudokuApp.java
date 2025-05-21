@@ -6,8 +6,24 @@ import javax.swing.*;
 
 public class SudokuApp {
 
-    private static SudokuPuzzle solution;
     private static SudokuDifficultyLevel selectedDifficultyLevel;
+
+    public static void loadSudoku() {
+        SudokuPuzzle puzzle = FileManager.readObject("SudokuPuzzle.sudoku", SudokuPuzzle.class);
+        if (puzzle == null) {
+            JOptionPane.showMessageDialog(null, "No hay un Sudoku guardado.");
+            return;
+        } else {
+            System.out.println(puzzle.getPrintablePuzzle());
+            int option = JOptionPane.showConfirmDialog(null, "¿Desea resolver el Sudoku guardado?", "Sudoku", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                SudokuPuzzle solvedPuzzle = SudokuSolver.solve(puzzle);
+                System.out.println(solvedPuzzle.getPrintablePuzzle());
+            } else {
+                System.out.println("No se resolvió el Sudoku guardado.");
+            }
+        }
+    }
 
     public static void start() {
         do {
@@ -28,16 +44,15 @@ public class SudokuApp {
 
     private static void populateSolution() {
         try {
-            SudokuPuzzle puzzle = SudokuGenerator.generateOneSolutionPuzzle(selectedDifficultyLevel);
-            solution = SudokuSolver.solve(puzzle);
-            exportSudoku();
+            SudokuPuzzle puzzle = new SudokuGenerator().generateOneSolutionPuzzle(selectedDifficultyLevel);
+            exportSudoku(puzzle);
         } catch (ManySolutionsException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static void exportSudoku() {
-        FileManager.createFile("Sudoku.txt", solution.getPrintablePuzzle(), false);
-        FileManager.writeObject("SudokuPuzzle.sudoku", solution);
+    private static void exportSudoku(SudokuPuzzle puzzle) {
+        FileManager.createFile("Sudoku.txt", puzzle.getPrintablePuzzle(), false);
+        FileManager.writeObject("SudokuPuzzle.sudoku", puzzle);
     }
 }

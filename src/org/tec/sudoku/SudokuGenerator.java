@@ -7,19 +7,19 @@ import java.util.stream.IntStream;
 
 public class SudokuGenerator {
 
-    private static final int[][] sudoku = new int[9][9];
+    private final int[][] sudoku = new int[9][9];
 
-    public static int[][] generateSudoku() {
+    public int[][] generateSudoku() {
         clearBoard();
         fillBoard(0, 0);
         return sudoku;
     }
 
-    private static void clearBoard() {
+    private void clearBoard() {
         Arrays.stream(sudoku).forEach(row -> Arrays.fill(row, 0));
     }
 
-    private static Integer[] shuffledNumbers() {
+    private Integer[] shuffledNumbers() {
         Integer[] numbers = IntStream.range(1, 10).boxed().toArray(Integer[]::new);
         List<Integer> intList = Arrays.asList(numbers);
         Collections.shuffle(intList);
@@ -27,13 +27,15 @@ public class SudokuGenerator {
         return numbers;
     }
 
-    private static boolean fillBoard(int row, int column) {
+    private boolean fillBoard(int row, int column) {
         int nextRow;
         int nextColumn;
         Integer[] numbers;
         if (row >= 0 && row < 9) {
             nextRow = (column == 8) ? row + 1 : row;
             nextColumn = (column + 1) % 9;
+            if (sudoku[row][column] != 0)
+                return fillBoard(nextRow, nextColumn);
             numbers = shuffledNumbers();
             for (int number : numbers) {
                 if (SudokuValidator.isValid(sudoku, row, column, number)) {
@@ -50,14 +52,15 @@ public class SudokuGenerator {
         }
     }
 
-    public static SudokuPuzzle solveSudoku(SudokuPuzzle puzzle) {
-        System.arraycopy(puzzle.getPuzzle(), 0, sudoku, 0, 9);
+    public SudokuPuzzle solveSudoku(SudokuPuzzle puzzle) {
+        IntStream.range(0, 9).forEach(i -> {
+            IntStream.range(0, 9).forEach(j -> sudoku[i][j] = puzzle.getPuzzle()[i][j]);
+        });
         fillBoard(0, 0);
-        puzzle.setPuzzle(sudoku);
-        return puzzle;
+        return new SudokuPuzzle(sudoku);
     }
 
-    public static SudokuPuzzle generateOneSolutionPuzzle(SudokuDifficultyLevel difficultyLevel) throws ManySolutionsException {
+    public SudokuPuzzle generateOneSolutionPuzzle(SudokuDifficultyLevel difficultyLevel) throws ManySolutionsException {
         SudokuPuzzle puzzle = new SudokuPuzzle();
         int[][] board = puzzle.getPuzzle();
         int cellsToRemove = difficultyLevel.getCellsToRemove();
