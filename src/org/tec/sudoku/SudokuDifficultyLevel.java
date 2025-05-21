@@ -18,10 +18,6 @@ public enum SudokuDifficultyLevel {
         return new SudokuDifficultyLevel[]{EASY, MEDIUM, HARD};
     }
 
-    public int getVisibleCells() {
-        return visibleCells;
-    }
-
     public int getCellsToRemove() {
         return 81 - visibleCells;
     }

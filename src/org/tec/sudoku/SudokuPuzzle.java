@@ -74,9 +74,4 @@ public class SudokuPuzzle implements Serializable {
         }
         return sb.toString();
     }
-
-    public void printPuzzle() {
-        JOptionPane.showMessageDialog(null, getPrintablePuzzle());
-        System.out.println(getPrintablePuzzle());
-    }
 }
