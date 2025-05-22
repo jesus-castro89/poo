@@ -65,7 +65,7 @@ public class SudokuPuzzle implements Serializable {
             switch (row) {
                 case 2, 5 -> sb.append("╠═══╪═══╪═══╬═══╪═══╪═══╬═══╪═══╪═══╣\n");
                 case 8 -> sb.append("╚═══╧═══╧═══╩═══╧═══╧═══╩═══╧═══╧═══╝");
-                default -> sb.append("║───┼───┼───║───┼───┼───║───┼───┼───║\n");
+                default -> sb.append("╟───┼───┼───╫───┼───┼───╫───┼───┼───╢\n");
             }
         }
         return sb.toString();
