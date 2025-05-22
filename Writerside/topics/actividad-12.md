@@ -39,6 +39,9 @@ diálogo.
       contiene una única solución. Si el sudoku no tiene una única solución, el método `generateOneSolutionPuzzle` debe
       devolver null. Y el número de intentos debe ser de 10. Si el sudoku no tiene una única solución en 10 intentos,
       el método `generateOneSolutionPuzzle` debe devolver null.
+    * Y como único atributo final y estático, una matriz de enteros de 9x9 que representará el tablero del sudoku.
+    * > Las funciones de esta clase no deberán de ser estáticas, de lo contario causaremos un conflicto con el resto de
+      > la App.
 2. La clase `SudokuValidator` deberá contar ahora con las siguientes funciones:
     * `isValid`: Este método se encargará de verificar si el número es válido en la posición (fila, columna) según las
       reglas del sudoku. Para ello, se te pide que implementes un algoritmo que verifique si el número es válido en la
@@ -59,6 +62,8 @@ diálogo.
       pide que implementes un algoritmo de backtracking que cuente el número de soluciones que tiene el sudoku. Si el
       sudoku tiene una única solución, el método debe devolver 1, en caso contrario debe devolver el número de
       soluciones que tiene el sudoku.
+    * Y dós atributos estáticos, por un lado, una matriz de enteros de 9x9 que representará el tablero del sudoku y,
+      por otro lado, un entero que representará el número de soluciones que tiene el sudoku.
 3. La clase `SudokuPuzzle` deberá contar ahora con los siguientes métodos:
     * `isSolved`: Este método se encargará de verificar si el sudoku está resuelto. Para ello, se te pide que
       implementes un algoritmo que verifique si el sudoku está resuelto. El método `isSolved` debe devolver true si el
@@ -73,6 +78,18 @@ diálogo.
       que implementes un algoritmo que devuelva la matriz de sudoku en el objeto `SudokuPuzzle`.
     * `getPrintablePuzzle`: Este método se encargará de devolver el sudoku en un formato imprimible. Para ello, se
       te pide que implementes un algoritmo que devuelva el sudoku en un formato imprimible.
+    * Así mismo, tres constructores:
+        * `SudokuPuzzle()`: No recibe parametros y se encargará de inicializar el sudoku con una matriz de enteros de
+          9x9 que representará el sudoku.
+        * `SudokuPuzzle(int[][] puzzle)`: Recibe como parámetro una matriz de enteros de 9x9 que
+          representará el sudoku con espacios vacíos representados por el número 0.
+        * `SudokuPuzzle(int visibleCells)`: Recibe como parámetro el número de celdas visibles y se encargará de
+          inicializar el sudoku con una matriz de enteros de 9x9 que representará el sudoku con espacios vacíos
+          representados por el número 0. Toma en cuenta que el número de celdas visibles esta dado por el tipo enumerado
+          `SudokuDifficultyLevel` y que el sudoku debe de ser un sudoku válido y completo.
+    * Por último un unico atributo de tipo matriz de enteros de 9x9 que representará el sudoku.
+    * > Las funciones de esta clase no deberán de ser estáticas, de lo contario causaremos un conflicto con el resto de
+      > la App.
 4. La clase `SudokuSolver` deberá de contar ahora con los siguientes métodos:
     * `solve`: Este método se encargará de resolver el sudoku. Para ello, se te pide que implementes un algoritmo que
       resuelva el sudoku. El método `solve` debe devolver un objeto de tipo `SudokuPuzzle` que contenga el sudoku
