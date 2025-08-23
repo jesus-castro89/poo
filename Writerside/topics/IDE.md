@@ -34,6 +34,10 @@ Para descargar IntelliJ IDEA, puedes acceder al siguiente
 enlace: [Descargar IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/download/?section=windows). Una vez descargado el
 instalador, sigue las instrucciones de instalación para configurar el IDE en tu sistema.
 
+> **Nota**: Asegúrate de descargar la versión **Community Edition**, que es gratuita y suficiente para la mayoría de los
+> proyectos en Java.
+> {style="warning"}
+
 ## Configuración inicial
 
 Una vez instalado IntelliJ IDEA, es recomendable realizar una configuración inicial para adaptar el entorno de
@@ -64,9 +68,12 @@ Algunos de los plugins recomendados para el desarrollo en Java son:
 Para instalar un plugin en IntelliJ IDEA, sigue los siguientes pasos:
 
 1. Abre IntelliJ IDEA y ve al icono de configuración en la esquina superior
-   derecha. ![plugins_file.png](plugins_file.png)
-2. Selecciona la opción **Settings** en el menú desplegable. ![plugins_settings.png](plugins_settings.png)
-3. En la ventana de configuración, selecciona la opción **Plugins** en el menú lateral. ![plugins.png](plugins.png)
+   derecha.
+   ![plugins_file.png](plugins_file.png){style="inline"}
+2. Selecciona la opción **Settings** en el menú desplegable.
+   ![plugins_settings.png](plugins_settings.png){style="inline"}
+3. En la ventana de configuración, selecciona la opción **Plugins** en el menú lateral.
+   ![plugins.png](plugins.png){style="inline"}
 4. En la pestaña **Marketplace**, busca el plugin que deseas instalar y haz clic en el botón **Install**.
 5. Una vez instalado el plugin, reinicia IntelliJ IDEA para aplicar los cambios.
 
