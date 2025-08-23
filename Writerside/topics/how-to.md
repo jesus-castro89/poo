@@ -50,17 +50,11 @@ problemas de una manera más natural y sencilla, lo que facilita la comprensión
 
 La POO se basa en cuatro principios fundamentales:
 
-```mermaid
-mindmap
-    root((Principios de la POO))
-        Abstracción
-        ::icon(fa:fa-lightbulb)
-        Encapsulamiento
-        ::icon(fa:fa-lock)
-        Herencia
-        ::icon(fa:fa-tree)
-        Polimorfismo
-        ::icon(fa:fa-code)
+```D2  
+POO --> Abstracción
+POO --> Encapsulamiento
+POO --> Herencia
+POO --> Polimorfismo
 ```
 
 1. **Abstracción**: Permite modelar un problema de manera simplificada, enfocándose en los aspectos más relevantes y
