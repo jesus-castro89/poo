@@ -8,7 +8,7 @@
 
     <toc-element topic="how-to.md"/>
     <toc-element topic="IDE.md"/>
-    <toc-element hidden="true" toc-title="Conceptos Básicos">
+    <toc-element toc-title="Conceptos Básicos">
         <toc-element topic="Clases-y-Objetos.md"/>
         <toc-element topic="Función-Ejecutora.md"/>
         <toc-element topic="convenciones.md"/>
@@ -17,11 +17,26 @@
         <toc-element topic="function-call.md"/>
         <toc-element topic="ternario.md"/>
     </toc-element>
-    <toc-element hidden="true" toc-title="Diagramas de Clase">
-        <toc-element topic="diagrama-clases.md"/>
-        <toc-element topic="Plant-UML.md"/>
-        <toc-element topic="relaciones.md"/>
-        <toc-element topic="ejemplo-diagrama.md"/>
+    <toc-element hidden="true" toc-title="Clases">
+        <toc-element topic="clases-java.md"/>
+        <toc-element hidden="true" toc-title="Diagramas de Clase">
+            <toc-element topic="diagrama-clases.md"/>
+            <toc-element topic="Plant-UML.md"/>
+            <toc-element topic="relaciones.md"/>
+            <toc-element topic="ejemplo-diagrama.md"/>
+        </toc-element>
+        <toc-element hidden="true" toc-title="Documentación de Código">
+            <toc-element topic="documentacion.md"/>
+            <toc-element topic="javadoc.md"/>
+        </toc-element>
+        <toc-element topic="constructores.md"/>
+        <toc-element topic="constructor-input.md"/>
+        <toc-element topic="paquetes.md"/>
+        <toc-element toc-title="Exceptions">
+            <toc-element topic="exception.md"/>
+            <toc-element topic="try-catch.md"/>
+            <toc-element topic="custome-exception.md"/>
+        </toc-element>
     </toc-element>
     <toc-element hidden="true" toc-title="Elementos Fundamentales">
         <toc-element topic="arreglos-matrices.md"/>
@@ -30,17 +45,6 @@
         <toc-element topic="reading.md"/>
         <toc-element topic="ventanas-flotantes.md"/>
         <toc-element topic="ui-manager.md"/>
-    </toc-element>
-    <toc-element hidden="true" toc-title="Clases">
-        <toc-element toc-title="Exceptions">
-            <toc-element topic="exception.md"/>
-            <toc-element topic="try-catch.md"/>
-            <toc-element topic="custome-exception.md"/>
-        </toc-element>
-        <toc-element topic="clases-java.md"/>
-        <toc-element topic="constructores.md"/>
-        <toc-element topic="constructor-input.md"/>
-        <toc-element topic="paquetes.md"/>
     </toc-element>
     <toc-element hidden="true" toc-title="Modificadores">
         <toc-element topic="static.md"/>
@@ -66,10 +70,6 @@
     <toc-element hidden="true" toc-title="Enum &amp; Record">
         <toc-element topic="enum.md"/>
         <toc-element topic="record.md"/>
-    </toc-element>
-    <toc-element hidden="true" toc-title="Documentación de Código">
-        <toc-element topic="documentacion.md"/>
-        <toc-element topic="javadoc.md"/>
     </toc-element>
     <toc-element hidden="true" toc-title="Clases Genéricas">
         <toc-element topic="clases-genericas.md"/>

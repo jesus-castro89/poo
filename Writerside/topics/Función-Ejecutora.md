@@ -38,7 +38,7 @@ public class Main {
 
 ```
 
-En este ejemplo, la función `main` imprime el mensaje **"Hola, mundo!"** por pantalla utilizando el método
+Cómo podrás notar, la función `main` imprime el mensaje **"Hola, mundo!"** por pantalla utilizando el método
 `System.out.println`.
 
 ## Conclusiones
