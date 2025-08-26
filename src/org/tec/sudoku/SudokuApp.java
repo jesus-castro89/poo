@@ -12,7 +12,6 @@ public class SudokuApp {
         SudokuPuzzle puzzle = FileManager.readObject("SudokuPuzzle.sudoku", SudokuPuzzle.class);
         if (puzzle == null) {
             JOptionPane.showMessageDialog(null, "No hay un Sudoku guardado.");
-            return;
         } else {
             System.out.println(puzzle.getPrintablePuzzle());
             int option = JOptionPane.showConfirmDialog(null, "¿Desea resolver el Sudoku guardado?", "Sudoku", JOptionPane.YES_NO_OPTION);

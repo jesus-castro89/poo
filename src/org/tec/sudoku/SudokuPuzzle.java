@@ -1,14 +1,11 @@
 package org.tec.sudoku;
 
-import javax.swing.*;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class SudokuPuzzle implements Serializable {
-
-    private int[][] puzzle;
+    private final int[][] puzzle;
 
     public SudokuPuzzle() {
         this.puzzle = new SudokuGenerator().generateSudoku();

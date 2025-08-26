@@ -31,7 +31,7 @@ public class SudokuGenerator {
         int nextRow;
         int nextColumn;
         Integer[] numbers;
-        if (row >= 0 && row < 9) {
+        if (row >= 0 && row <=8) {
             nextRow = (column == 8) ? row + 1 : row;
             nextColumn = (column + 1) % 9;
             if (sudoku[row][column] != 0)
@@ -53,9 +53,9 @@ public class SudokuGenerator {
     }
 
     public SudokuPuzzle solveSudoku(SudokuPuzzle puzzle) {
-        IntStream.range(0, 9).forEach(i -> {
-            IntStream.range(0, 9).forEach(j -> sudoku[i][j] = puzzle.getPuzzle()[i][j]);
-        });
+        IntStream.range(0, 9).forEach(i ->
+                IntStream.range(0, 9).forEach(j ->
+                        sudoku[i][j] = puzzle.getPuzzle()[i][j]));
         fillBoard(0, 0);
         return new SudokuPuzzle(sudoku);
     }

@@ -3,7 +3,6 @@ package org.tec.sudoku;
 import java.util.stream.IntStream;
 
 public class SudokuValidator {
-
     private static int[][] sudoku;
     private static int solutionCount = 0;
 
