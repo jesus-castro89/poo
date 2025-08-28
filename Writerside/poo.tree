@@ -26,16 +26,16 @@
         <toc-element topic="relaciones.md"/>
         <toc-element topic="ejemplo-diagrama.md"/>
     </toc-element>
-    <toc-element hidden="true" toc-title="Clases">
+    <toc-element toc-title="Clases">
         <toc-element topic="clases-java.md"/>
-        <toc-element hidden="true" toc-title="Documentación de Código">
+        <toc-element toc-title="Documentación de Código">
             <toc-element topic="documentacion.md"/>
             <toc-element topic="javadoc.md"/>
         </toc-element>
         <toc-element topic="constructores.md"/>
         <toc-element topic="constructor-input.md"/>
         <toc-element topic="paquetes.md"/>
-        <toc-element toc-title="Exceptions">
+        <toc-element hidden="true" toc-title="Exceptions">
             <toc-element topic="exception.md"/>
             <toc-element topic="try-catch.md"/>
             <toc-element topic="custome-exception.md"/>

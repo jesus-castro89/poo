@@ -78,7 +78,7 @@ class Conductor{
     - edad: int
     - conduce: Coche
 }
-Coche "1" --- "1" Conductor: esConducidoPor
+Coche "1" --- "1" Conductor: esConducidoPor >
 @enduml
 ```
 
