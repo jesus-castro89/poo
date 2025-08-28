@@ -1,0 +1,41 @@
+@startuml
+class Marca{
+- nombre: String
+- direccion: String
++ getNombre(): String
++ setNombre(nombre: String): void
++ getDireccion(): String
++ setDireccion(direccion: String): void
+}
+
+class Pelicula{
+- nombre: String
+- marca: Marca
+- sensibilidad: int
+- formato: int
++ getNombre(): String
++ setNombre(nombre: String): void
++ getMarca(): Marca
++ setMarca(marca: Marca): void
++ getSensibilidad(): int
++ setSensibilidad(sensibilidad: int): void
++ getFormato(): int
++ setFormato(formato: int): void
+}
+
+class Camara{
+- marca: Marca
+- modelo: String
+- flash: boolean
++ getMarca(): Marca
++ setMarca(marca: Marca): void
++ getModelo(): String
++ setModelo(modelo: String): void
++ isFlash(): boolean
++ setFlash(isFlash: boolean): void
+}
+
+Marca "1" -- "1" Pelicula : fabrica >
+Marca "1" -- "1" Camara : fabrica >
+Camara "1" -- "0..*" Pelicula : usa >
+@enduml

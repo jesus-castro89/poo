@@ -17,6 +17,7 @@ public class Shop {
         // Inicializa la lista de productos y el carrito de compras
         products = new ArrayList<>();
         shoppingCart = new HashMap<>();
+        menu();
     }
 
     public void menu(){}

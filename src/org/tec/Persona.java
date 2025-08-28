@@ -23,7 +23,7 @@ public class Persona {
     }
 
     public Persona(String nombre) {
-        this(nombre, 0, 0.0);
+        this(nombre, 0, 1.5);
     }
 
     @Override
@@ -33,13 +33,14 @@ public class Persona {
                 Nombre: %s
                 Edad: %d años
                 Peso: %.2f kg
+                %s
                 ---------------------
-                """, nombre, edad, peso);
+                """, nombre, edad, peso, esMayorDeEdad());
     }
 
-    public void esMayorDeEdad() {
-        System.out.println(edad>=18 ? nombre + " es mayor de edad." :
-                nombre + " es menor de edad.");
+    private String esMayorDeEdad() {
+        return edad >= 18 ? nombre + " es mayor de edad." :
+                nombre + " es menor de edad.";
     }
 
     public String getNombre() {
