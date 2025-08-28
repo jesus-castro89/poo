@@ -1,93 +1,142 @@
-# Actividad 1: Sistema de inventario y ventas de una librería
+# Actividad 1: Abstracción y diagramación
 
 ## Descripción
 
-Ha sido contratado por una librería para realizar un sistema para gestionar su inventario de libros que tienen en
-existencia, además de gestionar las ventas realizadas. La librería tiene una lista de los libros que tienen en
-existencia, tomando en cuenta lo siguiente:
+En Equipos de trabajo realiza el diagrama de clases de los siguientes problemas propuestos, toma en consideración los
+conceptos vistos en el tema de clases y objetos, así como los tipos de relaciones entre clases, ya que para cada uno de
+los problemas se espera que realices un diagrama de clases que represente el sistema descrito.
 
-* El limite de libros en la librería es de 50, mientras el total de libros en la compra no puede superar los 15.
-* Cada libro tiene un título, un autor, un género y un precio.
-* Cada libro tiene un identificador único (ISBN) que es un entero largo de 13 dígitos. El cual no se repite ni se
-  modifica. Este identificador se genera automáticamente al agregar un libro a la lista.
-* Los datos ingresados deberán ser validados, por lo que no se permitirá ingresar datos vacíos, nulos o incorrectos.
-* Los géneros disponibles son: `Ficción`, `No Ficción`, `Terror`, `Fantasía`, `Ciencia Ficción`, `Romance`, `Misterio`,
-  `Aventura`.
-* Al listar cada libro se deberá mostrar el ISBN, título, autor, género y precio con el siguiente formato:
-  `ISBN: <ISBN> | Título: <Título> | Autor: <Autor>
-   Género: <Género> (Descuento: <Descuento>) | Precio: $<Precio>`
-* Cada género tiene un porcentaje de descuento asociado, el cual se aplica al precio del libro al momento de calcular el
-  total de la compra. Los porcentajes de descuento son los siguientes:
-    * `Ficción`: 10%
-    * `No Ficción`: 5%
-    * `Terror`: 15%
-    * `Fantasía`: 20%
-    * `Ciencia Ficción`: 25%
-    * `Romance`: 10%
-    * `Misterio`: 15%
-    * `Aventura`: 20%
-* La librería tiene promociones especiales según el monto total de la compra:
-    * Si el monto total de la compra es mayor o igual a $500.00, se aplica un descuento adicional del 10%.
-    * Si el monto total de la compra es mayor o igual a $1000.00, se aplica un descuento adicional del 20%.
-    * Si el monto total de la compra es mayor o igual a $1500.00, se aplica un descuento adicional del 30%.
-    * Si el monto total de la compra es mayor o igual a $2000.00, se aplica un descuento adicional del 40%.
-    * Si el monto total de la compra es mayor o igual a $2500.00, se aplica un descuento adicional del 50%.
-* La librería debe permitir agregar, eliminar y modificar libros en la lista.
-* La librería debe permitir realizar una compra, la cual debe mostrar el detalle de la compra y el monto total a pagar
-  con los descuentos aplicados y debidamente redondeado a 2 decimales (si aplica). Además, debe mostrar el monto total
-  y detalle de los descuentos aplicados.
-* En resumen las opciones del menú son:
-    1. Agregar libro
-    2. Eliminar libro
-    3. Modificar libro
-    4. Abrir Compra
-    5. Agregar libro a la compra
-    6. Eliminar libro de la compra
-    7. Realizar compra
-    8. Salir
+### Ejercicio 1: Sistema de Biblioteca
 
-## Entregables
+Diseña un sistema para gestionar una biblioteca. Debes identificar las clases principales, sus atributos y métodos.
 
-* Portada con datos de identificación de los integrantes del equipo.
-* Código fuente del proyecto.
-* Captura de pantalla de la ejecución del programa con datos de prueba.
+Requisitos:
+
+* La biblioteca tiene libros, usuarios y préstamos.
+* Cada libro tiene un título, autor, año de publicación y un identificador único.
+* Cada usuario tiene un nombre, número de identificación y una lista de libros prestados.
+* Los préstamos registran qué usuario tomó prestado un libro y la fecha de préstamo.
+
+### Ejercicio 2: Sistema de Reservas de Hotel
+
+Diseña un sistema para gestionar las reservas de un hotel. Debes identificar las clases principales, sus atributos y
+métodos.
+
+Requisitos:
+
+* El hotel tiene habitaciones, clientes y reservas.
+* Cada habitación tiene un número, tipo (individual, doble, suite) y precio por noche.
+* Cada cliente tiene un nombre, número de identificación y una lista de reservas.
+* Cada reserva registra el cliente, la habitación, la fecha de entrada y la fecha de salida.
+
+### Ejercicio 3: Sistema de Gestión de Vehículos
+
+Diseña un sistema para gestionar vehículos en un concesionario. Debes identificar las clases principales, sus atributos
+y métodos.
+
+Requisitos:
+
+* El concesionario tiene vehículos, clientes y ventas.
+* Cada vehículo tiene una marca, modelo, año, precio y un identificador único.
+* Cada cliente tiene un nombre, número de identificación y una lista de vehículos comprados.
+* Cada venta registra el cliente, el vehículo y la fecha de venta.
+
+### Ejercicio 4: Sistema de Gestión de Cursos
+
+Diseña un sistema para gestionar cursos en una institución educativa. Debes identificar las clases principales, sus
+atributos y métodos.
+
+Requisitos:
+
+* La institución tiene cursos, estudiantes y profesores.
+* Cada curso tiene un nombre, código, horario y una lista de estudiantes inscritos.
+* Cada estudiante tiene un nombre, número de identificación y una lista de cursos en los que está inscrito.
+* Cada profesor tiene un nombre, número de identificación y una lista de cursos que imparte.
+
+### Ejercicio 5: Sistema de Gestión de Red Social
+
+Diseña un sistema para gestionar una red social. Debes identificar las clases principales, sus atributos y métodos.
+
+Requisitos:
+
+* La red social tiene usuarios, publicaciones y comentarios.
+* Cada usuario tiene un nombre, correo electrónico, contraseña y una lista de amigos.
+* Cada publicación tiene un autor, contenido, fecha y una lista de comentarios.
+* Cada comentario tiene un autor, contenido y fecha.
+
+### Ejercicio 6: Sistema de Gestión de Tienda en Línea
+
+Diseña un sistema para gestionar una tienda en línea. Debes identificar las clases principales, sus atributos y métodos.
+
+Requisitos:
+
+* La tienda tiene productos, clientes y pedidos.
+* Cada producto tiene un nombre, descripción, precio y cantidad en stock.
+* Cada cliente tiene un nombre, dirección, correo electrónico y una lista de pedidos.
+* Cada pedido registra el cliente, la lista de productos, la fecha y el total a pagar.
+
+### Ejercicio 7: Sistema de Gestión de Zoológico
+
+Diseña un sistema para gestionar un zoológico. Debes identificar las clases principales, sus atributos y métodos.
+
+Requisitos:
+
+* El zoológico tiene animales, cuidadores y hábitats.
+* Cada animal tiene un nombre, especie, edad y un cuidador asignado.
+* Cada cuidador tiene un nombre, número de identificación y una lista de animales a su cargo.
+* Cada hábitat tiene un nombre, tipo (selva, desierto, etc.) y una lista de animales que viven en él.
+
+### Ejercicio 8: Sistema de Gestión de Eventos
+
+Diseña un sistema para gestionar eventos. Debes identificar las clases principales, sus atributos y métodos.
+
+Requisitos:
+
+* El sistema tiene eventos, asistentes y organizadores.
+* Cada evento tiene un nombre, fecha, lugar y una lista de asistentes.
+* Cada asistente tiene un nombre, correo electrónico y una lista de eventos a los que asistirá.
+* Cada organizador tiene un nombre, número de identificación y una lista de eventos que organiza.
+
+### Ejercicio 9: Sistema de Gestión de Hospital
+
+Diseña un sistema para gestionar un hospital. Debes identificar las clases principales, sus atributos y métodos.
+
+Requisitos:
+
+* El hospital tiene pacientes, médicos y citas.
+* Cada paciente tiene un nombre, número de identificación y una lista de citas.
+* Cada médico tiene un nombre, especialidad y una lista de citas.
+* Cada cita registra el paciente, el médico, la fecha y la hora.
+
+### Ejercicio 10: Sistema de Gestión de Videojuegos
+
+Diseña un sistema para gestionar una colección de videojuegos. Debes identificar las clases principales, sus atributos y
+métodos.
+
+Requisitos:
+
+El sistema tiene videojuegos, plataformas y desarrolladores.
+Cada videojuego tiene un nombre, género, año de lanzamiento y una lista de plataformas en las que está disponible.
+Cada plataforma tiene un nombre y una lista de videojuegos disponibles.
+Cada desarrollador tiene un nombre y una lista de videojuegos creados.
 
 ## Criterios de evaluación
 
-| Criterio               | Descripción                                                                                                       | Puntaje |
-|------------------------|-------------------------------------------------------------------------------------------------------------------|---------|
-| Portada                | Contiene los datos de identificación de los integrantes del equipo (nombres completos, grupo, número de control). | 5%      |
-| Menú                   | El menú de opciones se despliaga y muestra adecuadamente.                                                         | 5%      |
-| Agregar                | Se permite agregar un libro a la lista.                                                                           | 5%      |
-| Eliminar               | Se permite eliminar un libro de la lista.                                                                         | 5%      |
-| Modificar              | Se permite modificar un libro de la lista.                                                                        | 10%     |
-| Compra                 | Se permite abrir una compra y agregar/eliminar libros de la compra.                                               | 10%     |
-| Modularidad del Código | El código está organizado en clases y archivos diferentes, además de contar con métodos coherentes.               | 10%     |
-| Diagrama de Clases     | Representa las clases y sus relaciones de manera clara y concisa.                                                 | 10%     |
-| Realizar               | Se permite realizar una compra y muestra el detalle de la compra.                                                 | 10%     |
-| Validación             | Se valida que los datos ingresados sean correctos.                                                                | 10%     |
-| Descuentos             | Se aplican los descuentos correctamente.                                                                          | 10%     |
-| Excepciones            | Se manejan correctamente las excepciones.                                                                         | 10%     |
-| Total                  |                                                                                                                   | 100%    |
+| Criterio                 | Descripción                                                      | Puntos   |
+|--------------------------|------------------------------------------------------------------|----------|
+| Identificación de clases | Se identifican correctamente las clases principales del sistema. | 20%      |
+| Atributos y métodos      | Se definen adecuadamente los atributos y métodos de cada clase.  | 20%      |    
+| Relaciones entre clases  | Se representan correctamente las relaciones entre las clases.    | 20%      |
+| Claridad del diagrama    | El diagrama es claro y fácil de entender.                        | 20%      |
+| Presentación             | El diagrama está bien presentado y organizado.                   | 20%      |
+| **Total**                |                                                                  | **100%** |
 
-> **La evaluación se realizará con base en los criterios establecidos en la rúbrica. Se considerará la claridad,
-> organización, comentarios y estilo del código, así como la calidad de la documentación. Además, se tomará en cuenta
-> el cumplimiento de los requerimientos y la funcionalidad del programa.**
-> {style="note"}
+## Entrega
 
-> **Actividad entregada en lenguaje distinto a Java o sin el uso de clases y objetos, así como de modularidad, no será
-> evaluada.**
+Entrega un archivo PDF que contenga los diagramas de clases realizados para cada uno de los ejercicios propuestos.
+Envía el archivo a través de la plataforma del curso antes de la fecha límite establecida.
+Toda entrega deberá incluir portada con datos de identificación de los miembros del equipo.
+**Alumno ausente deberá entregar de manera individual ya que no se le calificará el trabajo en equipo.**
+
+> Entregas fuera de la fecha límite serán penalizadas con una calificación máxima de 70%.
 > {style="warning"}
-
-## Fecha de entrega
-
-Miércoles 5 de marzo de 2025, 12:00 PM (mediodía).
-
-> **Trabajos entregados después de la fecha y hora límite serán calificados sobre 70 puntos.**
-> {style="warning"}
-
-## Recursos
-
-* [Gestión de Empleados](ejemplo-3.md)
-* [Validando datos](ejemplo-4.md)
-* [Manejo de excepciones](ejemplo-5.md)

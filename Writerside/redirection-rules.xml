@@ -6,15 +6,4 @@
         <accepts>page.html</accepts>
     </rule>
     -->
-    <rule id="47ab3ae1">
-        <description>Created after removal of "El Modificador `static` en Java" from Programación Orientada a Objetos
-        </description>
-        <accepts>static.html</accepts>
-    </rule>
-    <rule id="54b94857">
-        <description>Created after removal of "¿Qué son los diagramas de Clases?" from Programación Orientada a
-            Objetos
-        </description>
-        <accepts>¿Qué-son-los-diagramas-de-Clases.html</accepts>
-    </rule><rule id="3160372a"><description>Created after removal of "Ejemplo 7: Sistema de Renta y Mantenimiento de Vehículos" from Programación Orientada a Objetos</description><accepts>ejemplo-7.html</accepts></rule>
 </rules>
