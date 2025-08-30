@@ -35,6 +35,11 @@
         <toc-element topic="constructores.md"/>
         <toc-element topic="constructor-input.md"/>
         <toc-element topic="paquetes.md"/>
+        <toc-element toc-title="Entrada y Salida de Datos">
+            <toc-element topic="reading.md"/>
+            <toc-element topic="ventanas-flotantes.md"/>
+            <toc-element topic="ui-manager.md"/>
+        </toc-element>
         <toc-element hidden="true" toc-title="Exceptions">
             <toc-element topic="exception.md"/>
             <toc-element topic="try-catch.md"/>
@@ -45,9 +50,6 @@
         <toc-element topic="arreglos-matrices.md"/>
         <toc-element topic="comparadores.md"/>
         <toc-element topic="modularidad.md"/>
-        <toc-element topic="reading.md"/>
-        <toc-element topic="ventanas-flotantes.md"/>
-        <toc-element topic="ui-manager.md"/>
     </toc-element>
     <toc-element hidden="true" toc-title="Modificadores">
         <toc-element topic="static.md"/>
@@ -114,10 +116,11 @@
     <toc-element hidden="true" topic="filemanager.md"/>
     <toc-element toc-title="Ejemplos Prácticos">
         <toc-element topic="ejemplo-1.md"/>
+        <toc-element topic="ejemplo-2.md"/>
     </toc-element>
     <toc-element toc-title="Actividades">
         <toc-element topic="actividad-1.md"/>
-        <toc-element hidden="true" topic="actividad-2.md"/>
+        <toc-element topic="actividad-2.md"/>
         <toc-element hidden="true" topic="actividad-3.md"/>
         <toc-element hidden="true" topic="actividad-4.md"/>
         <toc-element hidden="true" topic="actividad-5.md"/>

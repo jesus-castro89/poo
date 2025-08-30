@@ -15,7 +15,7 @@ que contiene los atributos y métodos de la clase.
 ```java
 public class [NombreDeLaClase] {
     // Atributos
-    [TipoDeDato] [nombreDelAtributo];
+    [modificadorDeAcceso] [TipoDeDato] [nombreDelAtributo];
     
     // Métodos
     [modificadorDeAcceso] [TipoDeDato] [nombreDelMetodo]([Parámetros]) {

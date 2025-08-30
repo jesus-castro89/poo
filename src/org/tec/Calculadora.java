@@ -1,15 +1,3 @@
-# Ejemplo 2: Leyendo y mostrando datos con JOptionPane
-
-## Descripción
-
-Se solicita la creación de una clase `Calculadora` que permita realizar operaciones básicas de suma, resta,
-multiplicación y división. La clase debe incluir un constructor que solicite al usuario ingresar dos números mediante
-ventanas emergentes (JOptionPane) y métodos para realizar cada una de las operaciones mencionadas. Finalmente, se debe
-mostrar el resultado de cada operación en una ventana emergente.
-
-## Implementación
-
-```java
 package org.tec;
 
 import javax.swing.JOptionPane;
@@ -101,30 +89,3 @@ public class Calculadora {
         calculadora.menu();
     }
 }
-```
-
-## Explicación del Código
-
-1. **Atributos**: La clase `Calculadora` tiene dos atributos privados `numero1` y `numero2` que almacenan los números
-   ingresados por el usuario.
-2. **Constructor**: No se define un constructor explícito, pero se podría agregar uno si se desea inicializar los
-   atributos
-   de otra manera.
-3. **Métodos**:
-    - `menu()`: Muestra un menú con opciones para seleccionar la operación a realizar. Utiliza un bucle `do-while` para
-      permitir múltiples operaciones hasta que el usuario decida salir.
-    - `readNumbers()`: Solicita al usuario ingresar dos números mediante ventanas emergentes y los almacena en los
-      atributos `numero1` y `numero2`.
-    - `sumar()`, `restar()`, `multiplicar()`, `dividir()`: Cada uno de estos métodos realiza la operación
-      correspondiente
-      utilizando los números ingresados y muestra el resultado en una ventana emergente. El método `dividir()` incluye
-      una
-      verificación para evitar la división por cero.
-4. **Método `main`**: Crea una instancia de la clase `Calculadora` y llama al método `menu()` para iniciar la
-   interacción con el usuario.
-5. **Uso de `JOptionPane`**: La clase utiliza `JOptionPane` para interactuar con el usuario, solicitando entradas y
-   mostrando resultados de manera amigable.
-6. **Comentarios**: El código está documentado con comentarios que explican la funcionalidad de cada clase, atributo y
-   método, facilitando su comprensión y mantenimiento.
-7. **Manejo de Errores**: El método `dividir()` maneja el caso de división por cero, mostrando un mensaje de error si el
-   usuario intenta realizar esta operación.
