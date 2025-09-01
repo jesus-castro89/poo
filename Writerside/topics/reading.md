@@ -152,3 +152,32 @@ class Main {
 
 En este ejemplo se lee el nombre y la edad de una persona utilizando ventanas de diálogo y se imprime un mensaje con
 estos datos.
+
+### Los Wrappers
+
+En Java, los tipos de datos primitivos (como `int`, `double`, `boolean`, etc.) no son objetos y no tienen métodos. Sin
+embargo, a veces es necesario tratar estos tipos de datos como objetos, por ejemplo, cuando se trabaja con colecciones
+como
+`ArrayList`, que solo pueden almacenar objetos. Para solucionar este problema, Java proporciona clases envolventes (
+wrappers) para cada tipo de dato primitivo.
+
+Las clases envolventes en Java son:
+
+| Tipo Primitivo | Clase Envolvente |
+|----------------|------------------|
+| `int`          | `Integer`        |
+| `double`       | `Double`         |
+| `boolean`      | `Boolean`        |
+| `char`         | `Character`      |
+| `byte`         | `Byte`           |
+| `short`        | `Short`          |
+| `long`         | `Long`           |
+| `float`        | `Float`          |
+
+Y cada clase tiene el metodo `parse<Type>` para convertir una cadena a su tipo primitivo correspondiente. Por ejemplo,
+para convertir una cadena a un entero se utiliza el método `parseInt()` de la clase `Integer`:
+
+```java
+String numeroStr = "123";
+int numero = Integer.parseInt(numeroStr);
+```

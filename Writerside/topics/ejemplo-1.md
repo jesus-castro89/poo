@@ -75,7 +75,6 @@ class User{
     - reservations: Reservation[]
     + User(): void
     - User(name: String, userId: String): void
-    - register(): void
     + login(): void
     + logout(): void
 }
