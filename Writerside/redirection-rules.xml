@@ -6,4 +6,14 @@
         <accepts>page.html</accepts>
     </rule>
     -->
+    <rule id="403c87b5">
+        <description>Created after removal of "¿Qué son los records en Java?" from Programación Orientada a Objetos
+        </description>
+        <accepts>record.html</accepts>
+    </rule>
+    <rule id="220d711a">
+        <description>Created after removal of "¿Qué son los records en Java?" from Programación Orientada a Objetos
+        </description>
+        <accepts>record.html</accepts>
+    </rule>
 </rules>

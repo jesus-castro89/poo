@@ -8,26 +8,22 @@ las entidades del problema.
 
 ## Problema
 
-Una tienda en línea desea gestionar su inventario de productos y las órdenes de compra realizadas por los clientes. El
-sistema debe permitir registrar productos, clientes y órdenes de compra, así como realizar búsquedas y actualizaciones
-en el inventario.
+Se necesita un sistema de gestión de productos de una tienda, toma en consideración que los productos tienen atributos
+como nombre, precio y cantidad en inventario. Además, se requiere que el sistema permita realizar las siguientes
+operaciones:
 
-Toma en consideración que:
-
-* Un producto tiene un nombre, una descripción, un precio y una cantidad en stock.
-* Un cliente tiene un nombre, una dirección de correo electrónico y una lista de órdenes de compra, que no pueden ser
-  más de 5.
-* Una orden de compra tiene un identificador único, una lista de productos comprados que no pueden ser más de 10 y el
-  total a pagar.
-* El sistema debe permitir agregar nuevos productos al inventario que no pueden ser más de 100, registrar nuevos
-  clientes, crear nuevas órdenes de compra, calcular el total a pagar de una orden de compra.
-* El sistema debe permitir buscar productos por nombre y actualizar la cantidad en stock de un producto.
+* Agregar nuevos productos al inventario.
+* Actualizar la cantidad en stock de un producto existente.
+* Buscar productos por nombre.
+* Mostrar todos los productos disponibles en el inventario.
+* Los productos en sistema no pueden ser más de 50.
 
 ## Requisitos
 
 1. Define el diagrama de clases que represente las entidades del problema, sus atributos, métodos y relaciones.
 2. Implementa las clases en Java siguiendo el diagrama de clases definido.
-3. Crea objetos para representar productos, clientes y órdenes de compra.
+3. Crea objetos para representar lo solicitado en el problema, asegurándote de que cada objeto tenga sus atributos
+   correctamente inicializados.
 4. Implementa los métodos necesarios para cumplir con los requisitos del sistema.
 5. Realiza pruebas para verificar que el sistema funciona correctamente. Asegúrate de probar la creación de productos,
    clientes y órdenes de compra, así como las búsquedas y actualizaciones en el inventario.

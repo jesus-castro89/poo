@@ -2,129 +2,54 @@
 
 ## Descripción
 
-Se solicita la creación de una clase `Calculadora` que permita realizar operaciones básicas de suma, resta,
-multiplicación y división. La clase debe incluir un constructor que solicite al usuario ingresar dos números mediante
-ventanas emergentes (JOptionPane) y métodos para realizar cada una de las operaciones mencionadas. Finalmente, se debe
-mostrar el resultado de cada operación en una ventana emergente.
+Se requiere un sistema que permite la gestión de empleados de una empresa. El sistema debe permitir ingresar los datos
+de los empleados, como nombre, edad y salario. El sistema debe mostrar un menú con las siguientes opciones:
+
+1. Ingresar datos de un empleado.
+2. Editar datos de un empleado.
+3. Eliminar un empleado.
+4. Mostrar el gasto total en salarios.
+5. Salir.
+
+Toma en consideración que no debe de existir un límite en la cantidad de empleados en 20.
 
 ## Implementación
 
-```java
-package org.tec;
+### Diagrama de Clases
 
-import javax.swing.JOptionPane;
-
-/**
- * Clase Calculadora que realiza operaciones básicas.
- */
-public class Calculadora {
-    /**
-     * Representa el primer número ingresado por el usuario.
-     */
-    private double numero1;
-    /**
-     * Representa el segundo número ingresado por el usuario.
-     */
-    private double numero2;
-
-    /**
-     * Función que muestra un menú para seleccionar la operación a realizar.
-     */
-    private void menu() {
-        String[] opciones = {"Sumar", "Restar", "Multiplicar", "Dividir", "Salir"};
-        String eleccion;
-        do {
-            eleccion = JOptionPane.showInputDialog(null, "Seleccione una operación:",
-                    "Menú de Operaciones", JOptionPane.QUESTION_MESSAGE, null, opciones,
-                    opciones[0]).toString();
-
-            switch (eleccion) {
-                case "Sumar" -> sumar();
-                case "Restar" -> restar();
-                case "Multiplicar" -> multiplicar();
-                case "Dividir" -> dividir();
-                case "Salir" -> JOptionPane.showMessageDialog(null, "Saliendo del programa.");
-            }
-        } while (eleccion.compareTo("Salir") != 0);
-    }
-
-    /**
-     * Función para solicitar y leer dos números del usuario.
-     */
-    private void readNumbers() {
-        numero1 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el primer número:"));
-        numero2 = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el segundo número:"));
-    }
-
-    /**
-     * Función para sumar los dos números y mostrar el resultado.
-     */
-    private void sumar() {
-        readNumbers();
-        double resultado = numero1 + numero2;
-        JOptionPane.showMessageDialog(null, "El resultado de la suma es: " + resultado);
-    }
-
-    /**
-     * Función para restar los dos números y mostrar el resultado.
-     */
-    private void restar() {
-        readNumbers();
-        double resultado = numero1 - numero2;
-        JOptionPane.showMessageDialog(null, "El resultado de la resta es: " + resultado);
-    }
-
-    /**
-     * Función para multiplicar los dos números y mostrar el resultado.
-     */
-    private void multiplicar() {
-        readNumbers();
-        double resultado = numero1 * numero2;
-        JOptionPane.showMessageDialog(null, "El resultado de la multiplicación es: " + resultado);
-    }
-
-    /**
-     * Función para dividir los dos números y mostrar el resultado.
-     */
-    private void dividir() {
-        readNumbers();
-        if (numero2 != 0) {
-            double resultado = numero1 / numero2;
-            JOptionPane.showMessageDialog(null, "El resultado de la división es: " + resultado);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error: División por cero no permitida.");
-        }
-    }
-
-    public static void main(String[] args) {
-        Calculadora calculadora = new Calculadora();
-        calculadora.menu();
-    }
+```plantuml
+@startuml
+skinparam class{
+    AttributeFontSize 18
+    FontStyle bold
 }
+class Employee {
+    - name: String
+    - age: int
+    - salary: double
+    + Employee()
+    + updateDetails(): void
+    + getSalary(): double
+    + toString(): String
+}
+class EmployeeManager {
+    - employees: Employee[]
+    + EmployeeManager()
+    - addEmployee(): void
+    - editEmployee(): void
+    - deleteEmployee(): void
+    - calculatePayroll(): double
+    + displayMenu(): void
+}
+enum MenuOption {
+    + ADD_EMPLOYEE("Agregar Empleado")
+    + EDIT_EMPLOYEE("Editar Empleado")
+    + DELETE_EMPLOYEE("Eliminar Empleado")
+    + SHOW_TOTAL_SALARY("Calcular Nomina")
+    + EXIT("Salir")
+    - description: String
+    - MenuOption(description: String)
+}
+EmployeeManager "1" -- "0...*" Employee : administra >
+@enduml
 ```
-
-## Explicación del Código
-
-1. **Atributos**: La clase `Calculadora` tiene dos atributos privados `numero1` y `numero2` que almacenan los números
-   ingresados por el usuario.
-2. **Constructor**: No se define un constructor explícito, pero se podría agregar uno si se desea inicializar los
-   atributos
-   de otra manera.
-3. **Métodos**:
-    - `menu()`: Muestra un menú con opciones para seleccionar la operación a realizar. Utiliza un bucle `do-while` para
-      permitir múltiples operaciones hasta que el usuario decida salir.
-    - `readNumbers()`: Solicita al usuario ingresar dos números mediante ventanas emergentes y los almacena en los
-      atributos `numero1` y `numero2`.
-    - `sumar()`, `restar()`, `multiplicar()`, `dividir()`: Cada uno de estos métodos realiza la operación
-      correspondiente
-      utilizando los números ingresados y muestra el resultado en una ventana emergente. El método `dividir()` incluye
-      una
-      verificación para evitar la división por cero.
-4. **Método `main`**: Crea una instancia de la clase `Calculadora` y llama al método `menu()` para iniciar la
-   interacción con el usuario.
-5. **Uso de `JOptionPane`**: La clase utiliza `JOptionPane` para interactuar con el usuario, solicitando entradas y
-   mostrando resultados de manera amigable.
-6. **Comentarios**: El código está documentado con comentarios que explican la funcionalidad de cada clase, atributo y
-   método, facilitando su comprensión y mantenimiento.
-7. **Manejo de Errores**: El método `dividir()` maneja el caso de división por cero, mostrando un mensaje de error si el
-   usuario intenta realizar esta operación.
