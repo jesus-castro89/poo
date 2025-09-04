@@ -1,6 +1,7 @@
 package app.nomina;
 
 public enum MenuOption {
+
     ADD_EMPLOYEE("Agregar empleado"),
     UPDATE_EMPLOYEE("Actualizar empleado"),
     REMOVE_EMPLOYEE("Eliminar empleado"),
@@ -8,7 +9,7 @@ public enum MenuOption {
     CALCULATE_PAYROLL("Calcular nómina"),
     EXIT("Salir");
 
-    private String description;
+    private final String description;
 
     MenuOption(String description) {
         this.description = description;

@@ -15,7 +15,7 @@ public class Employee {
                 "Ingrese el salario del empleado:"));
     }
 
-    public void update() {
+    public void updateDetails() {
         String newName = JOptionPane.showInputDialog(
                 "Ingrese el nuevo nombre del empleado:", name);
         int newAge = Integer.parseInt(JOptionPane.showInputDialog(

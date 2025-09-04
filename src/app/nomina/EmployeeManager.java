@@ -1,7 +1,6 @@
 package app.nomina;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class EmployeeManager {
     private Employee[] employees;
@@ -20,14 +19,18 @@ public class EmployeeManager {
                     null, menu,
                     "Menú de opciones", JOptionPane.QUESTION_MESSAGE,
                     null, options, options[0]);
-            switch (selectedOption) {
-                case ADD_EMPLOYEE -> addEmployee();
-                case UPDATE_EMPLOYEE -> editEmployee();
-                case REMOVE_EMPLOYEE -> deleteEmployee();
-                case LIST_EMPLOYEES -> listEmployees();
-                case CALCULATE_PAYROLL -> calculatePayroll();
-                case EXIT -> JOptionPane.showMessageDialog(null,
-                        "¡Hasta luego!");
+            if (selectedOption != null) {
+                switch (selectedOption) {
+                    case ADD_EMPLOYEE -> addEmployee();
+                    case UPDATE_EMPLOYEE -> editEmployee();
+                    case REMOVE_EMPLOYEE -> deleteEmployee();
+                    case LIST_EMPLOYEES -> listEmployees();
+                    case CALCULATE_PAYROLL -> calculatePayroll();
+                    case EXIT -> JOptionPane.showMessageDialog(null,
+                            "¡Hasta luego!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una opción");
             }
         } while (selectedOption != MenuOption.EXIT);
     }
@@ -48,14 +51,7 @@ public class EmployeeManager {
 
         Employee selectedEmployee;
         String message = "No hay empleados para editar";
-        boolean hasEmployees = false;
-        for (Employee employee : employees) {
-            if (employee != null) {
-                hasEmployees = true;
-                break;
-            }
-        }
-        if (hasEmployees) {
+        if (hasEmployees()) {
             selectedEmployee = (Employee) JOptionPane.showInputDialog(
                     null, "Seleccione un empleado a editar",
                     "Editar empleado", JOptionPane.QUESTION_MESSAGE,
@@ -67,7 +63,10 @@ public class EmployeeManager {
                         "Confirmar edición",
                         JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
-                    selectedEmployee.update();
+                    selectedEmployee.updateDetails();
+                    message = "El empleado se ha editado correctamente";
+                } else {
+                    message = "No se ha editado el empleado";
                 }
             }
         }
@@ -75,23 +74,19 @@ public class EmployeeManager {
     }
 
     private void listEmployees() {
-        StringBuilder message = new StringBuilder("Lista de empleados:\n");
-        boolean hasEmployees = false;
-        for (Employee employee : employees) {
-            if (employee != null) {
-                hasEmployees = true;
-                message.append(employee).append("\n");
+        StringBuilder message = new StringBuilder("No hay empleados para mostrar");
+        if (hasEmployees()) {
+            message = new StringBuilder("Lista de empleados:\n");
+            for (Employee employee : employees) {
+                if (employee != null) {
+                    message.append(employee).append("\n");
+                }
             }
-        }
-        if (!hasEmployees) {
-            message = new StringBuilder("No hay empleados para mostrar");
         }
         JOptionPane.showMessageDialog(null, message);
     }
 
-    private void deleteEmployee() {
-        Employee selectedEmployee;
-        String message = "No hay empleados para eliminar";
+    private boolean hasEmployees() {
         boolean hasEmployees = false;
         for (Employee employee : employees) {
             if (employee != null) {
@@ -99,7 +94,13 @@ public class EmployeeManager {
                 break;
             }
         }
-        if (hasEmployees) {
+        return hasEmployees;
+    }
+
+    private void deleteEmployee() {
+        Employee selectedEmployee;
+        String message = "No hay empleados para eliminar";
+        if (hasEmployees()) {
             selectedEmployee = (Employee) JOptionPane.showInputDialog(
                     null, "Seleccione un empleado a eliminar",
                     "Eliminar empleado", JOptionPane.QUESTION_MESSAGE,
