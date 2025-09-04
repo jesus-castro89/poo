@@ -7,12 +7,23 @@ public class Employee {
     private int age;
     private double salary;
 
+    static {
+        JOptionPane.showMessageDialog(null,
+                "¡Bienvenido al sistema de nómina!");
+    }
+
     public Employee() {
         this.name = JOptionPane.showInputDialog("Ingrese el nombre del empleado:");
         this.age = Integer.parseInt(JOptionPane.showInputDialog(
                 "Ingrese la edad del empleado:"));
         this.salary = Double.parseDouble(JOptionPane.showInputDialog(
                 "Ingrese el salario del empleado:"));
+    }
+
+    public Employee(String name, int age, double salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
     }
 
     public void updateDetails() {
@@ -22,9 +33,9 @@ public class Employee {
                 "Ingrese la nueva edad del empleado:", age));
         double newSalary = Double.parseDouble(JOptionPane.showInputDialog(
                 "Ingrese el nuevo salario del empleado:", salary));
-        name = newName;
-        age = newAge;
-        salary = newSalary;
+        this.name = newName;
+        this.age = newAge;
+        this.salary = newSalary;
     }
 
     public double getSalary() {

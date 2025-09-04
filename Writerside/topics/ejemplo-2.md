@@ -129,18 +129,18 @@ En este ejemplo se han utilizado varios tipos de cuadros de diálogo proporciona
   utiliza para ingresar detalles del empleado y seleccionar opciones del menú.
     - Por ejemplo, en el método `updateDetails` de la clase `Employee`, se utiliza para solicitar al usuario que ingrese
       el nombre, edad y salario del empleado de la siguiente manera:
-      ![joption_1.png](joption_1.png)
+      ![joption_1.png](joption_1.png){style="block"}
 - `showMessageDialog(Component parentComponent, Object message)`: Muestra un cuadro de diálogo con un mensaje
   informativo. Se utiliza para mostrar mensajes de error, confirmaciones y listas de empleados.
     - Por ejemplo, en el método `listEmployees` de la clase `EmployeeManager`, se utiliza para mostrar la lista de
       empleados de la siguiente manera:
-      ![joption_2.png](joption_2.png)
+      ![joption_2.png](joption_2.png){style="block"}
 - `showInputDialog(Component parentComponent, Object message, String title, int messageType, Icon icon,
   Object[] selectionValues, Object initialSelectionValue)`: Muestra un cuadro de diálogo con una lista desplegable
   (combo box) para que el usuario seleccione una opción. Se utiliza para mostrar el menú de opciones.
     - Por ejemplo, en el método `displayMenu` de la clase `EmployeeManager`, se utiliza para mostrar el menú de opciones
       de la siguiente manera:
-      ![jotion_4.png](jotion_4.png)
+      ![jotion_4.png](jotion_4.png){style="block"}
     - Aquí, `null` se pasa como `parentComponent` para centrar el cuadro de diálogo en la pantalla, `menu` es el
       mensaje que contiene las opciones del menú, `"Menú de Opciones"` es el título del cuadro de diálogo,
       `JOptionPane.QUESTION_MESSAGE` indica que es un cuadro de diálogo de pregunta, `null` se pasa como `icon` para

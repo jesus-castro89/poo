@@ -3,10 +3,10 @@ package app.nomina;
 import javax.swing.*;
 
 public class EmployeeManager {
-    private Employee[] employees;
+    private final int MAX_EMPLOYEES = 20;
+    private final Employee[] employees = new Employee[MAX_EMPLOYEES];
 
     public EmployeeManager() {
-        employees = new Employee[20];
         displayMenu();
     }
 

@@ -14,7 +14,7 @@ operaciones:
 
 * Agregar nuevos productos al inventario.
 * Actualizar la cantidad en stock de un producto existente.
-* Buscar productos por nombre.
+* Eliminar productos del inventario.
 * Mostrar todos los productos disponibles en el inventario.
 * Los productos en sistema no pueden ser más de 50.
 
