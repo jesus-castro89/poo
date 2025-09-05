@@ -26,20 +26,26 @@
         <toc-element topic="relaciones.md"/>
         <toc-element topic="ejemplo-diagrama.md"/>
     </toc-element>
+    <toc-element toc-title="Documentación de Código">
+        <toc-element topic="documentacion.md"/>
+        <toc-element topic="javadoc.md"/>
+    </toc-element>
     <toc-element toc-title="Clases">
         <toc-element topic="clases-java.md"/>
-        <toc-element toc-title="Documentación de Código">
-            <toc-element topic="documentacion.md"/>
-            <toc-element topic="javadoc.md"/>
-        </toc-element>
         <toc-element topic="constructores.md"/>
         <toc-element topic="constructor-input.md"/>
         <toc-element topic="paquetes.md"/>
         <toc-element topic="modularidad.md"/>
         <toc-element topic="enum.md"/>
-        <toc-element topic="ui-manager.md"/>
+    </toc-element>
+    <toc-element toc-title="Entrada y Salida de Información">
         <toc-element topic="reading.md"/>
         <toc-element topic="ventanas-flotantes.md"/>
+        <toc-element topic="ui-manager.md"/>
+    </toc-element>
+    <toc-element toc-title="Casting y Sobrecarga">
+        <toc-element topic="casting.md"/>
+        <toc-element topic="sobrecarga.md"/>
     </toc-element>
     <toc-element toc-title="Modificadores">
         <toc-element topic="static.md"/>
