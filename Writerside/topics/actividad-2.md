@@ -26,7 +26,7 @@ operaciones:
    correctamente inicializados.
 4. Implementa los métodos necesarios para cumplir con los requisitos del sistema.
 5. Realiza pruebas para verificar que el sistema funciona correctamente. Asegúrate de probar la creación de productos,
-   clientes y órdenes de compra, así como las búsquedas y actualizaciones en el inventario.
+   así como las búsquedas y actualizaciones en el inventario.
 6. Documenta tu código con comentarios que expliquen la funcionalidad de cada clase, atributo y método.
 7. Para entradas y salidas de datos, utiliza la clase `JOptionPane` de Java para interactuar con el usuario en todo el
    sistema.

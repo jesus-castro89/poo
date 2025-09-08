@@ -14,7 +14,6 @@ public class Test {
                 new Font("Arial", Font.PLAIN, 20));
         UIManager.put("ComboBox.font",
                 new Font("Arial", Font.BOLD, 20));
-
     }
 
     public static void main(String[] args) {

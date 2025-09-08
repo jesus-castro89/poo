@@ -10,6 +10,10 @@ public class EmployeeManager {
         displayMenu();
     }
 
+    static {
+
+    }
+
     public void displayMenu() {
         MenuOption[] options = MenuOption.values();
         MenuOption selectedOption;

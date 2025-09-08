@@ -2,6 +2,8 @@
 class Marca{
 - nombre: String
 - direccion: String
+- pelicula: Pelicula[]
+- numeroIdentificacion: int
 + getNombre(): String
 + setNombre(nombre: String): void
 + getDireccion(): String
