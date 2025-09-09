@@ -25,18 +25,27 @@ excepciones de tipo `RuntimeException` son excepciones no comprobadas, mientras 
 
 ```plantuml
 @startuml
-class Throwable
-class Error
-class Exception
-class RuntimeException
-class IOException
-class SQLException
+class Throwable {
+}
+class Error {
+}
+class Exception {
+}
+class RuntimeException {
+}
+class IOException {
+}
+class SQLException {
+}
+class ClassNotFoundException {
+}
 
-Throwable <|-- Error
+Throwable <|-- Error    
 Throwable <|-- Exception
 Exception <|-- RuntimeException
 Exception <|-- IOException
 Exception <|-- SQLException
+Exception <|-- ClassNotFoundException
 @enduml
 ```
 

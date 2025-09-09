@@ -1,116 +1,72 @@
-# Actividad 3: Sistema de Gestión de un Cine
+# Actividad 3: Validando entradas de datos en Java
 
 ## Descripción
 
-Eres el desarrollador de un sistema para un cine. Debes crear un programa que permita gestionar películas, salas y
-boletos. Las películas tienen un género (acción, comedia, drama, etc.) y una duración. Las salas tienen un número y una
-capacidad. Los clientes pueden comprar boletos para una película en una sala específica. El sistema debe validar los
-datos de entrada y mostrar un menú interactivo usando `JOptionPane`.
+En esta actividad, deberás de crear una clase en Java que valide diferentes tipos de entradas de datos utilizando
+excepciones. La clase debe incluir métodos para validar números enteros, números decimales y cadenas de texto. Si la
+entrada no es válida, el método debe lanzar una excepción personalizada con un mensaje de error adecuado.
 
-## Requerimientos
+Recuerda que la entrada de datos se realizará mediante la clase **JOptionPane** de la librería **javax.swing**.
 
-1. Crear las clases `Movie`, `Room` y `Ticket` con los atributos y métodos necesarios para representar las entidades
-   del sistema.
-2. Crear el tipo enumerado `Genre` con los siguientes valores:
-    - Acción
-    - Comedia
-    - Drama
-    - Terror
-    - Ciencia Ficción
-    - Animación
-    - Aventura
-    - Documental
-    - Musical
-    - Romance
-    - Suspenso
-3. Crear una clase `CinemaSystem` con un método `menu()` que muestre un menú interactivo con las siguientes opciones:
-    - Agregar película
-    - Comprar boleto
-    - Listar películas
-    - Listar salas
-    - Listar salas con asientos disponibles
-    - Listar recaudación total
-    - Listar recaudación por sala
-    - Listar recaudación por película por sala
-    - Salir
-4. Implementar la lógica necesaria para que el sistema permita agregar películas, tomando en cuenta que se podrán
-   agregar varias películas con el mismo nombre pero género y duración diferentes. Y que no se permitirán agregar más de
-   20 películas.
-    * Toma en cuenta que la recaudación total se calcula sumando el precio de los boletos vendidos.
-    * Toma en cuenta que se puede asignar una película a más de una sala.
-5. Implementar la lógica necesaria para que el sistema permita comprar boletos, tomando en cuenta que se podrán comprar
-   boletos para una película en una sala específica, siempre y cuando haya asientos disponibles. Y que no se permitirán
-   comprar más de 50 boletos por sala.
-    * Toma en cuenta que el precio de los boletos se calcula con base en la duración de la película y el género de la
-      misma.
-    * El precio base es de 50.00 y se le suma 10.00 por cada hora adicional de duración y el costo adicional por
-      el género.
-    * De tal forma que la fórmula para calcular el precio de un boleto es la siguiente:
-    * ```tex
-      PrecioBoleto = 50.00 + 10.00 * (HoraAdicional) + CostoGénero
-      ```
-6. Implementar la lógica necesaria para que el sistema permita listar las películas, las salas y las salas con asientos
-   disponibles.
-7. Implementar la lógica necesaria para solo mostrar al momento de comprar boletos, las salas con asientos disponibles y
-   con una película asignada.
-8. Validar los datos de entrada para evitar errores y mostrar mensajes de error en caso de que ocurran.
-9. Probar el sistema con diferentes casos de uso para verificar su correcto funcionamiento.
+## Requisitos
+
+1. Crea una clase llamada `InputValidator` que contenga los siguientes métodos:
+    - `validateInteger()`: Válida si la entrada es un número entero. Si no lo es, lanza una excepción
+      personalizada llamada `InvalidIntegerException`.
+    - `validateDouble()`: Válida si la entrada es un número decimal. Si no lo es, lanza una excepción
+      personalizada llamada `InvalidDoubleException`.
+    - `validateString()`: Válida si la entrada es una cadena de texto que no esté vacía. Si está vacía, lanza
+      una excepción personalizada llamada `InvalidStringException`.
+2. Crea las clases de excepción personalizadas `InvalidIntegerException`, `InvalidDoubleException` e
+   `InvalidStringException`, que extiendan de la clase `Exception`.
+3. Las funciones de validación deben utilizar bloques `JOptionPane.showInputDialog` para solicitar la entrada del
+   usuario. Recuerda que existen diversas maneras de personalizar los cuadros de diálogo.
+4. Con las entradas obtenidas, utiliza los métodos de validación correspondientes y maneja las excepciones lanzadas
+   utilizando bloques `try-catch`. Muestra mensajes de error adecuados en caso de que se lance una excepción.
+5. Las funciones deberán mantener cautivo el ciclo de solicitud de entrada hasta que el usuario ingrese un
+   valor válido.
+6. Crea una clase `Main` con un método `main` para probar los métodos de validación de la clase `InputValidator`.
+   Solicita al usuario que ingrese un número entero, un número decimal y una cadena de texto, y utiliza los métodos
+   de validación para verificar las entradas.
+
+## Ejemplo de uso
+
+```java
+import javax.swing.JOptionPane;
+
+public class Main {
+    public static void main(String[] args) {
+        InputValidator validator = new InputValidator();
+
+        // Validar número entero
+        int intValue = InputValidator.validateInteger();
+        System.out.println("Número entero válido: " + intValue);
+    }
+}
+```
 
 ## Entregables
 
-1. Código fuente de la solución en un archivo comprimido.
-2. Documentación del programa que incluya:
-    - Diagrama de clases.
-    - Código fuente con comentarios JavaDoc.
-    - Ejemplos de ejecución del programa.
-3. Portada con datos de identificación de los miembros del equipo.
+Para esta actividad, debes entregar los siguientes elementos en un solo documento PDF:
 
-La tabla de precios por género es la siguiente:
-
-| Género          | Costo Adicional |
-|-----------------|-----------------|
-| Acción          | 5.00            |
-| Comedia         | 3.00            |
-| Drama           | 4.00            |
-| Terror          | 6.00            |
-| Ciencia Ficción | 5.00            |
-| Animación       | 3.00            |
-| Aventura        | 4.00            |
-| Documental      | 2.00            |
-| Musical         | 3.00            |
-| Romance         | 4.00            |
-| Suspenso        | 5.00            |
+1. Portada con el nombre de la actividad, tu nombre y el de tus compañeros de equipo.
+    * > **Recuerda que miembro que no se encuentre en la portada no recibirá calificación.** {style="warning"}
+2. El código fuente de las clases implementadas en Java. Debidamente comentado.
+3. Un breve informe que describa cómo has implementado el sistema, los desafíos que has enfrentado y cómo los has
+   resuelto.
+4. Capturas de pantalla de las pruebas realizadas y los resultados obtenidos.
 
 ## Criterios de Evaluación
 
-| Criterio                           | Descripción                                                                                         | Puntaje |
-|------------------------------------|-----------------------------------------------------------------------------------------------------|---------|
-| Portada                            | Incluye los datos de identificación de los miembros del equipo.                                     | 5%      |
-| Diagrama de Clases                 | Representa las clases y sus relaciones de manera clara y concisa.                                   | 10%     |
-| Modularidad del Código             | El código está organizado en clases y archivos diferentes, además de contar con métodos coherentes. | 10%     |
-| Implementación de Clases y Objetos | Las clases y objetos están correctamente implementados.                                             | 10%     |
-| Implementación de Menú de Opciones | El menú de opciones permite al usuario realizar las acciones.                                       | 15%     |
-| Implementación de Lógica           | La lógica del sistema permite agregar películas, comprar boletos y mostrar información.             | 20%     |
-| Validación de Entrada del Usuario  | Se valida la entrada del usuario para evitar errores.                                               | 15%     |
-| Pruebas del Sistema                | Se realizan pruebas con diferentes casos de uso para verificar el funcionamiento del sistema.       | 15%     |
-| Total                              |                                                                                                     | 100%    |
-
-> **La evaluación se realizará con base en los criterios establecidos en la rúbrica. Se considerará la claridad,
-> organización, comentarios y estilo del código, así como la calidad de la documentación. Además, se tomará en cuenta
-> el cumplimiento de los requerimientos y la funcionalidad del programa.**
-> {style="note"}
-
-> Deberás anexar por separado las capturas de pantalla de las pruebas realizadas junto a la portada del código fuente.
-> Mismo que debera estar en un archivo comprimido y con los archivos `.java` correspondientes.
-> {style="warning"}
-
-> **Actividad entregada en lenguaje distinto a Java o sin el uso de clases y objetos, así como de modularidad, no será
-> evaluada.**
-> {style="warning"}
+| Criterio                     | Puntuación     |
+|------------------------------|----------------|
+| Implementación de clases     | 30 puntos      |
+| Creación de excepciones      | 20 puntos      |
+| Funcionalidad del sistema    | 30 puntos      |
+| Documentación y presentación | 10 puntos      |
+| **Total**                    | **100 puntos** |
 
 ## Fecha de Entrega
 
-Lunes 24 de marzo de 2025, 11:59 p.m. (medianoche)
-
-> **Trabajos entregados después de la fecha y hora límite serán calificados sobre 70 puntos.**
-> {style="warning"}
+La fecha límite para la entrega de esta actividad es el **12 de septiembre de 2025**. Asegúrate de cumplir con todos los
+requisitos y entregar todos los elementos solicitados en el formato indicado.
