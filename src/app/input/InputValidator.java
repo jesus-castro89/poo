@@ -60,4 +60,21 @@ public class InputValidator {
         return JOptionPane.showInputDialog(null, message, title,
                 JOptionPane.QUESTION_MESSAGE);
     }
+
+    public static <T> T showInputDialog(String title, String message, T[] options) {
+
+        T selectedOption;
+        try {
+            selectedOption = (T) JOptionPane.showInputDialog(null, message, title,
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (selectedOption == null)
+                throw new Exception();
+        } catch (Exception e) {
+            showErrorMessage("Entrada inválida",
+                    "Por favor, seleccione una opción de la lista.");
+            selectedOption = showInputDialog(title, message, options);
+        }
+
+        return selectedOption;
+    }
 }

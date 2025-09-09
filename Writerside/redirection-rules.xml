@@ -16,4 +16,10 @@
         </description>
         <accepts>record.html</accepts>
     </rule>
+    <rule id="3c1d39c2">
+        <description>Created after removal of "Creando un validador genérico en Java" from Programación Orientada a
+            Objetos
+        </description>
+        <accepts>generic-validate.html</accepts>
+    </rule>
 </rules>
