@@ -71,7 +71,6 @@
         <toc-element topic="metodos-clase-instance.md"/>
         <toc-element topic="ambito.md"/>
         <toc-element topic="argumentos.md"/>
-        <toc-element topic="sobrecarga.md"/>
         <toc-element topic="this.md"/>
     </toc-element>
     <toc-element hidden="true" toc-title="Clases Genéricas">
