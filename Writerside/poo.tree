@@ -116,6 +116,7 @@
     <toc-element toc-title="Ejemplos Prácticos">
         <toc-element topic="ejemplo-1.md"/>
         <toc-element topic="ejemplo-2.md"/>
+        <toc-element topic="ejemplo-3.md"/>
     </toc-element>
     <toc-element toc-title="Actividades">
         <toc-element topic="actividad-1.md"/>
