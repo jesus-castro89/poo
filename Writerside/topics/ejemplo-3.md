@@ -8,7 +8,7 @@ esperado.
 
 ## 💡 Explicación de la idea
 
-* Clase Genérica DataStore<T>
+* Clase Genérica `DataStore<T>`
     * Permite guardar datos de cualquier tipo (Integer, Double, String, etc.).
     * La lista cuenta con un límite máximo de 10 elementos.
     * Incluye métodos para agregar datos y validar el tipo.
