@@ -70,12 +70,29 @@ y las instrucciones para completar la actividad.
 
 ## Diagrama de Clases
 
-```plantuml
-@startuml
-class DataStore<T> {
-    - dataList: <T>[]
-    - maxSize: int = 10
-    + addData(data: T): void
+```d2
+vars: {
+  d2-config: {
+    layout-engine: dagre
+    sketch: true
+  }
+}
+
+MenuOption:{
+    shape: "class"
+    + ADD_ELEMENT("Agregar Elemento"): MenuOption
+    + DISPLAY_ELEMENTS("Mostrar Elementos"): MenuOption
+    + CLEAR_LIST("Vaciar Lista"): MenuOption
+    + EXIT("Salir"): MenuOption
+    - description: String
+    + toString(): String
+}
+
+"DataStore<T>"{
+    shape: "class"
+    - dataList: "<T>[]"
+    - maxSize: "int = 10"
+    + addData(T data): void
     + displayData(): void
     + isFull(): boolean
     + isEmpty(): boolean
@@ -83,29 +100,58 @@ class DataStore<T> {
     + clear(): void
 }
 
-class DataStoreFullException {
-    + DataStoreFullException()
+"DataStoreFullException"{
+    shape: "class"
+    + DataStoreFullException(): void
 }
 
-class InvalidDataException {
-    + InvalidDataException()
+"InvalidDataException"{
+    shape: "class"
+    + InvalidDataException(): void
 }
 
-class InputHandler{
-    + static <T> getInput(message: String, type: Class<T>): T
+"InputHandler"{
+    shape: "class"
+    + \<T\> getInput(String message): T
 }
 
-class DataStoreApp {
-    - dataStore: DataStore<T>
+"DataStoreApp"{
+    shape: "class"
+    - dataStore: "DataStore\<T\>"
     + menu(): void
-    + main(args: String[]): void
+    + main(String\[\] args): void
 }
 
-DataStore "1" *-- "*" DataStoreFullException : throws
-DataStore "1" *-- "*" InvalidDataException : throws
-InputHandler "1" *-- "*" DataStore : uses
-DataStoreApp "1" *-- "1" DataStore : uses
-@enduml
+"DataStore<T>" -> MenuOption : uses{
+    target-arrowhead{
+        shape: diamond
+        style.filled: true
+    }
+}
+"DataStore<T>" <- "DataStoreFullException" : throws{
+    source-arrowhead{
+        shape: diamond
+        style.filled: true
+    }
+}
+"DataStore<T>" <- "InvalidDataException" : throws{
+    source-arrowhead{
+        shape: diamond
+        style.filled: true
+    }
+}
+"InputHandler" <- "DataStore<T>" : uses{
+    source-arrowhead{
+        shape: diamond
+        style.filled: true
+    }
+}
+"DataStoreApp" <- "DataStore<T>" : uses{
+    source-arrowhead{
+        shape: diamond
+        style.filled: true
+    }
+}
 ```
 
 ## Instrucciones

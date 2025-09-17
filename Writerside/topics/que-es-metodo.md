@@ -21,15 +21,12 @@ visibilidad y accesibilidad desde fuera de la clase.
 
 Para definir un método en Java, se utiliza la siguiente sintaxis:
 
-```java
-nivel_de_acceso tipo_de_retorno nombre_del_metodo(parametros) {
-    // Cuerpo del método
-}
-```
+![metodos_1](metodos_1.png){style="block"}
 
 Donde:
 
 * `nivel_de_acceso` es la visibilidad del método (public, private, protected).
+* `modificador` es un modificador opcional (static, final, abstract).
 * `tipo_de_retorno` es el tipo de dato que devuelve el método (void si no devuelve nada).
 * `nombre_del_metodo` es el nombre que se le da al método.
 * `parametros` son los parámetros que recibe el método (pueden ser opcionales).
@@ -37,11 +34,7 @@ Donde:
 
 Por ejemplo, el siguiente código define un método llamado `saludar` que imprime un mensaje por pantalla:
 
-```java
-public void saludar() {
-    System.out.println("¡Hola, mundo!");
-}
-```
+![metodos_2.png](metodos_2.png)
 
 Este método es público (puede ser accedido desde cualquier parte del programa), no devuelve ningún valor (void) y no
 recibe ningún parámetro. Al llamar al método `saludar`, se imprimirá por pantalla el mensaje "¡Hola, mundo!".
@@ -54,24 +47,7 @@ mediante la sintaxis `nivel_de_acceso tipo_de_retorno nombre_del_metodo(parametr
 
 A continuación, se muestra un ejemplo de cómo se definen y utilizan métodos en Java:
 
-```java
-public class MiClase {
-
-    public void saludar() {
-        System.out.println("¡Hola, mundo!");
-    }
-
-    public void despedir() {
-        System.out.println("¡Hasta luego!");
-    }
-
-    public static void main(String[] args) {
-        MiClase objeto = new MiClase();
-        objeto.saludar();
-        objeto.despedir();
-    }
-}
-```
+![metodos_3.png](metodos_3.png)
 
 En este ejemplo, se define una clase `MiClase` con dos métodos: `saludar` y `despedir`. Al crear una instancia de la
 clase `MiClase` y llamar a los métodos `saludar` y `despedir`, se imprimirán por pantalla los mensajes "¡Hola, mundo!"

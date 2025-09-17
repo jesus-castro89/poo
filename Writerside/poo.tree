@@ -69,14 +69,14 @@
         <toc-element topic="arreglos-matrices.md"/>
         <toc-element topic="comparadores.md"/>
     </toc-element>
-    <toc-element hidden="true" toc-title="Métodos">
+    <toc-element toc-title="Métodos">
         <toc-element topic="que-es-metodo.md"/>
         <toc-element topic="metodos-clase-instance.md"/>
         <toc-element topic="ambito.md"/>
         <toc-element topic="argumentos.md"/>
         <toc-element topic="this.md"/>
+        <toc-element topic="varargs.md"/>
     </toc-element>
-    <toc-element hidden="true" topic="varargs.md"/>
     <toc-element hidden="true" toc-title="Herencia y Polimorfismo">
         <toc-element topic="herencia.md"/>
         <toc-element topic="tipos-herencia.md"/>
@@ -122,7 +122,7 @@
         <toc-element topic="actividad-1.md"/>
         <toc-element topic="actividad-2.md"/>
         <toc-element topic="actividad-3.md"/>
-        <toc-element hidden="true" topic="actividad-4.md"/>
+        <toc-element topic="actividad-4.md"/>
         <toc-element hidden="true" topic="actividad-5.md"/>
         <toc-element hidden="true" topic="actividad-6.md"/>
         <toc-element hidden="true" topic="actividad-7.md"/>

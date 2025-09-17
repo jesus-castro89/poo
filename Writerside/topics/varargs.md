@@ -7,28 +7,17 @@ cuándo es útil utilizarlos.
 
 ## Sintaxis de los argumentos variables
 
-Los argumentos variables se definen en Java utilizando tres puntos (`...`) después del tipo de datos del argumento en la
-lista de parámetros del método. Por ejemplo:
+![var_args.png](var_args.png){style="block"}
 
-```java
-public void printNumbers(int... numbers) {
-    for (int number : numbers) {
-        System.out.println(number);
-    }
-}
-```
+Los argumentos variables se definen en Java utilizando tres puntos (`...`) después del tipo de datos del argumento en la
+lista de parámetros del método.
 
 En este ejemplo, el método `printNumbers()` acepta un número variable de argumentos enteros. Los argumentos variables se
 tratan como un array dentro del método, lo que permite iterar sobre ellos utilizando un bucle `for-each`.
 
 ## Pasar argumentos variables a un método
 
-Para pasar argumentos variables a un método, se pueden proporcionar una lista de valores separados por comas. Por
-ejemplo:
-
-```java
-printNumbers(1, 2, 3, 4, 5);
-```
+Para pasar argumentos variables a un método, se pueden proporcionar una lista de valores separados por comas. 
 
 En este caso, el método `printNumbers()` recibirá los valores `1`, `2`, `3`, `4` y `5` como argumentos.
 
@@ -52,36 +41,6 @@ Algunas reglas a tener en cuenta al trabajar con argumentos variables en Java so
 En resumen, los argumentos variables son una característica útil de Java que permite a los métodos aceptar un número
 variable de argumentos de un tipo específico. Esto simplifica la llamada a métodos con un número variable de argumentos
 y hace que el código sea más flexible y fácil de mantener.
-
-## Ejemplos de uso de argumentos variables
-
-A continuación se muestran algunos ejemplos de cómo se pueden utilizar los argumentos variables en Java:
-
-```java
-// Método que suma un número variable de enteros
-public int sumNumbers(int... numbers) {
-    int sum = 0;
-    for (int number : numbers) {
-        sum += number;
-    }
-    return sum;
-}
-
-// Llamada al método sumNumbers() con diferentes números de argumentos
-int sum1 = sumNumbers(1, 2, 3);
-
-int sum2 = sumNumbers(4, 5, 6, 7, 8);
-
-int sum3 = sumNumbers(9, 10);
-```
-
-En este ejemplo, el método `sumNumbers()` acepta un número variable de argumentos enteros y devuelve la suma de todos
-los números. Se pueden llamar al método con diferentes números de argumentos, lo que simplifica el cálculo de la suma
-de un conjunto variable de números.
-
-Los argumentos variables son una característica poderosa y flexible de Java que facilita la creación de métodos que
-pueden aceptar un número variable de argumentos. Esta característica es especialmente útil cuando se necesita pasar
-un conjunto variable de valores a un método sin tener que definir una lista de argumentos fija.
 
 ## Cuando usar argumentos variables
 
