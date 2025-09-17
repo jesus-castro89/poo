@@ -2,47 +2,32 @@ package app.test;
 
 public class MiClase {
 
-    public static int x = 10;
-    private int y = 20;
+    public int x; // Variable de instancia
 
-    public MiClase() {
+    public void misPalabras() {
 
+        Persona[] personas = new Persona[3];
+        personas[0] = new Persona(25, "Ana");
+        personas[1] = new Persona(30, "Luis");
+        personas[2] = new Persona(22, "Marta");
+        mostrarPersonas(personas);
+        System.out.println("---- Después de envejecer ----");
+        envejecePersona(personas[0], personas);
+        mostrarPersonas(personas);
     }
 
-    public static void main(String[] args) {
-        MiClase obj1 = new MiClase();
-        MiClase obj2 = new MiClase();
+    public void envejecePersona(Persona persona, Persona[] personas) {
 
-        obj1.decrementar();
-        obj2.decrementar();
-
-        obj1.incrementar();
-
-        System.out.printf("Valor de x: %d%n", obj1.getX()); // Mostrar el valor de la variable estática
-        System.out.println("Valor de y en obj1: " + obj1.y); // Mostrar el valor de la variable de instancia para obj1
-        System.out.println("Valor de y en obj2: " + obj2.y);
-        obj2.incrementar();
-        System.out.printf("Valor de x: %d%n", obj2.getX()); // Mostrar el valor de la variable de instancia para obj2
+        persona.envejecerse();
+        for (Persona p : personas) {
+            p = new Persona(0, "Sin Nombre");
+        }
     }
 
-    public void decrementar() {
-        y--; // Decremento de la variable de instancia
-    }
+    public void mostrarPersonas(Persona[] personas) {
 
-    public static void incrementar() {
-        x++; // Incremento de la variable estática
-    }
-
-    public static void showValue() {
-        x++;
-        System.out.println("Valor de x: " + x); // Mostrar el valor de la variable estática
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public static int getX() {
-        return x;
+        for (Persona persona : personas) {
+            System.out.println(persona);
+        }
     }
 }
