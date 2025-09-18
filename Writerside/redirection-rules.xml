@@ -22,4 +22,8 @@
         </description>
         <accepts>generic-validate.html</accepts>
     </rule>
+    <rule id="3ac582d1">
+        <description>Created after removal of "data-streams" from Programación Orientada a Objetos</description>
+        <accepts>data-streams.html</accepts>
+    </rule>
 </rules>
