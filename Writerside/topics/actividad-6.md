@@ -1,83 +1,54 @@
-# Actividad 6: El Juego de Ahorcado
+# Actividad 6: Calculadora de Figuras Geométricas
 
 ## Descripción
 
-El juego de ahorcado es un juego en el que el jugador debe adivinar una palabra, letra por letra. El jugador tiene un
-número limitado de intentos para adivinar la palabra. Cada vez que el jugador adivina una letra, se muestra en la
-palabra. Si el jugador adivina una letra que no está en la palabra, pierde un intento. Si el jugador adivina la palabra
-antes de quedarse sin intentos, gana el juego.
-
-## Objetivos
-
-Desarrollar una aplicación que permita jugar al ahorcado. La aplicación debe mostrar la palabra a adivinar con guiones
-en lugar de las letras. El jugador debe poder ingresar letras para adivinar la palabra. La aplicación debe mostrar las
-letras adivinadas y los intentos restantes. La aplicación debe mostrar un mensaje de victoria si el jugador adivina la
-palabra y un mensaje de derrota si el jugador se queda sin intentos.
+Queremos desarrollar una clase que nos ayude a calcular áreas de distintas figuras. En lugar de crear métodos con
+distintos nombres (calculateSquareArea, calculateCircleArea, etc.), utilizaremos la sobrecarga de métodos.
 
 ## Requerimientos
 
-1. La aplicación debe definir una lista de palabras a adivinar (al menos 5 palabras).
-2. La aplicación debe seleccionar una palabra al azar de la lista de palabras.
-3. La aplicación debe mostrar la palabra a adivinar con guiones en lugar de las letras.
-4. La aplicación debe permitir al jugador ingresar letras para adivinar la palabra.
-5. La aplicación debe mostrar las letras adivinadas y los intentos restantes.
-    * Cada letra adivinada debe mostrarse en la palabra.
-    * El número de intentos debe ser de al menos 5, pero puede ser mayor.
-6. La aplicación debe mostrar un mensaje de victoria si el jugador adivina la palabra.
-7. La aplicación debe mostrar un mensaje de derrota si el jugador se queda sin intentos.
-8. La aplicación debe permitir al jugador jugar de nuevo.
-9. La aplicación debe mostrar un mensaje de despedida cuando el jugador decide salir del juego.
-10. La aplicación debe ser desarrollada en Java.
-11. La aplicación debe ser desarrollada usando arreglos para almacenar las palabras a adivinar y las letras adivinadas.
-12. La aplicación debe ser desarrollada usando funciones para dividir la lógica del juego en partes más pequeñas.
-13. La aplicación debe ser desarrollada usando ventanas emergentes para mostrar mensajes al jugador (JOptionPane).
+1. Crea una clase llamada GeometryCalculator.
+2. Dentro de la clase, define el método sobrecargado calculateArea() con las siguientes variantes:
+    * calculateArea(double side) → Calcula el área de un cuadrado.
+    * calculateArea(double base, double height) → Calcula el área de un rectángulo.
+    * calculateArea(double radius, boolean isCircle) → Calcula el área de un círculo, pero solo si el parámetro isCircle
+      es true.
+    * calculateArea(double base, double height, boolean isTriangle) → Calcula el área de un triángulo, pero solo si
+      isTriangle es true.
+3. En la clase principal GeometryApp:
+    * Invoca cada una de las versiones del método sobrecargado.
+    * Muestra los resultados en consola.
 
 ## Entregables
 
-1. Código fuente de la aplicación.
-    * El código fuente debe estar organizado en clases y métodos, así como modularizado, es decir, debe estar dividido
-      en partes más pequeñas y manejables dentro de archivos `.java`.
-2. Capturas de pantalla de la aplicación en ejecución.
-    * Incluir capturas de pantalla de la aplicación mostrando la palabra a adivinar, las letras adivinadas y los
-      intentos restantes.
-3. Portada con datos de identificación de los miembros del equipo.
-4. Archivo PDF con los entregables 2 y 3.
-5. El juego debe de implementarse en Java, por lo que no se aceptarán aplicaciones desarrolladas en otro lenguaje de
-   programación.
-6. El código fuente debe estar comentado y documentado.
-7. El código fuente debe implementar el uso de la clase JOptionPane para mostrar mensajes al jugador.
-    * La aplicación debe interactuar con el usuario a través de ventanas emergentes.
-    * Otra interacción con el usuario no será evaluada.
+En un solo documento PDF, incluye lo siguiente:
+
+* Portada con los siguientes datos:
+    * Nombre del curso
+    * Nombre de la actividad
+    * Nombre de los integrantes del equipo
+* Código fuente de todas las clases implementadas.
+* Capturas de pantalla que muestren la ejecución del programa, incluyendo el uso de todas las funcionalidades del menú.
+* Breve reflexión (máximo 200 palabras) sobre los desafíos encontrados durante la implementación y cómo lo superarón.
+
+> Actividades entregadas posteriores a la fecha límite serán consideradas con una calificación máxima de 70/100.
+> {style="warning"}
+
+> Integrante que no aparezca en la portada no será considerado en la evaluación de la actividad.
+> {style="warning"}
 
 ## Criterios de Evaluación
 
-| Criterio             | Descripción                                                                                 | Puntaje  |
-|----------------------|---------------------------------------------------------------------------------------------|----------|
-| Portada              | Datos de identificación de los miembros del equipo                                          | 5%       |
-| Palabras             | Definición de la lista de palabras a adivinar                                               | 5%       |
-| Selección            | Selección de una palabra al azar de la lista de palabras                                    | 5%       |
-| Palabra              | Mostrar la palabra a adivinar con guiones en lugar de las letras                            | 10%      |
-| Letras               | Permitir al jugador ingresar letras para adivinar la palabras y validar la entrada de datos | 10%      |
-| Adivinadas           | Mostrar las letras adivinadas y los intentos restantes                                      | 10%      |
-| Victoria             | Mostrar un mensaje de victoria si el jugador adivina la palabra                             | 10%      |
-| Derrota              | Mostrar un mensaje de derrota si el jugador se queda sin intentos                           | 10%      |
-| Jugar de nuevo       | Permitir al jugador jugar de nuevo                                                          | 10%      |
-| Despedida            | Mostrar un mensaje de despedida cuando el jugador decide salir del juego                    | 10%      |
-| Código fuente        | Código fuente de la aplicación                                                              | 10%      |
-| Capturas de pantalla | Capturas de pantalla de la aplicación en ejecución                                          | 5%       |
-| **Total**            |                                                                                             | **100%** |
+| Criterio                 | Descripción                                                   | Peso     |
+|--------------------------|---------------------------------------------------------------|----------|
+| Portada                  | Datos de identificación de los miembros del equipo            | 5%       |
+| Clase GeometryCalculator | Implementación correcta de la clase con métodos sobrecargados | 40%      |
+| Clase GeometryApp        | Implementación correcta de la clase principal                 | 20%      |
+| Resultados               | Correcta invocación y muestra de resultados en consola        | 20%      |
+| Documentación            | Código comentado y documentado adecuadamente                  | 15%      |
+| **Total**                |                                                               | **100%** |
 
-> **Nota:** La aplicación debe ser desarrollada en Java. No se aceptarán aplicaciones desarrolladas en otro lenguaje de
-> programación.
-
-> **Nota:** Recuerda que puedes hacer uso de las funciones de la clase Arrays de Java para trabajar con arreglos.
-
-> Miembro del equipo que no aparece en la portada, no será evaluado.
-> {style="warning"}
-
-> Entregas fuera de la fecha límite, serán evaluadas sobre 70 puntos.
-> {style="warning"}
-
-## Fecha de Entrega
-
-La fecha límite de entrega es el viernes 28 de marzo de 2025 a las 11:59 p.m.
+> Recuerda que el uso de la clase `JOptionPane` es obligatorio para la interacción con el usuario. De lo contrario se
+> considerará que no se ha cumplido con los requisitos de la actividad. Así mismo deberás manejar excepciones y validar
+> entradas, de lo contrario se considerará que no se ha cumplido con los requisitos de la actividad.
+> {style="warning"}        

@@ -1,56 +1,70 @@
-# Actividad 7: Sistema de Gestión y Venta de Productos
+# Actividad 7: Gestor de Pagos Universitarios
 
 ## Descripción
 
-Eres el encargado de desarrollar un sistema de gestión y venta de productos para una tienda en línea.
+Imagina que una universidad necesita un sistema para gestionar pagos de sus estudiantes. Cada alumno puede pagar su
+inscripción, colegiatura mensual, o incluso cursos extras.
 
-El sistema debe incluir las siguientes funcionalidades:
-
-1. **Registro de productos**: Permitir a los administradores agregar nuevos productos al sistema proporcionando su
-   nombre, descripción, precio y cantidad disponible.
-2. **Eliminar productos**: Permitir a los administradores eliminar productos del sistema. Siempre y cuando no se
-   encuentren en uso.
-3. **Crear carrito de compras**: Permitir a los usuarios agregar productos a su carrito de compras y ver el contenido
-   del carrito en todo momento.
-4. **Eliminar productos del carrito**: Permitir a los usuarios eliminar productos de su carrito de compras.
-5. **Actualizar cantidad de productos**: Permitir a los administradores actualizar la cantidad de productos disponibles
-   en el sistema.
-6. **Actualizar precio de productos**: Permitir a los administradores actualizar el precio de los productos
-   disponibles en el sistema.
-7. **Actualizar cantidad de productos en el carrito**: Permitir a los usuarios actualizar la cantidad de productos
-   en su carrito de compras, siempre y cuando haya suficiente cantidad disponible.
-8. **Realizar venta**: Permitir a los usuarios realizar el pago de su carrito de compras y generar un recibo de compra.
-   Y por consiguiente eliminar los productos del carrito y actualizar la cantidad de productos disponibles.
+El sistema debe manejar tanto información por estudiante como información global de la universidad. Además, utilizaremos
+la sobrecarga de métodos para calcular el total de pagos realizados según el tipo de operación.
 
 ## Requisitos
 
-- El sistema debe ser desarrollado en Java.
-- Utilizar arreglos dinámicos o hashtables para almacenar los productos y el carrito de compras.
-- Utilizar JOptionPane para la interacción con el usuario.
-- El sistema debe ser modular y seguir el principio de responsabilidad única.
+1. Clase `StudentPayment`
+    - **Atributos de instancia**:
+        - `studentName` (String)
+        - `balance` (double) → dinero acumulado que el estudiante ha pagado.
+    - **Atributo de clase (estático)**:
+        - `static double totalUniversityBalance` → suma de todos los pagos recibidos en la universidad.
+2. Métodos de instancia
+    - `addPayment(double amount)` → agrega un pago al estudiante y lo suma al balance global de la universidad.
+    - `displayStudentInfo()` → muestra el nombre y el balance acumulado del estudiante.
+3. Métodos sobrecargados `makePayment(...)`
+    - `makePayment(double amount)` → pago simple.
+    - `makePayment(double amount, String concept)` → pago con concepto (ejemplo: *“Inscripción”*).
+    - `makePayment(double amount, boolean scholarship)` → si el estudiante tiene beca, se aplica un 50% de descuento al
+      pago.
+    - (Todos los métodos deben actualizar el balance del estudiante y el `totalUniversityBalance`).*
+4. Métodos de clase (estáticos)
+    - `getTotalUniversityBalance()` → devuelve el total recaudado por la universidad.
+    - `generalInfo()` → imprime un mensaje general sobre el sistema de pagos.
+5. Clase principal `PaymentApp`
+    - Llama al método `generalInfo()`.
+    - Crea al menos **2 estudiantes**.
+    - Registra distintos tipos de pagos utilizando la **sobrecarga de métodos**.
+    - Muestra la información individual de cada estudiante.
+    - Muestra la información global de la universidad con `getTotalUniversityBalance()`.
 
 ## Entregables
 
-- Código fuente del sistema.
-- Pruebas funcionales que demuestren el correcto funcionamiento de cada una de las funcionalidades.
-- Portada con datos de identificación del equipo de trabajo.
+En un solo documento PDF, incluye lo siguiente:
+
+* Portada con los siguientes datos:
+    * Nombre del curso
+    * Nombre de la actividad
+    * Nombre de los integrantes del equipo
+* Código fuente de todas las clases implementadas.
+* Capturas de pantalla que muestren la ejecución del programa, incluyendo el uso de todas las funcionalidades del menú.
+* Breve reflexión (máximo 200 palabras) sobre los desafíos encontrados durante la implementación y cómo lo superarón.
+
+> Actividades entregadas posteriores a la fecha límite serán consideradas con una calificación máxima de 70/100.
+> {style="warning"}
+
+> Integrante que no aparezca en la portada no será considerado en la evaluación de la actividad.
+> {style="warning"}
 
 ## Criterios de Evaluación
 
-| Criterio    | Descripción                                                   | Puntuación |
-|-------------|---------------------------------------------------------------|------------|
-| Portada     | Presentación y datos de identificación del equipo de trabajo. | 10%        |
-| Código      | Calidad del código, modularidad y uso de buenas prácticas.    | 20%        |
-| Pruebas     | Cobertura de pruebas funcionales y casos de prueba.           | 30%        |
-| Modularidad | Uso de arreglos dinámicos o hashtables.                       | 20%        |
-| Interacción | Uso de JOptionPane para la interacción con el usuario.        | 20%        |
-| Total       |                                                               | **100%**   |
+| Criterio             | Descripción                                                    | Peso     |
+|----------------------|----------------------------------------------------------------|----------|
+| Portada              | Datos de identificación de los miembros del equipo             | 5%       |
+| Clase StudentPayment | Implementación correcta de la clase con atributos y métodos    | 40%      |
+| Clase PaymentApp     | Implementación correcta de la clase principal                  | 20%      |
+| Resultados           | Correcta invocación y muestra de resultados usando JOptionPane | 20%      |
+| Documentación        | Código comentado y documentado adecuadamente                   | 15%      |
+| **Total**            |                                                                | **100%** |
 
-## Notas
-
-- El sistema debe ser entregado en un archivo comprimido (zip) que contenga el código fuente y las pruebas.
-- La fecha de entrega es el 2 de mayo de 2025 a las 23:59 horas.
-- Cualquier entrega posterior a la fecha límite será evaluado sobre el 70% de la puntuación total.
-- Cualquier duda o consulta sobre la actividad debe ser atendida en las sesiones presenciales.
-- No se aceptarán entregas parciales o incompletas.
-- Miembro del equipo que no aparezca en la portada no será evaluado.
+> Recuerda que el uso de la clase `JOptionPane` es obligatorio para la interacción con el usuario. De lo contrario se
+> considerará que no se ha cumplido con los requisitos de la actividad. Así mismo deberás manejar excepciones y validar
+> entradas, de lo contrario se considerará que no se ha cumplido con los requisitos de la actividad.
+> {style="warning"}        

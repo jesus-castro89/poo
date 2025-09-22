@@ -1,67 +1,106 @@
-# Actividad 5: La feria de productos
+# Actividad 5: Gestor de Biblioteca
 
 ## Descripción
 
-Se ha organizado una feria de productos en la que se han inscrito varios expositores. Cada expositor tiene un nombre, un
-número de stand y una lista de productos que va a exponer. Los productos tienen un nombre, un precio y una cantidad
-disponible.
+Imagina que estás desarrollando un sistema para una biblioteca universitaria. Queremos que el programa maneje tanto
+información de cada libro en particular como información global de la biblioteca.
 
-Así mismo los productos pueden ser: `Frescos`, `Congelados` o `Enlatados`. Los productos frescos tienen una fecha de
-caducidad, los productos congelados tienen una temperatura de congelación y los productos enlatados tienen una fecha de
-envasado. Todos los productos tienen un código de barras.
+## Requisitos
 
-Así mismo los productos congelados pueden ser tanto `Por Aire` como `Por Agua`. Los productos por aire tienen una
-temperatura de congelación y una composición de aire(proporción de oxígeno, nitrógeno y dióxido de carbono). Los
-productos por agua tienen una temperatura de congelación y una salinidad.
+1. Crea una clase Book con los siguientes atributos:
+    * title (String)
+    * author (String)
+    * isbn (String)
+    * available (boolean) → indica si el libro está disponible o prestado.
+2. Agrega un atributo de clase (estático) llamado totalBooks que cuente cuántos libros han sido registrados en la
+   biblioteca.
+3. Implementa los siguientes métodos de instancia:
+    * displayInfo(): Muestra la información del libro (título, autor, isbn y si está disponible).
+    * borrowBook(): Marca el libro como prestado (si está disponible).
+    * returnBook(): Marca el libro como disponible nuevamente.
+4. Implementa los siguientes métodos de clase (estáticos):
+    * getTotalBooks(): Devuelve cuántos libros se han registrado en total.
+5. Crea una clase LibraryApp con un método main que permita al usuario interactuar con el sistema a través de un menú
+   utilizando JOptionPane. El menú debe ofrecer las siguientes opciones:
+    * Registrar un nuevo libro.
+    * Mostrar información de un libro específico que deberá seleccionarse de una lista.
+    * Prestar un libro. Mostrando una lista de libros disponibles.
+    * Devolver un libro. Seleccionando un libro prestado.
+    * Mostrar la cantidad total de libros registrados.
+    * Mostrar información general de la biblioteca.
+    * Salir del programa.
+6. El menú debe repetirse hasta que el usuario decida salir del programa.
 
-Todos los productos pueden ser `Nacionales` e `Importados`. Los productos nacionales tienen un código de identificación
-nacional y los productos importados tienen un código de identificación y validación por un organismo internacional que
-contiene dicho dato de identificación, además del nombre del organismo.
+## Diagrama de Clases
 
-Tome en consideración que los organismos existen en una lista inmutable, es decir, no se pueden agregar ni eliminar.
+```d2
+vars: {
+  d2-config: {
+    layout-engine: dagre
+    sketch: true
+  }
+}
+Book:{
+    shape: "class"
+    + title: String
+    + author: String
+    + isbn: String
+    + available: boolean
+    - totalBooks: int
+    + Book()
+    + displayInfo(): void
+    + borrowBook(): void
+    + returnBook(): void
+    + getTotalBooks(): int
+}
+LibraryApp:{
+    shape: "class"
+    + main(args: String\[\]): void
+}
+LibraryApp --> Book: usa
+```
 
-Deberás definir las nacionalidades posibles de los productos.
+Toma en consideración las buenas prácticas de programación orientada a objetos, manejo de excepciones y validación de
+datos. Asegúrate de que el programa sea robusto y fácil de usar.
 
-## Requerimientos
+## Instrucciones
 
-* El sistema debe permitir registrar un expositor con su respectiva información.
-* El sistema debe permitir registrar un producto con su respectiva información.
-* El sistema debe permitir relacionar un producto con un expositor.
-* El sistema debe permitir listar los productos de un expositor.
-* El sistema debe permitir listar los expositores de un producto.
-* El sistema debe permitir listar los productos de un tipo específico.
-* El sistema debe permitir listar los productos de un tipo específico y nacionalidad.
-* El sistema debe permitir listar los productos de un tipo específico y origen.
+1. Implementa todas las clases y métodos descritos en los requisitos.
+2. Asegúrate de manejar todas las excepciones adecuadamente y proporcionar mensajes de error claros al usuario.
+3. Utiliza `JOptionPane` para todas las interacciones con el usuario.
+4. Prueba tu programa para asegurarte de que todas las funcionalidades funcionan correctamente.
+5. Documenta tu código con comentarios para explicar la funcionalidad de cada clase y método.
 
-## Critrerios de evaluación
+## Entregable
 
-| Criterio                             | Descripción                                                                             | Puntaje |
-|--------------------------------------|-----------------------------------------------------------------------------------------|---------|
-| Portada                              | El archivo contiene una portada con los datos del equipo.                               | 5%      |
-| Código                               | El código cumple con los requisitos solicitados.                                        | 50%     |
-| Documentación                        | El código contiene comentarios que facilitan su comprensión. Incluye Diagrama de clases | 10%     |
-| Pruebas                              | El código contiene pruebas que demuestran su correcto funcionamiento.                   | 10%     |
-| Capturas de pantalla                 | Se anexan capturas de pantalla de las pruebas realizadas.                               | 5%      |
-| Uso de clases abstractas y concretas | Se utilizan clases abstractas y concretas para la implementación de los productos.      | 10%     |
-| Modularidad                          | El código está modularizado.                                                            | 10%     |
-| Total                                |                                                                                         | 100%    |
+En un solo documento PDF, incluye lo siguiente:
 
-> **La evaluación se realizará con base en los criterios establecidos en la rúbrica. Se considerará la claridad,
-> organización, comentarios y estilo del código, así como la calidad de la documentación. Además, se tomará en cuenta
-> el cumplimiento de los requerimientos y la funcionalidad del programa.**
-> {style="note"}
+* Portada con los siguientes datos:
+    * Nombre del curso
+    * Nombre de la actividad
+    * Nombre de los integrantes del equipo
+* Código fuente de todas las clases implementadas.
+* Capturas de pantalla que muestren la ejecución del programa, incluyendo el uso de todas las funcionalidades del menú.
+* Breve reflexión (máximo 200 palabras) sobre los desafíos encontrados durante la implementación y cómo lo superarón.
 
-> Deberás anexar por separado las capturas de pantalla de las pruebas realizadas junto a la portada del código fuente.
-> Mismo que debera estar en un archivo comprimido y con los archivos `.java` correspondientes.
+> Actividades entregadas posteriores a la fecha límite serán consideradas con una calificación máxima de 70/100.
 > {style="warning"}
 
-> **Actividad entregada en lenguaje distinto a Java o sin el uso de clases y objetos, así como de modularidad, no será
-> evaluada.**
+> Integrante que no aparezca en la portada no será considerado en la evaluación de la actividad.
 > {style="warning"}
 
-## Fecha de Entrega
+## Criterios de Evaluación
 
-Lunes 7 de abril de 2025, 11:59 p.m. (medianoche)
+| Criterio              | Descripción                                                           | Peso     |
+|-----------------------|-----------------------------------------------------------------------|----------|     
+| Portada               | Incluye todos los datos requeridos en la portada.                     | 10%      |
+| Código Fuente         | Implementación correcta de las clases y métodos según los requisitos. | 40%      |
+| Funcionalidad         | Todas las funcionalidades del menú funcionan correctamente.           | 30%      |
+| Manejo de Excepciones | El programa maneja errores y excepciones adecuadamente.               | 10%      |
+| Documentación         | Código bien documentado y reflexión incluida.                         | 10%      |
+| **Total**             |                                                                       | **100%** |
 
-> **Trabajos entregados después de la fecha y hora límite serán calificados sobre 70 puntos.**
-> {style="warning"}
+> Recuerda que el uso de la clase `JOptionPane` es obligatorio para la interacción con el usuario. De lo contrario se
+> considerará que no se ha cumplido con los requisitos de la actividad. Así mismo deberás manejar excepciones y validar
+> entradas, de lo contrario se considerará que no se ha cumplido con los requisitos de la actividad.
+> {style="warning"}     
