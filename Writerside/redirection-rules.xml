@@ -26,4 +26,10 @@
         <description>Created after removal of "data-streams" from Programación Orientada a Objetos</description>
         <accepts>data-streams.html</accepts>
     </rule>
+    <rule id="46113ebf">
+        <description>Created after removal of "Ejemplo 5: Uso de excepciones y validación de datos en constructores de
+            clases" from Programación Orientada a Objetos
+        </description>
+        <accepts>ejemplo-x.html</accepts>
+    </rule>
 </rules>
