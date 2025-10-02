@@ -32,4 +32,10 @@
         </description>
         <accepts>ejemplo-x.html</accepts>
     </rule>
+    <rule id="692793e">
+        <description>Created after removal of "Los Modificadores de Acceso y No Acceso" from Programación Orientada a
+            Objetos
+        </description>
+        <accepts>modificadores.html</accepts>
+    </rule>
 </rules>

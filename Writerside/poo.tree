@@ -83,11 +83,10 @@
         <toc-element topic="object.md"/>
         <toc-element topic="polimorfismo.md"/>
     </toc-element>
-    <toc-element hidden="true" toc-title="Clases Abstractas e Interfaces">
+    <toc-element toc-title="Clases Abstractas e Interfaces">
         <toc-element topic="abstract-class.md"/>
         <toc-element topic="abstract-ejemplo.md"/>
         <toc-element topic="final-functions.md"/>
-        <toc-element topic="modificadores.md"/>
         <toc-element topic="interface.md"/>
         <toc-element topic="interface-constant.md"/>
         <toc-element topic="interfaz-funcional.md"/>
@@ -119,6 +118,7 @@
         <toc-element topic="ejemplo-3.md"/>
         <toc-element topic="ejemplo-4.md"/>
         <toc-element topic="ejemplo-5.md"/>
+        <toc-element topic="ejemplo-6.md"/>
     </toc-element>
     <toc-element toc-title="Actividades">
         <toc-element topic="actividad-1.md"/>
