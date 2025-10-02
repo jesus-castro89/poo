@@ -1,0 +1,42 @@
+@startuml
+
+abstract class Animal {
+    # nombre: String
+    # edad: int
+    + {abstract} comer(): void
+    + dormir(): void
+}
+class Dog extends Animal {
+    # raza: String
+    + ladrar(): void
+    + comer(): void
+}
+class Cat extends Animal {
+    # color: String
+    + maullar(): void
+    + comer(): void
+}
+abstract class Bird extends Animal {
+    # especie: String
+    + volar(): void
+}
+class Hawk extends Bird {
+    + cazar(): void
+    + comer(): void
+}
+class Parrot extends Bird {
+    + hablar(): void
+    + comer(): void
+}
+abstract class Fish extends Animal {
+    # tipoAgua: String
+    + nadar(): void
+}
+class Salmon extends Fish {
+    + migrar(): void
+    + comer(): void
+}
+class CanadianSalmon extends Salmon {
+    + nadarContraCorriente(): void
+}
+@enduml

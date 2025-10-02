@@ -11,7 +11,7 @@ classDiagram
         + dormir() void
     }
 
-    class Perro  {
+    class Perro extends Animal {
         # String raza
         + void ladrar()
     }
@@ -20,7 +20,4 @@ classDiagram
         # String color
         + void maullar()
     }
-
-    Animal <|-- Perro
-    Animal <|-- Gato
 ```

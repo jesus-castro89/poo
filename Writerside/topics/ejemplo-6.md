@@ -4,7 +4,7 @@
 
 Imaginemos un sistema para administrar vehículos en un taller mecánico.
 
-Tenemos una clase base Vehiculo, con atributos generales: marca, modelo, año.
+Tenemos una clase base  `Vehiculo`, con atributos generales: marca, modelo, año.
 
 Luego tenemos diferentes tipos de vehículos:
 
@@ -29,19 +29,17 @@ JOptionPane.
 ```plantuml
 @startuml   
 
-enum MenuOpciones {
-    AGREGAR_VEHICULO("Agregar Vehículo")
-    BUSCAR_VEHICULO("Buscar Vehículo")
-    MOSTRAR_VEHICULOS("Mostrar Vehículos")
-    SALIR("Salir")
-}
+package app{
+
+package "entitites"{
 
 abstract class Vehiculo {
     # marca: String
     # modelo: String
+    # matricula: String
     # año: int
     + Vehiculo()
-    + mostrarInfo(): String
+    + {abstract}mostrarInfo(): String
 }
 
 class Auto extends Vehiculo {
@@ -62,16 +60,19 @@ class Camion extends Vehiculo {
     + mostrarInfo(): String
 }
 
-class VehiculoElectrico extends Vehiculo {
+abstract class VehiculoElectrico extends Vehiculo {
     # capacidadBateria: double
     + VehiculoElectrico()
     + mostrarInfo(): String
+    + {abstract}cargarBateria(): void
 }   
 
 class AutoElectrico extends VehiculoElectrico {
     # numPuertas: int
     + AutoElectrico()
     + mostrarInfo(): String
+}
+
 }
 
 class Taller<T extends Vehiculo> {
@@ -82,12 +83,26 @@ class Taller<T extends Vehiculo> {
     + mostrarVehiculos(): String
 }
 
+package "exceptions"{
+
 class VehiculoNullException extends Exception {
     + VehiculoNullException()
 }
 
 class VehiculoDuplicadoException extends Exception {
     + VehiculoDuplicadoException()
+}
+}
+
+enum MenuOpciones {
+    AGREGAR_VEHICULO("Agregar Vehículo")
+    BUSCAR_VEHICULO("Buscar Vehículo")
+    MOSTRAR_VEHICULOS("Mostrar Vehículos")
+    SALIR("Salir")
+    - descripcion: String
+    + MenuOpciones(descripcion: String)
+    + getDescripcion(): String
+}
 }
 @enduml
 ```

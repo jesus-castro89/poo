@@ -1,6 +1,6 @@
 package app.herencia.poli;
 
-public class Animal {
+public abstract class Animal {
 
     protected String name;
     protected int age;
@@ -10,7 +10,5 @@ public class Animal {
         this.age = age;
     }
 
-    public void makeSound() {
-        System.out.println("Sonido genérico de animal");
-    }
+    public abstract void makeSound();
 }

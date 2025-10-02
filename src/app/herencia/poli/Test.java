@@ -6,7 +6,7 @@ public class Test {
 
         Animal[] animals = new Animal[5];
         animals[0] = new Dog("Rex", 5);
-        animals[1] = new Animal("Mittens", 3);
+        //animals[1] = new Animal("Mittens", 3);
         animals[2] = new Caniche("Fifi", 2);
         animals[3] = new Cat("Whiskers", 4);
         animals[4] = new Parrot("Polly", 1);
