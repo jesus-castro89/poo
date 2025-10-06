@@ -5,30 +5,72 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Clase que maneja la entrada y salida de datos mediante ventanas gráficas.
+ * Permite solicitar entradas de diferentes tipos de datos y mostrar mensajes
+ * personalizados con estilos específicos.
+ */
 public class InputHandler {
 
+    /**
+     * Atributo que define la fuente personalizada para los mensajes de las ventanas.
+     */
     private static final Font MESSAGE_FONT;
+    /**
+     * Atributo que define la fuente personalizada para los botones de las ventanas.
+     */
     private static final Font BUTTON_FONT;
+    /**
+     * Atributo que define la fuente personalizada para los campos de entrada de las ventanas.
+     */
     private static final Font INPUT_FONT;
+    /**
+     * Atributo que define la fuente personalizada para las listas desplegables de las ventanas.
+     */
+    private static final Font COMBOBOX_FONT;
 
     static {
         try {
             MESSAGE_FONT = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("fonts/jd_digital.ttf")).deriveFont(52f);
+                    new File("fonts/text.ttf")).deriveFont(26f);
+            BUTTON_FONT = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("fonts/button.ttf")).deriveFont(26f);
+            INPUT_FONT = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("fonts/input.ttf")).deriveFont(24f);
+            COMBOBOX_FONT = BUTTON_FONT.deriveFont(24f);
         } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
-        BUTTON_FONT = MESSAGE_FONT.deriveFont(Font.BOLD);
-        INPUT_FONT = MESSAGE_FONT.deriveFont(Font.PLAIN);
+        // Esto permite cambiar la fuente del texto principal de la ventana.
         UIManager.put("OptionPane.messageFont", MESSAGE_FONT);
+        // Esto permite cambiar el color del texto principal de la ventana.
         UIManager.put("OptionPane.messageForeground", Color.BLUE);
+        // Esto permite cambiar la fuente de los botones de la ventana.
         UIManager.put("OptionPane.buttonFont", BUTTON_FONT);
+        // Esto permite cambiar el color del campo de entrada de la ventana.
         UIManager.put("TextField.font", INPUT_FONT);
-        UIManager.put("TextField.foreground", Color.GREEN);
-        UIManager.put("ComboBox.font", INPUT_FONT);
-        UIManager.put("ComboBox.foreground", Color.GREEN);
+        // Esto permite cambiar el color del campo de entrada de la ventana.
+        UIManager.put("TextField.foreground", Color.BLACK);
+        // Esto permite cambiar la fuente de la lista desplegable de la ventana.
+        UIManager.put("ComboBox.font", COMBOBOX_FONT);
+        // Esto permite cambiar el color de la lista desplegable de la ventana.
+        UIManager.put("ComboBox.foreground", Color.BLACK);
     }
 
+    /**
+     * Función que solicita al usuario una entrada de datos de un tipo específico.
+     * {@snippet
+     * //Ejemplo de uso:
+     * // Solicitar una opción de un conjunto de opciones
+     *  String[] colors = {"Rojo", "Verde", "Azul", "Amarillo"};
+     * String color = InputHandler.getInput("Seleccione un color", colors);
+     *}
+     *
+     * @param message El mensaje que se mostrará al usuario.
+     * @param options Las opciones disponibles para el usuario.
+     * @return La opción seleccionada por el usuario.
+     * @param <T> El tipo de dato de la opción seleccionada.
+     */
     public static <T> T getInput(String message, T[] options) {
         // Solicitamos la entrada del usuario
         T input = (T) JOptionPane.showInputDialog(null, message,
@@ -42,6 +84,23 @@ public class InputHandler {
         return input;
     }
 
+    /**
+     * Función que solicita al usuario una entrada de datos de un tipo específico.
+     * {@snippet
+     * //Ejemplo de uso:
+     * // Solicitar un número entero
+     * int number = InputHandler.getInput("Ingrese un número entero", 0);
+     * // Solicitar un número decimal
+     * double decimal = InputHandler.getInput("Ingrese un número decimal", 0.0);
+     * // Solicitar un texto
+     * String text = InputHandler.getInput("Ingrese un texto", "");
+     *}
+     *
+     * @param message El mensaje que se mostrará al usuario.
+     * @param type    Un valor del tipo de dato que se desea solicitar.
+     * @return La entrada del usuario convertida al tipo de dato solicitado.
+     * @param <T> El tipo de dato que se desea solicitar.
+     */
     public static <T> T getInput(String message, T type) {
         // Solicitamos la entrada del usuario
         String input = getInput(message);
@@ -75,6 +134,20 @@ public class InputHandler {
         return output;
     }
 
+    /**
+     * Función que muestra un mensaje al usuario con un título y un tipo de mensaje específico.
+     * {@snippet
+     * //Ejemplo de uso:
+     * // Mostrar un mensaje de información
+     *  InputHandler.showMessage("Operación completada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+     * // Mostrar un mensaje de advertencia
+     *  InputHandler.showMessage("Cuidado: Esta acción no se puede deshacer", "Advertencia", JOptionPane.WARNING_MESSAGE);
+     *}
+     *
+     * @param message     El mensaje que se mostrará al usuario.
+     * @param title       El título de la ventana del mensaje.
+     * @param messageType El tipo de mensaje (por ejemplo, JOptionPane.INFORMATION_MESSAGE).
+     */
     public static void showMessage(String message, String title, int messageType) {
 
         JOptionPane.showMessageDialog(null, message, title, messageType);
