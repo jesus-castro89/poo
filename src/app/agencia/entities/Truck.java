@@ -7,8 +7,9 @@ public class Truck extends Vehicle {
     private final double loadCapacity;
 
     public Truck() {
-        super();
-        loadCapacity = InputHandler.getInput("Ingrese la capacidad de carga del camión (en toneladas):", 0.0);
+
+        loadCapacity = InputHandler.getInput(
+                "Ingrese la capacidad de carga del camión (en toneladas):", 0.0);
     }
 
     @Override

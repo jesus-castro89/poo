@@ -2,20 +2,31 @@ package app.input;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class InputHandler {
 
-    private static final Font MESSAGE_FONT = new Font("Arial", java.awt.Font.BOLD, 16);
-    private static final Font TITLE_FONT = new Font("Arial", java.awt.Font.BOLD, 18);
-    private static final Font BUTTON_FONT = TITLE_FONT;
-    private static final Font INPUT_FONT = new Font("Arial", java.awt.Font.PLAIN, 16);
-
+    private static final Font MESSAGE_FONT;
+    private static final Font BUTTON_FONT;
+    private static final Font INPUT_FONT;
 
     static {
+        try {
+            MESSAGE_FONT = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("fonts/jd_digital.ttf")).deriveFont(52f);
+        } catch (FontFormatException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        BUTTON_FONT = MESSAGE_FONT.deriveFont(Font.BOLD);
+        INPUT_FONT = MESSAGE_FONT.deriveFont(Font.PLAIN);
         UIManager.put("OptionPane.messageFont", MESSAGE_FONT);
+        UIManager.put("OptionPane.messageForeground", Color.BLUE);
         UIManager.put("OptionPane.buttonFont", BUTTON_FONT);
-        UIManager.put("OptionPane.titleFont", TITLE_FONT);
         UIManager.put("TextField.font", INPUT_FONT);
+        UIManager.put("TextField.foreground", Color.GREEN);
+        UIManager.put("ComboBox.font", INPUT_FONT);
+        UIManager.put("ComboBox.foreground", Color.GREEN);
     }
 
     public static <T> T getInput(String message, T[] options) {
@@ -50,6 +61,9 @@ public class InputHandler {
                 case "Long" -> (T) Long.valueOf(input);
                 case "String" -> (T) input;
                 case "Boolean" -> (T) Boolean.valueOf(input);
+                case "Byte" -> (T) Byte.valueOf(input);
+                case "Short" -> (T) Short.valueOf(input);
+                case "Character" -> (T) (Character) input.charAt(0);
                 default -> null;
             };
         } catch (Exception e) {

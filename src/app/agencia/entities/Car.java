@@ -10,7 +10,8 @@ public class Car extends Vehicle {
 
     public Car() {
 
-        numberOfDoors = InputHandler.getInput("Ingrese el número de puertas del carro:", 0);
+        numberOfDoors = InputHandler.getInput(
+                "Ingrese el número de puertas del carro:", 0);
     }
 
     @Override

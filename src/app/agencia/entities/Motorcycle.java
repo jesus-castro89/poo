@@ -9,8 +9,9 @@ public class Motorcycle extends Vehicle {
     private final String engineType;
 
     public Motorcycle() {
-        super();
-        engineType = InputHandler.getInput("Ingrese el tipo de motor de la motocicleta:", "");
+
+        engineType = InputHandler.getInput(
+                "Ingrese el tipo de motor de la motocicleta:", "");
     }
 
     @Override

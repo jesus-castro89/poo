@@ -40,6 +40,7 @@ abstract class Vehiculo {
     # año: int
     + Vehiculo()
     + {abstract}mostrarInfo(): String
+    + {static}actualizarMatricula(vehiculo: Vehiculo, nuevaMatricula: String): void
 }
 
 class Auto extends Vehiculo {
@@ -58,12 +59,19 @@ class Camion extends Vehiculo {
     # capacidadCarga: double
     + Camion()
     + mostrarInfo(): String
+    + balancearCarga(): void
+}
+
+class CamionDobleCarga extends  Camion{
+    # numEjes: int
+    + CamionDobleCarga()
+    + mostrarInfo(): String
+    + balancearCarga(veces: int): void
 }
 
 abstract class VehiculoElectrico extends Vehiculo {
     # capacidadBateria: double
     + VehiculoElectrico()
-    + mostrarInfo(): String
     + {abstract}cargarBateria(): void
 }   
 
@@ -71,6 +79,7 @@ class AutoElectrico extends VehiculoElectrico {
     # numPuertas: int
     + AutoElectrico()
     + mostrarInfo(): String
+    + cargarBateria(): void
 }
 
 }
