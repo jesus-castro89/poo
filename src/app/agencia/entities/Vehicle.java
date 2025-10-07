@@ -1,6 +1,6 @@
 package app.agencia.entities;
 
-import app.input.InputHandler;
+import org.util.InputHandler;
 
 public abstract class Vehicle {
 

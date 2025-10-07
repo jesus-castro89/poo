@@ -2,7 +2,7 @@ package app.agencia;
 
 import app.agencia.entities.Vehicle;
 import app.agencia.exceptions.VehicleNullException;
-import app.input.InputHandler;
+import org.util.InputHandler;
 
 import javax.swing.*;
 
