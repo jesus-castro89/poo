@@ -1,406 +1,322 @@
-# Ejemplo 7: Calculadora de áreas y perímetros de figuras geométricas
+# Ejemplo 7: La Agencia de Renta de Vehículos
 
 ## Descripción
 
-Este programa permite calcular el área y perímetro de figuras geométricas de la siguiente lista:
+Una pequeña empresa, RentQuick, alquila vehículos (cars, motorcycles, trucks). Necesitan un módulo que permita:
 
-* Cuadrado
-* Rectángulo
-* Triángulo
-* Círculo
-* Trapecio
-* Rombo
-* Romboide
-* Polígono regular
-* Elipse
+* Registrar vehículos y clientes.
+* Crear alquileres validando datos del cliente y la disponibilidad del vehículo.
+* Calcular el precio final según reglas específicas por tipo de vehículo (polimorfismo).
+* Calcular costo de seguro por día (cada vehículo lo calcula de forma distinta).
+* Manejar errores (cliente menor de edad, licencia vencida, matrícula inválida, vehículo no disponible, rangos de fecha
+  inválidos).
 
-## Requerimientos
+Piensa en el sistema como la ventanilla de un local de renta: distintos vehículos comparten comportamiento básico (rent,
+return, price calculation), pero cada tipo tiene su propia forma de calcular precio y requisitos.
 
-El sistema deberá ser realizado en Java y deberá contar con una interfaz gráfica que permita al usuario seleccionar la
-figura geométrica de la que desea calcular el área y perímetro, y que le solicite los datos necesarios para realizar los
-cálculos.
+> La herencia es como un menú base (Platillo base) y las subclases son variantes (con salsa picante, sin sal). El
+> restaurante (aplicación) trata los platillos de forma genérica (polimorfismo) pero el cocinero aplica variaciones (
+> sobrecarga).
+> {style="note"}
 
-## Restricciones
+## Diagrama de Clases
 
-El sistema deberá validar que los datos ingresados por el usuario sean válidos y que cumplan con las restricciones de
-cada figura geométrica. Podemos usar nuestra clase de validación de datos `org.tec.utils.Validator`.
+![e7_uml.png](e7_uml.png) {style="block"}
 
-## Diagrama de clases
+## Desarrollo
 
-A continuación se muestra el diagrama de clases del sistema:
+### Paso 1: Definir excepciones personalizadas
 
-```plantuml
-@startuml
-
-abstract class GeometricFigure {
-    #name: String
-    +GeometricFigure(name: String)
-    +abstract calculateArea(): double
-    +abstract calculatePerimeter(): double
-}
-
-class Square extends GeometricFigure {
-    -side: double
-    +Square(side: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class Rectangle extends GeometricFigure {
-    -width: double
-    -height: double
-    +Rectangle(width: double, height: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class Triangle extends GeometricFigure {
-    -side1: double
-    -side2: double
-    -side3: double
-    +Triangle(side1: double, side2: double, side3: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class Circle extends GeometricFigure {
-    -radius: double
-    +Circle(radius: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class Trapezoid extends GeometricFigure {
-    -base1: double
-    -base2: double
-    -height: double
-    +Trapezoid(base1: double, base2: double, height: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class Rhombus extends GeometricFigure {
-    -side: double
-    -diagonal1: double
-    -diagonal2: double
-    +Rhombus(side: double, diagonal1: double, diagonal2: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class Rhomboid extends GeometricFigure {
-    -base: double
-    -height: double
-    -side: double
-    +Rhomboid(base: double, height: double, side: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class RegularPolygon extends GeometricFigure {
-    -side: double
-    -numberOfSides: int
-    -apothem: double
-    +RegularPolygon(side: double, numberOfSides: int)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-class Ellipse extends GeometricFigure {
-    -semiMajorAxis: double
-    -semiMinorAxis: double
-    +Ellipse(semiMajorAxis: double, semiMinorAxis: double)
-    +calculateArea(): double
-    +calculatePerimeter(): double
-}
-
-enum GeometricFigureType {
-    SQUARE
-    RECTANGLE
-    TRIANGLE
-    CIRCLE
-    TRAPEZOID
-    RHOMBUS
-    RHOMBOID
-    REGULAR_POLYGON
-    ELLIPSE
-}
-
-class ShapeCalculator {
-    +menu(): void
-    -getGeometricFigure(): GeometricFigure
-    -calculateData(figure: GeometricFigure): void
-}
-
-@enduml
-```
-
-## Solución
-
-### GeometricFigure.java
+Cuando algo sale mal (edad inválida, vehículo ocupado, datos erróneos), queremos lanzar una excepción clara.
+Creamos dos clases:
 
 ```java
-package org.tec.geometric;
+public class ValidationException extends Exception {
+    public ValidationException(String message) {
+        super(message);
+    }
+}
+```
 
-public abstract class GeometricFigure {
+```java
+public class VehicleUnavailableException extends Exception {
+    public VehicleUnavailableException(String message) {
+        super(message);
+    }
+}
+```
+
+> En lugar de usar RuntimeException, usamos checked exceptions (heredan de Exception), obligando al programador a
+> tratarlas con try...catch. Esto mejora la robustez del código.
+> {style="note"}
+
+### Paso 2: Crear la clase `Client`
+
+Recuerda que de aquí en adelante haremos uso de nuestra clase `InputHandler` como librería para manejar entradas y
+validaciones.
+
+```java
+import java.time.LocalDate;
+import java.util.UUID;
+
+public class Client {
+    private final UUID id;
     private String name;
+    private int age;
+    private String licenseNumber;
+    private LocalDate licenseExpiry;
 
-    public GeometricFigure(String name) {
-        this.name = name;
+    public Client() throws ValidationException {
+        this.id = UUID.randomUUID();
+        this.name = InputHandler.getInput("Ingresa el nombre del cliente:", "");
+        // Validar que el nombre no esté vacío
+        if (this.name.isEmpty()) {
+            throw new ValidationException("El nombre no puede estar vacío.");
+        }
+        // Validar que el cliente sea mayor de edad
+        this.age = InputHandler.getIntInput("Ingresa la edad del cliente (debe ser mayor de 18):", 0, 120);
+        if (this.age < 18) {
+            throw new ValidationException("El cliente debe ser mayor de edad.");
+        }
+        // Validar número de licencia
+        this.licenseNumber = InputHandler.getInput("Ingresa el número de licencia del cliente:", "");
+        if (this.licenseNumber.isEmpty()) {
+            throw new ValidationException("El número de licencia no puede estar vacío.");
+        }
+        this.licenseExpiry = LocalDate.parse(InputHandler.getInput("Ingresa la fecha de expiración de la licencia (YYYY-MM-DD):", ""));
     }
 
-    public abstract double calculateArea();
+    public boolean hasValidLicense(LocalDate date) {
+        return licenseExpiry.isAfter(date);
+    }
 
-    public abstract double calculatePerimeter();
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
 }
 ```
 
-### Square.java
+### Paso 3: Interfaces `Rentable` y `Insurable`
+
+Definimos dos interfaces para los comportamientos comunes de los vehículos:
 
 ```java
-package org.tec.geometric;
+public interface Rentable {
+    Rental rentTo(Customer customer, LocalDate start, LocalDate end)
+            throws ValidationException, VehicleUnavailableException;
 
-public class Square extends GeometricFigure {
-    private double side;
-
-    public Square(double side) {
-        super("Square");
-        this.side = side;
-    }
-
-    @Override
-    public double calculateArea() {
-        return side * side;
-    }
-
-    @Override
-    public double calculatePerimeter() {
-        return 4 * side;
-    }
+    void returnVehicle();
 }
 ```
-
-### Rectangle.java
 
 ```java
-package org.tec.geometric;
-
-public class Rectangle extends GeometricFigure {
-    private double width;
-    private double height;
-
-    public Rectangle(double width, double height) {
-        super("Rectangle");
-        this.width = width;
-        this.height = height;
-    }
-
-    @Override
-    public double calculateArea() {
-        return width * height;
-    }
-
-    @Override
-    public double calculatePerimeter() {
-        return 2 * (width + height);
-    }
+public interface Insurable {
+    double getInsuranceCost(long days);
 }
 ```
 
-### Triangle.java
+### Paso 4: Clase abstracta `Vehicle`
 
 ```java
-package org.tec.geometric;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.UUID;
+import java.util.regex.Pattern;
 
-public class Triangle extends GeometricFigure {
-    private double side1;
-    private double side2;
-    private double side3;
+public abstract class Vehicle implements Rentable, Insurable {
+    protected final UUID id;
+    protected final String licensePlate;
+    protected final String brand;
+    protected final String model;
+    protected final int year;
+    protected final double basePricePerDay;
+    protected boolean available = true;
 
-    public Triangle(double side1, double side2, double side3) {
-        super("Triangle");
-        this.side1 = side1;
-        this.side2 = side2;
-        this.side3 = side3;
+    private static final Pattern PLATE_PATTERN = Pattern.compile("^[A-Z0-9\\-]{6,8}$");
+
+    public Vehicle(String licensePlate, String brand, String model, int year, double basePricePerDay)
+            throws ValidationException {
+        if (licensePlate == null || !PLATE_PATTERN.matcher(licensePlate).matches())
+            throw new ValidationException("Invalid license plate format");
+        if (year > LocalDate.now().getYear())
+            throw new ValidationException("Invalid vehicle year");
+        if (basePricePerDay <= 0)
+            throw new ValidationException("Base price must be greater than 0");
+
+        this.id = UUID.randomUUID();
+        this.licensePlate = licensePlate;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.basePricePerDay = basePricePerDay;
     }
 
     @Override
-    public double calculateArea() {
-        double s = (side1 + side2 + side3) / 2;
-        return Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+    public synchronized Rental rentTo(Customer customer, LocalDate start, LocalDate end)
+            throws ValidationException, VehicleUnavailableException {
+        if (!available) throw new VehicleUnavailableException("Vehicle not available");
+        if (start == null || end == null || !start.isBefore(end))
+            throw new ValidationException("Invalid rental dates");
+        if (!customer.hasValidLicense(start))
+            throw new ValidationException("License expired before rental date");
+
+        long days = ChronoUnit.DAYS.between(start, end) + 1;
+        double total = calculateRentalPrice(days, customer);
+
+        available = false;
+        return new Rental(this, customer, start, end, total);
     }
 
     @Override
-    public double calculatePerimeter() {
-        return side1 + side2 + side3;
+    public synchronized void returnVehicle() {
+        this.available = true;
     }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public abstract double calculateRentalPrice(long days, Customer customer) throws ValidationException;
 }
 ```
 
-### Circle.java
+### Paso 5: Clases concretas de vehículos
 
 ```java
-package org.tec.geometric;
+// File: Car.java
+public class Car extends Vehicle {
+    private final boolean isLuxury;
 
-public class Circle extends GeometricFigure {
-    private double radius;
-
-    public Circle(double radius) {
-        super("Circle");
-        this.radius = radius;
+    public Car(String licensePlate, String brand, String model, int year,
+               double basePricePerDay, boolean isLuxury) throws ValidationException {
+        super(licensePlate, brand, model, year, basePricePerDay);
+        this.isLuxury = isLuxury;
     }
 
     @Override
-    public double calculateArea() {
-        return Math.PI * radius * radius;
+    public double calculateRentalPrice(long days, Customer customer) throws ValidationException {
+        if (customer.getAge() < 21)
+            throw new ValidationException("Customer must be at least 21 for cars");
+
+        double price = basePricePerDay * days;
+        if (isLuxury) price += 50 * days;  // surcharge for luxury
+        if (customer.getAge() < 25) price += 20 * days;  // young driver fee
+        price += getInsuranceCost(days);
+
+        return price;
     }
 
     @Override
-    public double calculatePerimeter() {
-        return 2 * Math.PI * radius;
+    public double getInsuranceCost(long days) {
+        return 15 * days;
     }
 }
 ```
-
-### Trapezoid.java
 
 ```java
-package org.tec.geometric;
+// File: Motorcycle.java
+public class Motorcycle extends Vehicle {
+    private final int engineCc;
 
-public class Trapezoid extends GeometricFigure {
-    private double base1;
-    private double base2;
-    private double height;
-
-    public Trapezoid(double base1, double base2, double height) {
-        super("Trapezoid");
-        this.base1 = base1;
-        this.base2 = base2;
-        this.height = height;
+    public Motorcycle(String licensePlate, String brand, String model, int year,
+                      double basePricePerDay, int engineCc) throws ValidationException {
+        super(licensePlate, brand, model, year, basePricePerDay);
+        this.engineCc = engineCc;
     }
 
     @Override
-    public double calculateArea() {
-        return (base1 + base2) * height / 2;
+    public double calculateRentalPrice(long days, Customer customer) throws ValidationException {
+        if (customer.getAge() < 18)
+            throw new ValidationException("Customer too young for motorcycles");
+        double price = basePricePerDay * days;
+        price += getInsuranceCost(days);
+        return price;
     }
 
     @Override
-    public double calculatePerimeter() {
-        return base1 + base2 + 2 * Math.sqrt(Math.pow((base2 - base1) / 2, 2) + Math.pow(height, 2));
+    public double getInsuranceCost(long days) {
+        return 8 * days;
     }
 }
 ```
-
-### Rhombus.java
 
 ```java
-package org.tec.geometric;
+// File: Truck.java
+public class Truck extends Vehicle {
+    private final double maxLoadKg;
 
-public class Rhombus extends GeometricFigure {
-    private double side;
-    private double diagonal1;
-    private double diagonal2;
-
-    public Rhombus(double side, double diagonal1, double diagonal2) {
-        super("Rhombus");
-        this.side = side;
-        this.diagonal1 = diagonal1;
-        this.diagonal2 = diagonal2;
+    public Truck(String licensePlate, String brand, String model, int year,
+                 double basePricePerDay, double maxLoadKg) throws ValidationException {
+        super(licensePlate, brand, model, year, basePricePerDay);
+        this.maxLoadKg = maxLoadKg;
     }
 
     @Override
-    public double calculateArea() {
-        return (diagonal1 * diagonal2) / 2;
+    public double calculateRentalPrice(long days, Customer customer) throws ValidationException {
+        if (customer.getAge() < 25)
+            throw new ValidationException("Customer must be at least 25 for trucks");
+        double price = basePricePerDay * days;
+        price += (maxLoadKg / 1000.0) * 10.0 * days; // surcharge per ton
+        price += getInsuranceCost(days);
+        return price;
     }
 
     @Override
-    public double calculatePerimeter() {
-        return 4 * side;
+    public double getInsuranceCost(long days) {
+        return 30 * days;
     }
 }
 ```
 
-### Rhomboid.java
+> Cada subclase personaliza el cálculo del precio total.
+> Esto es polimorfismo dinámico: el programa llama a calculateRentalPrice() sin saber qué tipo de vehículo es, pero se
+> ejecuta el comportamiento adecuado.
+> {style="note"}
+
+### Paso 6: Clase `Rental`
 
 ```java
-package org.tec.geometric;
+// File: Rental.java
 
-public class Rhomboid extends GeometricFigure {
-    private double base;
-    private double height;
-    private double side;
+import java.time.LocalDate;
+import java.util.UUID;
 
-    public Rhomboid(double base, double height, double side) {
-        super("Rhomboid");
-        this.base = base;
-        this.height = height;
-        this.side = side;
+public class Rental {
+    private final UUID id;
+    private final Vehicle vehicle;
+    private final Customer customer;
+    private final LocalDate start;
+    private final LocalDate end;
+    private final double totalPrice;
+
+    public Rental(Vehicle vehicle, Customer customer, LocalDate start, LocalDate end, double totalPrice) {
+        this.id = UUID.randomUUID();
+        this.vehicle = vehicle;
+        this.customer = customer;
+        this.start = start;
+        this.end = end;
+        this.totalPrice = totalPrice;
     }
 
     @Override
-    public double calculateArea() {
-        return base * height;
-    }
-
-    @Override
-    public double calculatePerimeter() {
-        return 2 * (base + side);
+    public String toString() {
+        return String.format("Rental[id=%s, vehicle=%s, customer=%s, from=%s to=%s, total=%.2f]",
+                id, vehicle.licensePlate, customer.getName(), start, end, totalPrice);
     }
 }
 ```
 
-### RegularPolygon.java
+## Desafío Extra
 
-```java
-package org.tec.geometric;
-
-public class RegularPolygon extends GeometricFigure {
-    private double side;
-    private int numberOfSides;
-    private double apothem;
-
-    public RegularPolygon(double side, int numberOfSides) {
-        super("Regular Polygon");
-        this.side = side;
-        this.numberOfSides = numberOfSides;
-        this.apothem = side / (2 * Math.tan(Math.PI / numberOfSides));
-    }
-
-    @Override
-    public double calculateArea() {
-        return (numberOfSides * side * apothem) / 2;
-    }
-
-    @Override
-    public double calculatePerimeter() {
-        return numberOfSides * side;
-    }
-}
-```
-
-### Ellipse.java
-
-```java
-package org.tec.geometric;
-
-public class Ellipse extends GeometricFigure {
-    private double semiMajorAxis;
-    private double semiMinorAxis;
-
-    public Ellipse(double semiMajorAxis, double semiMinorAxis) {
-        super("Ellipse");
-        this.semiMajorAxis = semiMajorAxis;
-        this.semiMinorAxis = semiMinorAxis;
-    }
-
-    @Override
-    public double calculateArea() {
-        return Math.PI * semiMajorAxis * semiMinorAxis;
-    }
-
-    @Override
-    public double calculatePerimeter() {
-        return 2 * Math.PI * Math.sqrt((Math.pow(semiMajorAxis, 2) + Math.pow(semiMinorAxis, 2)) / 2);
-    }
-}
-```
+1. Implementa una clase `RentalService` que maneje la lista de vehículos y clientes, y permita buscar vehículos
+   disponibles.
+2. Añade un menú interactivo usando `JOptionPane` para registrar clientes, vehículos y crear alquileres.
+3. Implementa persistencia básica (guardar y cargar datos) usando archivos de texto o serialización.
+4. Añade más tipos de vehículos (bicicletas, scooters) con sus propias reglas de alquiler.
+5. Implementa descuentos por alquileres largos o clientes frecuentes.
+6. Añade validaciones adicionales (por ejemplo, evitar que un cliente tenga más de 3 alquileres activos).
+7. Crea reportes de ingresos mensuales y vehículos más alquilados.

@@ -1,0 +1,87 @@
+@startuml
+package app{
+package rentquick{
+package exceptions{
+class ValidationException{
+    + ValidationException()
+}
+
+class VehicleUnavailableException{
+    + VehicleUnavailableException()
+}
+}
+
+package interfaces{
+interface Rentable{
+    + rent(client: Client, startDate: LocalDate, endDate: LocalDate): Rental
+    + returnVehicle(): void
+}
+interface Insurable{
+    + getInsuranceCost(days: int): double
+}
+}
+
+package entities{
+class Client<<final>>{
+    - uuid<<final>>: String
+    - name<<final>>: String
+    - age: int
+    - licenseNumber: String
+    - licenseExpiryDate: LocalDate
+    + Client()
+    + hasValidLicense(): boolean
+    + toString(): String
+    + getName(): String
+    + getAge(): int
+}
+
+abstract class Vehicle<<abstract>> implements app.rentquick.interfaces.Rentable, app.rentquick.interfaces.Insurable{
+    # uuid<<final>>: String
+    # brand<<final>>: String
+    # model<<final>>: String
+    # year<<final>>: int
+    # licensePlate<<final>>: String
+    # basePricePerDay<<final>>: double
+    # available = true: boolean
+    + Vehicle()
+    + rentTo(client: Client, startDate: LocalDate, endDate: LocalDate): Rental
+    + returnVehicle(): void
+    + calculateRentalPrice(days: int): double
+    + isAvailable(): boolean
+    + {abstract}calculateRentalPrice(days: int, cliente: Client):double
+    + toString(): String
+}
+
+class Car extends Vehicle{
+    - isLuxury: boolean
+    + Car()
+    + calculateRentalPrice(days: int): double
+    + getInsuranceCost(days: int): double
+}
+
+class Motorcycle extends Vehicle{
+    - engineCapacityCC: int
+    + Motorcycle()
+    + calculateRentalPrice(days: int): double
+    + getInsuranceCost(days: int): double
+}
+
+class Truck extends Vehicle{
+    - maxLoadKg: double
+    + Truck()
+    + calculateRentalPrice(days: int): double
+    + getInsuranceCost(days: int): double
+}
+class Rental{
+    - uuid<<final>>: String
+    - vehicle<<final>>: Vehicle
+    - client<<final>>: Client
+    - startDate<<final>>: LocalDate
+    - endDate<<final>>: LocalDate
+    - totalPrice<<final>>: double
+    + Rental()
+    + toString(): String
+}
+}
+}
+@enduml
