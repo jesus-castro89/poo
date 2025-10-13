@@ -124,7 +124,9 @@
         <toc-element topic="ejemplo-4.md"/>
         <toc-element topic="ejemplo-5.md"/>
         <toc-element topic="ejemplo-6.md"/>
-        <toc-element topic="ejemplo-7.md"/>
+        <toc-element topic="ejemplo-7.md">
+            <toc-element topic="input-predicate.md"/>
+        </toc-element>
     </toc-element>
     <toc-element toc-title="Actividades">
         <toc-element topic="actividad-1.md"/>

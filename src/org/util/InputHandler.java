@@ -52,20 +52,22 @@ public class InputHandler {
 
     private static String getInput(String prompt) {
 
-        return JOptionPane.showInputDialog(null, prompt);
+        return JOptionPane.showInputDialog(null, prompt,
+                "Entrada de Datos", JOptionPane.QUESTION_MESSAGE);
     }
 
     public static <T> T getInput(String prompt, T[] options) {
 
-        return (T) JOptionPane.showInputDialog(
-                null,
-                prompt,
-                "Selección",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options.length > 0 ? options[0] : null
-        );
+        // Solicitamos la entrada del usuario
+        T input = (T) JOptionPane.showInputDialog(null, prompt,
+                "Selección", JOptionPane.QUESTION_MESSAGE, null,
+                options, options[0]);
+        // Validamos la entrada del usuario
+        if (input == null) {
+            showMessage("Error: Debe seleccionar una opción", "Selección", JOptionPane.ERROR_MESSAGE);
+            return getInput(prompt, options);
+        }
+        return input;
     }
 
     public static <T> T getInput(String prompt, T type) {
