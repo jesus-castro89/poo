@@ -91,6 +91,11 @@
         <toc-element topic="interface-constant.md"/>
         <toc-element topic="interfaz-funcional.md"/>
     </toc-element>
+    <toc-element toc-title="Interfaces Funcionales de Java">
+        <toc-element topic="predicate.md"/>
+        <toc-element topic="match.md"/>
+        <toc-element topic="comparable-comparator.md"/>
+    </toc-element>
     <toc-element hidden="true" toc-title="Arreglos">
         <toc-element topic="arreglos.md"/>
         <toc-element topic="matriz.md"/>

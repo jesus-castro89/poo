@@ -17,6 +17,7 @@ public final class Client {
     private LocalDate licenseExpiry;
 
     public Client() {
+
         this.id = UUID.randomUUID();
         this.name = InputHandler.getInput(
                 "Ingrese el nombre del cliente: ", "");

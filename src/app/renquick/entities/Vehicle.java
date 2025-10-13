@@ -11,6 +11,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 public abstract class Vehicle implements Rentable, Insurable {
+
     protected final UUID id;
     protected final String licensePlate;
     protected final String brand;
@@ -23,6 +24,7 @@ public abstract class Vehicle implements Rentable, Insurable {
 
     public Vehicle(String licensePlate, String brand, String model, int year, double basePricePerDay)
             throws ValidationException {
+
         if (licensePlate == null || !PLATE_PATTERN.matcher(licensePlate).matches())
             throw new ValidationException("Invalid license plate format");
         if (year > LocalDate.now().getYear())
@@ -41,7 +43,9 @@ public abstract class Vehicle implements Rentable, Insurable {
     @Override
     public synchronized Rental rentTo(Client customer, LocalDate start, LocalDate end)
             throws ValidationException, VehicleUnavailableException {
-        if (!available) throw new VehicleUnavailableException("Vehicle not available");
+
+        if (!available)
+            throw new VehicleUnavailableException("Vehicle not available");
         if (start == null || end == null || !start.isBefore(end))
             throw new ValidationException("Invalid rental dates");
         if (!customer.isValidLicense())
@@ -54,10 +58,12 @@ public abstract class Vehicle implements Rentable, Insurable {
 
     @Override
     public synchronized void returnVehicle() {
+
         this.available = true;
     }
 
     public boolean isAvailable() {
+
         return available;
     }
 
