@@ -27,6 +27,11 @@ mi_proyecto
     * Para hacer esto, haz clic derecho en la carpeta `resources`, selecciona "Mark Directory as" y luego "Resources
       Root".
 
+> Para el entregable, deberás modificar al menos dos de las fuentes de las ventanas del JOptionPane, usando una fuente
+> de tu preferencia. Puedes descargar fuentes gratuitas desde sitios como [Google Fonts](https://fonts.google.com/) o
+> [DaFont](https://www.dafont.com/) y [Font Squirrel](https://www.fontsquirrel.com/).
+> {style="info"}
+
 ## Paso 2: Crear las clases Java
 
 Crea las siguientes clases Java en la carpeta `src/org/utils` y `src/org/exceptions`:

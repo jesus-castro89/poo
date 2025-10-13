@@ -4,14 +4,21 @@ abstract class Animal {
     # nombre: String
     # edad: int
     + {abstract} comer(): void
-    + dormir(): void
+    + final dormir(): void
 }
-class Dog extends Animal {
+interface Swimeable {
+    + nadar(): void
+}
+interface Flyable {
+    + RESISTENCIA_VIENTO = 8.71: double
+    + volar(): void
+}
+class Dog extends Mammal {
     # raza: String
     + ladrar(): void
     + comer(): void
 }
-class Cat extends Animal {
+class Cat extends Mammal {
     # color: String
     + maullar(): void
     + comer(): void
@@ -20,23 +27,37 @@ abstract class Bird extends Animal {
     # especie: String
     + volar(): void
 }
-class Hawk extends Bird {
+class Hawk extends Bird implements Flyable {
     + cazar(): void
     + comer(): void
 }
-class Parrot extends Bird {
+class Parrot extends Bird implements Flyable {
     + hablar(): void
     + comer(): void
 }
-abstract class Fish extends Animal {
+abstract class Fish extends Animal implements Swimeable {
     # tipoAgua: String
-    + nadar(): void
 }
 class Salmon extends Fish {
     + migrar(): void
     + comer(): void
 }
+class Pinguin <<final>> extends Bird implements Swimeable {
+    + nadar(): void
+}
+class Mammal extends Animal {
+    # pelaje: String
+    + amamantar(): void
+}
+
+class Bat extends Mammal implements Flyable {
+    + volar(): void
+}
 class CanadianSalmon extends Salmon {
     + nadarContraCorriente(): void
+}
+
+class Airplane implements Flyable {
+    + volar(): void
 }
 @enduml
