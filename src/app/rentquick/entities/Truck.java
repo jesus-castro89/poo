@@ -1,15 +1,16 @@
-package app.renquick.entities;
+package app.rentquick.entities;
 
 import app.rentquick.exceptions.ValidationException;
+import org.util.InputHandler;
 
 public class Truck extends Vehicle {
+
     private final double maxLoadKg;
 
-    public Truck(String licensePlate, String brand, String model, int year,
-                 double basePricePerDay, double maxLoadKg) throws ValidationException {
+    public Truck() throws ValidationException {
 
-        super(licensePlate, brand, model, year, basePricePerDay);
-        this.maxLoadKg = maxLoadKg;
+        super();
+        this.maxLoadKg = InputHandler.getInput("Ingrese la carga máxima en kg: ", 0.0);
     }
 
     @Override
@@ -27,5 +28,11 @@ public class Truck extends Vehicle {
     public double getInsuranceCost(long days) {
 
         return 30 * days;
+    }
+
+    @Override
+    public String toString() {
+        return "Modelo: %s - Matrícula: %s - Carga Máx: %.2f kg"
+                .formatted(model, plate, maxLoadKg);
     }
 }

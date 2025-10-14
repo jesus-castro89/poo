@@ -1,4 +1,4 @@
-package app.renquick.entities;
+package app.rentquick.entities;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -26,6 +26,6 @@ public class Rental {
     public String toString() {
 
         return String.format("Rental[id=%s, vehicle=%s, customer=%s, from=%s to=%s, total=%.2f]",
-                id, vehicle.licensePlate, customer.getName(), start, end, totalPrice);
+                id, vehicle.plate, customer.getName(), start, end, totalPrice);
     }
 }

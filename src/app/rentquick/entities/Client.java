@@ -1,9 +1,8 @@
-package app.renquick.entities;
+package app.rentquick.entities;
 
-import app.rentiquick.interfaces.Rentable;
+import app.rentquick.interfaces.Rentable;
 import org.util.InputHandler;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -21,16 +20,23 @@ public final class Client {
         this.id = UUID.randomUUID();
         this.name = InputHandler.getInput(
                 "Ingrese el nombre del cliente: ", "");
+
+        Predicate<Integer> minumAgePredicate =
+                age -> age >= 18;
         this.age = InputHandler.getInput(
-                "Ingrese la edad del cliente: ", 0);
+                "Ingrese la edad del cliente: ", minumAgePredicate,
+                "La edad mínima para rentar es 18 años.",
+                0);
+
         Predicate<String> licensePredicate =
                 input -> !input.isEmpty() && input.matches("^[A-Z]{3}\\d{4}$");
         this.licenseNumber = InputHandler.getInput(
                 "Ingrese el número de licencia del cliente (formato ABC1234): ", licensePredicate,
                 "El número de licencia debe tener el formato ABC1234.",
                 "");
+
         Predicate<LocalDate> datePredicate =
-                date -> date.isAfter(LocalDate.parse("2026-12-31"));
+                date -> date.isAfter(Rentable.VALID_EXPIRE_DATE);
         this.licenseExpiry = InputHandler.getInput(
                 "Ingrese la fecha de vencimiento de la licencia (yyyy-MM-dd) posterior a 2026-12-31: ",
                 datePredicate, "La fecha debe ser posterior a 2026-12-31.",

@@ -74,24 +74,37 @@ public class InputHandler {
 
         String input = getInput(prompt);
         T output;
-        try {
-            if (input == null || input.isEmpty())
-                throw new InvalidInputException("La entrada no puede estar vacía.");
-            output = switch (type.getClass().getSimpleName()) {
-                case "Integer" -> (T) Integer.valueOf(input);
-                case "Double" -> (T) Double.valueOf(input);
-                case "Float" -> (T) Float.valueOf(input);
-                case "Long" -> (T) Long.valueOf(input);
-                case "Short" -> (T) Short.valueOf(input);
-                case "Byte" -> (T) Byte.valueOf(input);
-                case "Boolean" -> (T) Boolean.valueOf(input);
-                case "String" -> (T) input;
-                case "LocalDate" -> (T) LocalDate.parse(input);
-                default -> null;
-            };
-        } catch (InvalidInputException e) {
-            showMessage("Error: Entrada Invalida", "Entrada de Datos", JOptionPane.ERROR_MESSAGE);
-            return getInput(prompt, type);
+        if (type.getClass().getSimpleName().equals("Boolean")) {
+
+            int selection = JOptionPane.showConfirmDialog(null, prompt,
+                    "Selección", JOptionPane.YES_NO_OPTION);
+            if (selection == JOptionPane.YES_OPTION) {
+                output = (T) Boolean.TRUE;
+            } else if (selection == JOptionPane.NO_OPTION) {
+                output = (T) Boolean.FALSE;
+            } else {
+                showMessage("Error: Debe seleccionar una opción", "Selección", JOptionPane.ERROR_MESSAGE);
+                output = getInput(prompt, type);
+            }
+        } else {
+            try {
+                if (input == null || input.isEmpty())
+                    throw new InvalidInputException("La entrada no puede estar vacía.");
+                output = switch (type.getClass().getSimpleName()) {
+                    case "Integer" -> (T) Integer.valueOf(input);
+                    case "Double" -> (T) Double.valueOf(input);
+                    case "Float" -> (T) Float.valueOf(input);
+                    case "Long" -> (T) Long.valueOf(input);
+                    case "Short" -> (T) Short.valueOf(input);
+                    case "Byte" -> (T) Byte.valueOf(input);
+                    case "String" -> (T) input;
+                    case "LocalDate" -> (T) LocalDate.parse(input);
+                    default -> null;
+                };
+            } catch (InvalidInputException e) {
+                showMessage("Error: Entrada Invalida", "Entrada de Datos", JOptionPane.ERROR_MESSAGE);
+                return getInput(prompt, type);
+            }
         }
         return output;
     }

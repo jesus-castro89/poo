@@ -1,10 +1,9 @@
 package app;
 
-import app.renquick.entities.Client;
+import app.rentquick.entities.Client;
 import org.util.InputHandler;
 
 import javax.swing.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main {

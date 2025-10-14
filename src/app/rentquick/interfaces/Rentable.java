@@ -1,7 +1,7 @@
-package app.rentiquick.interfaces;
+package app.rentquick.interfaces;
 
-import app.renquick.entities.Client;
-import app.renquick.entities.Rental;
+import app.rentquick.entities.Client;
+import app.rentquick.entities.Rental;
 import app.rentquick.exceptions.ValidationException;
 import app.rentquick.exceptions.VehicleUnavailableException;
 

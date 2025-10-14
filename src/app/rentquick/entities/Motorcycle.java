@@ -1,16 +1,16 @@
-package app.renquick.entities;
+package app.rentquick.entities;
 
 import app.rentquick.exceptions.ValidationException;
+import org.util.InputHandler;
 
 public class Motorcycle extends Vehicle {
 
     private final int engineCc;
 
-    public Motorcycle(String licensePlate, String brand, String model, int year,
-                      double basePricePerDay, int engineCc) throws ValidationException {
+    public Motorcycle() throws ValidationException {
 
-        super(licensePlate, brand, model, year, basePricePerDay);
-        this.engineCc = engineCc;
+        super();
+        this.engineCc = InputHandler.getInput("Ingrese la capacidad del motor en cc: ", 0);
     }
 
     @Override
@@ -27,5 +27,11 @@ public class Motorcycle extends Vehicle {
     public double getInsuranceCost(long days) {
 
         return 8 * days;
+    }
+
+    @Override
+    public String toString() {
+        return "Modelo: %s - Matrícula: %s - Motor: %dcc"
+                .formatted(model, plate, engineCc);
     }
 }

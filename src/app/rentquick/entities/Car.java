@@ -1,16 +1,16 @@
-package app.renquick.entities;
+package app.rentquick.entities;
 
 import app.rentquick.exceptions.ValidationException;
+import org.util.InputHandler;
 
 public class Car extends Vehicle {
 
     private final boolean isLuxury;
 
-    public Car(String licensePlate, String brand, String model, int year,
-               double basePricePerDay, boolean isLuxury) throws ValidationException {
+    public Car() throws ValidationException {
 
-        super(licensePlate, brand, model, year, basePricePerDay);
-        this.isLuxury = isLuxury;
+        super();
+        this.isLuxury = InputHandler.getInput("El vehículo es de lujo? (s/n): ", true);
     }
 
     @Override
@@ -29,5 +29,11 @@ public class Car extends Vehicle {
     public double getInsuranceCost(long days) {
 
         return 15 * days;
+    }
+
+    @Override
+    public String toString() {
+        return "Modelo: %s - Matrícula: %s - Lujo: %s"
+                .formatted(model, plate, isLuxury ? "Sí" : "No");
     }
 }

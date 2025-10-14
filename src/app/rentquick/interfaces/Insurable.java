@@ -1,4 +1,4 @@
-package app.rentiquick.interfaces;
+package app.rentquick.interfaces;
 
 public interface Insurable {
 
