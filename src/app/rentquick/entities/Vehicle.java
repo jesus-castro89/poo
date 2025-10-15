@@ -12,18 +12,49 @@ import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
+/**
+ * Clase abstracta que representa un vehículo en el sistema de alquiler.
+ * Implementa las interfaces Rentable e Insurable.
+ */
 public abstract class Vehicle implements Rentable, Insurable {
 
+    /**
+     * Identificador único del vehículo.
+     */
     protected final UUID id;
+    /**
+     * Placas del vehículo.
+     */
     protected final String plate;
+    /**
+     * Marca del vehículo.
+     */
     protected final String brand;
+    /**
+     * Modelo del vehículo.
+     */
     protected final String model;
+    /**
+     * Año del vehículo.
+     */
     protected final int year;
+    /**
+     * Precio base por día de alquiler.
+     */
     protected final double basePricePerDay;
+    /**
+     * Indica si el vehículo está disponible para alquiler.
+     */
     protected boolean available = true;
-
+    /**
+     * Patrón regex para validar las placas del vehículo.
+     */
     private static final Pattern PLATE_PATTERN = Pattern.compile("^[A-Z]{3}-\\d{4}$");
 
+    /**
+     * Constructor que inicializa un vehículo con datos ingresados por el usuario.
+     * Realiza validaciones básicas en los datos ingresados.
+     */
     public Vehicle() {
 
         Predicate<String> plateValidator =
@@ -65,6 +96,21 @@ public abstract class Vehicle implements Rentable, Insurable {
         return basePricePerDay;
     }
 
+    public boolean isAvailable() {
+
+        return available;
+    }
+
+    /**
+     * Función para alquilar el vehículo a un cliente.
+     *
+     * @param customer Cliente que desea alquilar el vehículo.
+     * @param start    Fecha de inicio del alquiler.
+     * @param end      Fecha de fin del alquiler.
+     * @return Objeto Rental que representa el alquiler realizado.
+     * @throws ValidationException         Si las fechas son inválidas o la licencia del cliente ha expirado.
+     * @throws VehicleUnavailableException Si el vehículo no está disponible para alquiler.
+     */
     @Override
     public Rental rentTo(Client customer, LocalDate start, LocalDate end)
             throws ValidationException, VehicleUnavailableException {
@@ -84,16 +130,24 @@ public abstract class Vehicle implements Rentable, Insurable {
         return new Rental(this, customer, start, end, total);
     }
 
+    /**
+     * Función para devolver el vehículo.
+     * Marca el vehículo como disponible nuevamente.
+     */
     @Override
-    public synchronized void returnVehicle() {
+    public void returnVehicle() {
 
         this.available = true;
     }
 
-    public boolean isAvailable() {
-
-        return available;
-    }
-
+    /**
+     * Método abstracto para calcular el precio del alquiler.
+     * Debe ser implementado por las subclases.
+     *
+     * @param days     Número de días del alquiler.
+     * @param customer Cliente que realiza el alquiler.
+     * @return Precio total del alquiler.
+     * @throws ValidationException Si hay algún error en la validación de datos.
+     */
     public abstract double calculateRentalPrice(long days, Client customer) throws ValidationException;
 }

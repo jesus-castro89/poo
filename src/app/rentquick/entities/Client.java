@@ -7,14 +7,36 @@ import java.time.LocalDate;
 import java.util.UUID;
 import java.util.function.Predicate;
 
+/**
+ * Clase que representa un cliente en el sistema de alquiler.
+ */
 public final class Client {
 
+    /**
+     * Identificador único del cliente.
+     */
     private final UUID id;
+    /**
+     * Nombre del cliente.
+     */
     private String name;
+    /**
+     * Edad del cliente.
+     */
     private int age;
+    /**
+     * Número de licencia del cliente.
+     */
     private String licenseNumber;
+    /**
+     * Fecha de vencimiento de la licencia del cliente.
+     */
     private LocalDate licenseExpiry;
 
+    /**
+     * Constructor que inicializa un cliente con datos ingresados por el usuario.
+     * Realiza validaciones básicas en los datos ingresados.
+     */
     public Client() {
 
         this.id = UUID.randomUUID();
@@ -43,10 +65,20 @@ public final class Client {
                 LocalDate.now());
     }
 
+    /**
+     * Verifica si la licencia del cliente es válida.
+     *
+     * @return true si la licencia es válida, false en caso contrario.
+     */
     public boolean isValidLicense() {
         return licenseExpiry.isAfter(Rentable.VALID_EXPIRE_DATE);
     }
 
+    /**
+     * Devuelve una representación en cadena del cliente.
+     *
+     * @return Representación en cadena del cliente.
+     */
     @Override
     public String toString() {
         return "Nombre: %s - Licencia: %s".formatted(name, licenseNumber);
