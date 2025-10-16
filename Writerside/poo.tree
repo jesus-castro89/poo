@@ -96,10 +96,11 @@
         <toc-element topic="match.md"/>
         <toc-element topic="comparable-comparator.md"/>
     </toc-element>
-    <toc-element hidden="true" toc-title="Arreglos">
+    <toc-element toc-title="Arreglos">
         <toc-element topic="arreglos.md"/>
         <toc-element topic="matriz.md"/>
         <toc-element topic="dimension-n.md"/>
+        <toc-element topic="array-irregulares.md"/>
         <toc-element topic="arrays.md"/>
         <toc-element topic="arreglos-dinamicos.md"/>
     </toc-element>
@@ -127,6 +128,7 @@
         <toc-element topic="ejemplo-7.md">
             <toc-element topic="input-predicate.md"/>
         </toc-element>
+        <toc-element topic="ejemplo-8.md"/>
     </toc-element>
     <toc-element toc-title="Actividades">
         <toc-element topic="actividad-1.md"/>
