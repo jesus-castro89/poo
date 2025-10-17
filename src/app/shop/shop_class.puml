@@ -1,0 +1,76 @@
+@startuml
+abstract class Product implements "Comparable<Product>" {
+    # id: int
+    # name: string
+    # price: float
+    # existences: int
+    + getDetails(): string
+}
+
+enum FruitType {
+    APPLE
+    BANANA
+    ORANGE
+    GRAPE
+}
+
+enum ElectronicType {
+    PHONE
+    LAPTOP
+    TABLET
+    HEADPHONES
+}
+
+enum ClothingType {
+    SHIRT
+    PANTS
+    DRESS
+    JACKET
+}
+
+enum ClothingSize {
+    SMALL
+    MEDIUM
+    LARGE
+    XLARGE
+}
+
+enum ClothingMaterial {
+    COTTON
+    POLYESTER
+    WOOL
+    SILK
+}
+
+class Fruit extends Product {
+    # variety: FruitType
+    # origin: string
+    + getDetails(): string
+}
+
+class Electronic extends Product {
+    # brand: string
+    # model: string
+    # type: ElectronicType
+    + getDetails(): string
+}
+
+class Clothing extends Product {
+    # size: ClothingSize
+    # material: ClothingMaterial
+    # type: ClothingType
+    # brand: string
+    + getDetails(): string
+}
+
+interface "Comparable<Product>" {
+    + compareTo(other: Product): int
+}
+
+Fruit .. FruitType: esUno
+Electronic .. ElectronicType: esUno
+Clothing .. ClothingType: esUno
+Clothing .. ClothingSize: tieneTalla
+Clothing .. ClothingMaterial: tieneMaterial
+
+@enduml

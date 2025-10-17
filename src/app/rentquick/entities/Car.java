@@ -3,6 +3,8 @@ package app.rentquick.entities;
 import app.rentquick.exceptions.ValidationException;
 import org.util.InputHandler;
 
+import java.util.UUID;
+
 /**
  * Clase que representa un automóvil en el sistema de alquiler.
  * Extiende la clase Vehicle e implementa las interfaces Rentable e Insurable.
@@ -24,6 +26,11 @@ public class Car extends Vehicle {
 
         super();
         this.isLuxury = InputHandler.getInput("El vehículo es de lujo? (s/n): ", true);
+    }
+
+    public Car(String plate, String brand, String model, int year, double basePricePerDay, boolean isLuxury) {
+        super(plate, brand, model, year, basePricePerDay);
+        this.isLuxury = isLuxury;
     }
 
     /**
@@ -67,5 +74,20 @@ public class Car extends Vehicle {
     public String toString() {
         return "Modelo: %s - Matrícula: %s - Lujo: %s"
                 .formatted(model, plate, isLuxury ? "Sí" : "No");
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        if (o.getClass().getSimpleName().equals(this.getClass().getSimpleName())) {
+            return 0;
+        } else {
+            if (this.getClass().getSimpleName().equals("Motorcycle") &&
+                    ((o.getClass().getSimpleName()).equals("Car")) ||
+                    ((o.getClass().getSimpleName()).equals("Truck"))) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
     }
 }

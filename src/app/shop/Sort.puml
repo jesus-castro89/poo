@@ -1,0 +1,17 @@
+@startmindmap
+title Tipo de implementación de Sort en Arrays
+
+*[#Orange] Array.sort()
+++[#LightBlue] Creciente
++++[#LightBlue] Array
++++[#LightBlue] Array, Comparator
+--[#LightGreen] Decreciente
+---[#LightGreen] Array, Collections.reverseOrder()
+---[#LightGreen] Array, Collections.reverseOrder(Comparator)
+
+legend left
+    <b>La función Array.sort() permite ordenar arreglos en Java. Se puede ordenar en orden creciente o decreciente.
+    <b>Para orden creciente, se puede usar la función sin Comparator o con un Comparator personalizado.
+    <b>Para orden decreciente, se utiliza Collections.reverseOrder() con o sin Comparator.
+endlegend
+@endmindmap

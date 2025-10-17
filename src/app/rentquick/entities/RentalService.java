@@ -129,7 +129,9 @@ public class RentalService<T extends Vehicle> {
     public void addClient() throws ClientsFullException {
 
         Predicate<Client[]> isFullClientsPredicate =
-                clientsArray -> Arrays.stream(clientsArray).allMatch(Objects::nonNull);
+                clientsArray ->
+                        Arrays.stream(clientsArray)
+                                .allMatch(Objects::nonNull);
 
         if (isFullClientsPredicate.test(clients))
             throw new ClientsFullException("Se ha alcanzado el número máximo de clientes.");
@@ -225,7 +227,9 @@ public class RentalService<T extends Vehicle> {
     private Client selectClient() {
 
         return getAvailableClients().length > 0 ?
-                (Client) InputHandler.getInput("Seleccione un cliente: ", getAvailableClients()) : null;
+                (Client) InputHandler.getInput(
+                        "Seleccione un cliente: ",
+                        getAvailableClients()) : null;
     }
 
     /**
@@ -245,7 +249,7 @@ public class RentalService<T extends Vehicle> {
      *
      * @return Vehículo seleccionado o null si no hay vehículos disponibles.
      */
-    private T selectVehicle() {
+    public T selectVehicle() {
 
         return garage.getAvailableVehicles().length > 0 ?
                 (T) InputHandler.getInput("Seleccione un vehículo: ",
@@ -262,5 +266,9 @@ public class RentalService<T extends Vehicle> {
         return Arrays.stream(clients)
                 .filter(Objects::nonNull)
                 .toArray();
+    }
+
+    public Garage<T> getGarage() {
+        return garage;
     }
 }

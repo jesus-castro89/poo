@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * Clase abstracta que representa un vehículo en el sistema de alquiler.
  * Implementa las interfaces Rentable e Insurable.
  */
-public abstract class Vehicle implements Rentable, Insurable {
+public abstract class Vehicle implements Rentable, Insurable, Comparable<Vehicle> {
 
     /**
      * Identificador único del vehículo.
@@ -51,6 +51,15 @@ public abstract class Vehicle implements Rentable, Insurable {
      */
     private static final Pattern PLATE_PATTERN = Pattern.compile("^[A-Z]{3}-\\d{4}$");
 
+
+    public Vehicle(String plate, String brand, String model, int year, double basePricePerDay) {
+        this.id = UUID.randomUUID();
+        this.plate = plate;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.basePricePerDay = basePricePerDay;
+    }
     /**
      * Constructor que inicializa un vehículo con datos ingresados por el usuario.
      * Realiza validaciones básicas en los datos ingresados.
@@ -141,7 +150,7 @@ public abstract class Vehicle implements Rentable, Insurable {
     }
 
     /**
-     * Método abstracto para calcular el precio del alquiler.
+     * Función abstracta para calcular el precio del alquiler.
      * Debe ser implementado por las subclases.
      *
      * @param days     Número de días del alquiler.

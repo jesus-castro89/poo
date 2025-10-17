@@ -34,6 +34,10 @@ Creamos dos clases:
 
 ![e7_ex2.png](e7_ex2.png){style="block"}
 
+![e7_i3.png](e7_i3.png){style="block"}
+
+![e7_i4.png](e7_i4.png){style="block"}
+
 > En lugar de usar RuntimeException, usamos checked exceptions (heredan de Exception), obligando al programador a
 > tratarlas con try...catch. Esto mejora la robustez del código.
 > {style="note"}
@@ -43,7 +47,7 @@ Creamos dos clases:
 Recuerda que de aquí en adelante haremos uso de nuestra clase `InputHandler` como librería para manejar entradas y
 validaciones.
 
-![e7_client.png](e7_client.png){style="block"}
+![e7_cl.png](e7_cl.png){style="block"}
 
 ### Paso 3: Interfaces `Rentable` y `Insurable`
 
@@ -55,7 +59,7 @@ Definimos dos interfaces para los comportamientos comunes de los vehículos:
 
 ### Paso 4: Clase abstracta `Vehicle`
 
-![e7_vehicle.png](e7_vehicle.png){style="block"}
+![e7_vabs.png](e7_vabs.png){style="block"}
 
 ### Paso 5: Clases concretas de vehículos
 

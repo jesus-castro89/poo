@@ -70,7 +70,8 @@ public class Garage<T extends Vehicle> {
             return new Vehicle[0];
         else
             return Arrays.stream(vehicles)
-                    .filter(vehicle -> vehicle != null && !vehicle.isAvailable())
+                    .filter(vehicle ->
+                            vehicle != null && !vehicle.isAvailable())
                     .toArray();
     }
 

@@ -3,6 +3,8 @@ package app.rentquick.entities;
 import app.rentquick.exceptions.ValidationException;
 import org.util.InputHandler;
 
+import java.util.UUID;
+
 /**
  * Clase que representa un camión en el sistema de alquiler.
  * Extiende la clase Vehicle e implementa las interfaces Rentable e Insurable.
@@ -45,6 +47,11 @@ public class Truck extends Vehicle {
         return price;
     }
 
+    public Truck(String plate, String brand, String model, int year, double basePricePerDay, double maxLoadKg) {
+        super(plate, brand, model, year, basePricePerDay);
+        this.maxLoadKg = maxLoadKg;
+    }
+
     /**
      * Calcula el costo del seguro para el camión.
      *
@@ -66,5 +73,10 @@ public class Truck extends Vehicle {
     public String toString() {
         return "Modelo: %s - Matrícula: %s - Carga Máx: %.2f kg"
                 .formatted(model, plate, maxLoadKg);
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        return 0;
     }
 }

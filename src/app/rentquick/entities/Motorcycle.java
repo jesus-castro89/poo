@@ -3,6 +3,8 @@ package app.rentquick.entities;
 import app.rentquick.exceptions.ValidationException;
 import org.util.InputHandler;
 
+import java.util.UUID;
+
 /**
  * Clase que representa una motocicleta en el sistema de alquiler.
  * Extiende la clase Vehicle e implementa las interfaces Rentable e Insurable.
@@ -24,6 +26,11 @@ public class Motorcycle extends Vehicle {
 
         super();
         this.engineCc = InputHandler.getInput("Ingrese la capacidad del motor en cc: ", 0);
+    }
+
+    public Motorcycle(String plate, String brand, String model, int year, double basePricePerDay, int engineCc) {
+        super(plate, brand, model, year, basePricePerDay);
+        this.engineCc = engineCc;
     }
 
     /**
@@ -65,5 +72,10 @@ public class Motorcycle extends Vehicle {
     public String toString() {
         return "Modelo: %s - Matrícula: %s - Motor: %dcc"
                 .formatted(model, plate, engineCc);
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        return 0;
     }
 }
