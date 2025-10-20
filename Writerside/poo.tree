@@ -103,6 +103,7 @@
         <toc-element topic="array-irregulares.md"/>
         <toc-element topic="arrays.md"/>
         <toc-element topic="arreglos-dinamicos.md"/>
+        <toc-element topic="arraylist-stream.md"/>
     </toc-element>
     <toc-element hidden="true" toc-title="SOLID">
         <toc-element topic="solid.md"/>

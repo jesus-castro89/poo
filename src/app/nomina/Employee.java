@@ -1,16 +1,12 @@
 package app.nomina;
 
 import javax.swing.*;
+import java.util.Comparator;
 
-public class Employee {
+public class Employee{
     private String name;
     private int age;
     private double salary;
-
-    static {
-        JOptionPane.showMessageDialog(null,
-                "¡Bienvenido al sistema de nómina!");
-    }
 
     public Employee() {
         this.name = JOptionPane.showInputDialog("Ingrese el nombre del empleado:");
@@ -40,6 +36,24 @@ public class Employee {
 
     public double getSalary() {
         return salary;
+    }
+
+    public void discountSalary(double percentage) {
+        if (percentage < 0 || percentage > 100) {
+            throw new IllegalArgumentException("El porcentaje debe estar entre 0 y 100.");
+        }
+        this.salary -= this.salary * (percentage / 100);
+    }
+
+    public static int compareBySalary(Employee e1, Employee e2) {
+        return Comparator.comparingDouble(Employee::getSalary)
+                .compare(e1, e2);
+    }
+
+    public static int compareBySalaryReverse(Employee e1, Employee e2) {
+        return Comparator.comparingDouble(Employee::getSalary)
+                .reversed()
+                .compare(e2, e1);
     }
 
     @Override
