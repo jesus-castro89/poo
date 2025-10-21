@@ -1,0 +1,14 @@
+@startmindmap
+top to bottom direction
+title Comparator y Comparable en Java
+
+* Elementos de Comparación
+++ Comparable
++++ Definición: Interfaz que define el método compareTo(T o).
++++ Uso: Implementada por clases cuyos objetos necesitan un orden natural.
++++ Método clave: int compareTo(T o)
+-- Comparator
+--- Definición: Interfaz que define el método compare(T o1, T o2).
+--- Uso: Utilizada para definir múltiples criterios de ordenación.
+--- Método clave: int compare(T o1, T o2)
+@endmindmap
