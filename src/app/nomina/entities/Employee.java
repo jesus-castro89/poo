@@ -1,7 +1,5 @@
 package app.nomina.entities;
 
-import javax.swing.*;
-
 public class Employee implements Comparable<Employee> {
 
     private String name;
@@ -9,12 +7,16 @@ public class Employee implements Comparable<Employee> {
     private double salary;
     private boolean isVacationing;
     private Position position;
+    private Department department;
 
-    public Employee(String name, int age, double salary, Position position) {
+    public Employee(String name, int age, double salary,
+                    Position position, Department department) {
+
         this.name = name;
         this.age = age;
         this.salary = salary;
         this.position = position;
+        this.department = department;
         this.isVacationing = false;
     }
 
@@ -27,7 +29,7 @@ public class Employee implements Comparable<Employee> {
     @Override
     public String toString() {
 
-        return "Empleado: %s - Edad: %d - Sueldo: %.2f - Puesto: %s".formatted(name, age, salary, position);
+        return "Empleado: %s".formatted(name);
     }
 
     /**
@@ -40,6 +42,10 @@ public class Employee implements Comparable<Employee> {
     @Override
     public int compareTo(Employee o) {
         return this.name.compareTo(o.name);
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isActive() {
@@ -64,5 +70,9 @@ public class Employee implements Comparable<Employee> {
 
     public Position getPosition() {
         return position;
+    }
+
+    public Department getDepartment() {
+        return department;
     }
 }
