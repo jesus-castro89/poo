@@ -29,7 +29,7 @@ public class Employee implements Comparable<Employee> {
     @Override
     public String toString() {
 
-        return "Empleado: %s".formatted(name);
+        return "Empleado: %s (%d)".formatted(name, age);
     }
 
     /**

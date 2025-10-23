@@ -1,6 +1,7 @@
 package app.test;
 
 import app.nomina.comparators.EmployeeAgeComparator;
+import app.nomina.comparators.EmployeeComparators;
 import app.nomina.comparators.EmployeePositionComparator;
 import app.nomina.comparators.EmployeeSalaryComparator;
 import app.nomina.entities.Department;
@@ -38,12 +39,7 @@ public class Test {
         // Ordenamos y mostramos la lista por edad
         IO.println("Empleados ordenados por edad:");
         employees.stream()
-                .sorted(new EmployeeAgeComparator())
-                .forEach(IO::println);
-        // Ordenamos y mostramos la lista por salario
-        IO.println("Empleados ordenados por salario:");
-        employees.stream()
-                .sorted(new EmployeeSalaryComparator())
+                .sorted(EmployeeComparators.BY_AGE.reversed())
                 .forEach(IO::println);
     }
 }
