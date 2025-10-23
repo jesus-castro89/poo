@@ -1,0 +1,31 @@
+package com.empresa.nomina.model;
+
+public enum Department {
+
+    RRHH("Recursos Humanos", 0.10),
+    DESARROLLO("Desarrollo", 0.15),
+    VENTAS("Ventas", 0.20),
+    MARKETING("Marketing", 0.12);
+
+    private final String description;
+
+    private final double bonusPercentage;
+
+    Department(String description, double bonusPercentage) {
+        this.description = description;
+        this.bonusPercentage = bonusPercentage;
+    }
+
+    @Override
+    public String toString() {
+        return "%s (Bonificación: %.2f%%)".formatted(description, bonusPercentage * 100);
+    }
+
+    public double getBonusPercentage() {
+        return bonusPercentage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}
