@@ -1,11 +1,12 @@
 package com.empresa.nomina.model;
 
-public enum Department {
+public enum
+Department {
 
+    MARKETING("Marketing", 0.12),
     RRHH("Recursos Humanos", 0.10),
     DESARROLLO("Desarrollo", 0.15),
-    VENTAS("Ventas", 0.20),
-    MARKETING("Marketing", 0.12);
+    VENTAS("Ventas", 0.20);
 
     private final String description;
 

@@ -11,35 +11,34 @@ import org.util.InputHandler;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class Test {
 
     void main() {
-        // Crear una lista de empleados
-        ArrayList<Employee> employees = new ArrayList<>();
-        // Agregamos empleados antiguos a la lista
-        employees.add(new Employee("Ana", 30, 3000,
-                Position.MANAGER, Department.FINANCE));
-        employees.add(new Employee("Luis", 25, 2500,
-                Position.CASHIER, Department.SALES));
-        employees.add(new Employee("Marta", 28, 2800,
-                Position.SECRETARY, Department.HR));
-        employees.add(new Employee("Carlos", 35, 3500,
-                Position.DIRECTOR, Department.IT));
-        employees.add(new Employee("Sofia", 32, 3200,
-                Position.MANAGER, Department.MARKETING));
-        // Mostramos la lista original
-        IO.println("Lista original de empleados:");
-        employees.forEach(IO::println);
-        // Ordenamos y mostramos la lista de forma natural (por nombre)
-        employees.stream()
-                .sorted(Comparator.naturalOrder())
-                .forEach(IO::println);
-        // Ordenamos y mostramos la lista por edad
-        IO.println("Empleados ordenados por edad:");
-        employees.stream()
-                .sorted(EmployeeComparators.BY_AGE.reversed())
-                .forEach(IO::println);
+        Item[] items = new Item[5];
+        items[0] = new Item("Articulo A", 10.50);
+        items[1] = new Item("Articulo B", 11.50);
+        items[2] = new Item("Articulo C", 12.50);
+        items[3] = new Item("Articulo D", 13.50);
+        items[4] = new Item("Articulo E", 14.50);
+
+        ShoppingCart cart = new ShoppingCart();
+        cart.addItem(items[3]);
+        cart.addItem(items[0]);
+        cart.addItem(items[1]);
+
+        cart.showCart();
+
+        cart.addItem(items[3]);
+        cart.addItem(items[3]);
+
+        cart.showCart();
+
+        cart.incrementQuantity(items[3], 5);
+        cart.incrementQuantity(items[4], 5);
+
+        cart.showCart();
     }
 }

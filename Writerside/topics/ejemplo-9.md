@@ -5,73 +5,54 @@ permitirá agregar productos, eliminar productos y mostrar el contenido del carr
 
 ## Clases
 
-- **Product**: Representa un producto con un nombre y un precio.
-- **ShoppingCart**: Utiliza un `HashMap` para almacenar productos y sus cantidades.
-- **Main**: Clase principal para ejecutar la aplicación.
-
-### Product.java
-
-```java
-public class Product {
-    private String name;
-    private double price;
-
-    public Product(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public String toString() {
-        return name + " - $" + price;
-    }
+```plantuml
+@startuml
+abstract class Product{
+    - String name
+    - double price
+    + Product(String name, double price)
+    + String getName()
+    + double getPrice()
 }
-```
 
-### ShoppingCart.java
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-public class ShoppingCart {
-    private HashMap<Product, Integer> cart;
-
-    public ShoppingCart() {
-        cart = new HashMap<>();
-    }
-
-    public void addProduct(Product product) {
-        addProduct(product, 1);
-    }
-
-    public void addProduct(Product product, int quantity) {
-        cart.put(product, cart.getOrDefault(product, 0) + quantity);
-    }
-
-    public void removeProduct(Product product) {
-        cart.remove(product);
-    }
-
-    public void displayCart() {
-        double total = 0;
-        System.out.println("Carrito de Compras:");
-        for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
-            Product product = entry.getKey();
-            int quantity = entry.getValue();
-            double subtotal = product.getPrice() * quantity;
-            total += subtotal;
-            System.out.println(product + " x " + quantity + " = $" + subtotal);
-        }
-        System.out.println("Total a pagar: $" + total);
-    }
+class Fruit extends Product{
+    - String origin
+    + Fruit(String name, double price, String origin)
+    + String getOrigin()
 }
+
+class Vegetable extends Product{
+    - boolean isOrganic
+    + Vegetable(String name, double price, boolean isOrganic)
+    + boolean isOrganic()
+}
+
+class Grocerie extends Product{
+    - String brand
+    + Grocerie(String name, double price, String brand)
+    + String getBrand()
+}
+
+class Inventory{
+    - HashMap<Product, Integer> products
+    + Inventory()
+    + void addProduct(Product product, int quantity)
+    + void removeProduct(Product product)
+    + List<Product> getFruits()
+    + List<Product> getVegetables()
+    + List<Product> getGroceries()
+}
+
+class ShoppingCart{
+    - HashMap<Product, Integer> cartItems
+    + ShoppingCart()
+    + void addItem(Product product, int quantity)
+    + void removeItem(Product product)
+    + double calculateTotal()
+    + void displayCart()
+}
+
+ShoppingCart --> Inventory
+Inventory --> Product
+@enduml
 ```

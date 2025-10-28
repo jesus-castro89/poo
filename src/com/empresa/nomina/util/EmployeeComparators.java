@@ -14,8 +14,10 @@ public class EmployeeComparators {
             Comparator.comparingInt(Employee::getAge);
 
     public static final Comparator<Employee> BY_DEPARTMENT =
-            Comparator.comparing(Employee::getDepartment, DepartmentComparator.BY_BONUS);
+            Comparator.comparing(Employee::getDepartment,
+                    DepartmentComparator.BY_BONUS);
 
     public static final Comparator<Employee> BY_POSITION =
-            Comparator.comparing(Employee::getPosition, PositionComparator.BY_RETENTION);
+            Comparator.comparing(Employee::getPosition,
+                    PositionComparator.BY_RETENTION);
 }

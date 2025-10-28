@@ -2,14 +2,36 @@ package com.empresa.nomina.model;
 
 import java.util.function.Predicate;
 
+/**
+ * Clase que representa a un empleado en la empresa.
+ * Cuyos atributos incluyen nombre, departamento, posición,
+ * salario base y edad.
+ * Además de permitir calcular el salario mensual
+ * y comparar empleados por nombre de forma natural.
+ */
 public class Employee implements Comparable<Employee> {
-
+    /**
+     * Nombre del empleado.
+     */
     private String name;
     private Department department;
     private Position position;
     private double baseSalary;
     private int age;
 
+    /**
+     * Constructor de la clase Employee.
+     * {@snippet lang=java :
+     * Employee emp = new Employee("Juan Pérez", Department.DESARROLLO,
+     *                              Position.DESARROLLADOR, 3000.0, 30);
+     * }
+     *
+     * @param name Nombre del empleado.
+     * @param department Departamento del empleado.
+     * @param position Posición del empleado.
+     * @param baseSalary Salario base del empleado.
+     * @param age Edad del empleado.
+     */
     public Employee(String name, Department department,
                     Position position, double baseSalary, int age) {
         this.name = name;
@@ -19,6 +41,11 @@ public class Employee implements Comparable<Employee> {
         this.age = age;
     }
 
+    /**
+     * Representación en cadena del empleado.
+     *
+     * @return Cadena con el nombre, departamento y posición del empleado.
+     */
     @Override
     public String toString() {
         return "%s - %s, %s".formatted(name, department.getDescription(),
