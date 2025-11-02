@@ -1,81 +1,79 @@
-# Actividad 11: Los Sudokus Parte 3
+# Actividad 11: El Juego de Ahorcado
 
-En la actividad anterior dividimos la funcionalidad de la clase Sudoku en varias clases, cada una con una
-responsabilidad específica.
+## Descripción
 
-En esta actividad no encargaremos de implementar una nueva funcionalidad en la que el sudoku generado cuente con
-una unica solución. Para ello, se te pide que implementes la siguiente funcionalidad en la clase SudokuValidator:
+El juego de ahorcado es un juego en el que el jugador debe adivinar una palabra, letra por letra. El jugador tiene un
+número limitado de intentos para adivinar la palabra. Cada vez que el jugador adivina una letra, se muestra en la
+palabra. Si el jugador adivina una letra que no está en la palabra, pierde un intento. Si el jugador adivina la palabra
+antes de quedarse sin intentos, gana el juego.
 
-* **hasUniqueSolution**: Este método se encargará de verificar si el sudoku tiene una única solución. Para ello, se te
-  pide que implementes un algoritmo de backtracking que verifique si el sudoku tiene una única solución. Si el sudoku
-  tiene una única solución, el método debe devolver true, en caso contrario debe devolver false.
-* **countSolutions**: Este método se encargará de contar el número de soluciones que tiene el sudoku. Para ello, se te
-  pide que implementes un algoritmo de backtracking que cuente el número de soluciones que tiene el sudoku. Si el sudoku
-  tiene una única solución, el método debe devolver 1, en caso contrario debe devolver el número de soluciones que tiene
-  el sudoku.
+## Objetivos
 
-## Desarrollo
+Desarrollar una aplicación que permita jugar al ahorcado. La aplicación debe mostrar la palabra a adivinar con guiones
+en lugar de las letras. El jugador debe poder ingresar letras para adivinar la palabra. La aplicación debe mostrar las
+letras adivinadas y los intentos restantes. La aplicación debe mostrar un mensaje de victoria si el jugador adivina la
+palabra y un mensaje de derrota si el jugador se queda sin intentos.
 
-1. Agrega a la clase `SudokuValidator` los métodos `hasUniqueSolution` y `countSolutions`, así como el atributo
-   `solutionCount` que se encargará de contar el número de soluciones que tiene el sudoku.
-2. Implementa el método `countSolutions` utilizando un algoritmo de backtracking que cuente el número de soluciones que
-   tiene el sudoku.
-3. Implementa el método `hasUniqueSolution` utilizando el método `countSolutions` para verificar si el sudoku tiene una
-   única solución.
-4. Agrega a la clase `SudokuGenerator` el método `generateOneSolutionPuzzle` que se encargará de generar un sudoku
-   con una única solución. Para ello, se te pide que utilices la clase `SudokuPuzzle` y definas un tipo enum para
-   representar el nivel de dificultad del sudoku. El método `generateOneSolutionPuzzle` debe recibir como parámetro el
-   nivel de dificultad del sudoku y devolver un objeto de tipo `SudokuPuzzle` que contenga el sudoku generado. El método
-   `generateOneSolutionPuzzle` debe utilizar el método `generatePuzzle` de la clase `SudokuGenerator` para generar el
-   sudoku y el método `hasUniqueSolution` de la clase `SudokuValidator` para verificar si el sudoku tiene una única
-   solución. Si el sudoku no tiene una única solución, el método `generateOneSolutionPuzzle` debe volver a generar el
-   sudoku hasta que tenga una única solución con un límite de intentos de 10. Si el sudoku no tiene una única solución
-   en 10 intentos, el método `generateOneSolutionPuzzle` debe devolver null.
+## Requerimientos
 
-### La función `countSolutions`
+1. La aplicación debe definir una lista de palabras a adivinar (al menos 5 palabras).
+2. La aplicación debe seleccionar una palabra al azar de la lista de palabras.
+3. La aplicación debe mostrar la palabra a adivinar con guiones en lugar de las letras.
+4. La aplicación debe permitir al jugador ingresar letras para adivinar la palabra.
+5. La aplicación debe mostrar las letras adivinadas y los intentos restantes.
+    * Cada letra adivinada debe mostrarse en la palabra.
+    * El número de intentos debe ser de al menos 5, pero puede ser mayor.
+6. La aplicación debe mostrar un mensaje de victoria si el jugador adivina la palabra.
+7. La aplicación debe mostrar un mensaje de derrota si el jugador se queda sin intentos.
+8. La aplicación debe permitir al jugador jugar de nuevo.
+9. La aplicación debe mostrar un mensaje de despedida cuando el jugador decide salir del juego.
+10. La aplicación debe ser desarrollada en Java.
+11. La aplicación debe ser desarrollada usando arreglos para almacenar las palabras a adivinar y las letras adivinadas.
+12. La aplicación debe ser desarrollada usando funciones para dividir la lógica del juego en partes más pequeñas.
+13. La aplicación debe ser desarrollada usando ventanas emergentes para mostrar mensajes al jugador (JOptionPane).
 
-La función `countSolutions` se encargará de contar el número de soluciones que tiene el sudoku. Para ello, se te pide
-que implementes un algoritmo de backtracking que cuente el número de soluciones que tiene el sudoku. La función
-`countSolutions` debe recibir como parámetro el sudoku y devolver el número de soluciones que tiene el sudoku.
+## Entregables
 
-Para ello toma el siguiente pseudocódigo como referencia:
+1. Código fuente de la aplicación.
+    * El código fuente debe estar organizado en clases y métodos, así como modularizado, es decir, debe estar dividido
+      en partes más pequeñas y manejables dentro de archivos `.java`.
+2. Capturas de pantalla de la aplicación en ejecución.
+    * Incluir capturas de pantalla de la aplicación mostrando la palabra a adivinar, las letras adivinadas y los
+      intentos restantes.
+3. Portada con datos de identificación de los miembros del equipo.
+4. Archivo PDF con los entregables 2 y 3.
+5. El juego debe de implementarse en Java, por lo que no se aceptarán aplicaciones desarrolladas en otro lenguaje de
+   programación.
+6. El código fuente debe estar comentado y documentado.
+7. El código fuente debe implementar el uso de la clase JOptionPane para mostrar mensajes al jugador.
+    * La aplicación debe interactuar con el usuario a través de ventanas emergentes.
+    * Otra interacción con el usuario no será evaluada.
 
-```text
-Función countSolutions(tablero: matriz de enteros, fila: entero, columna: entero)
-    Definir siguienteFila, siguienteColumna como enteros
+## Criterios de Evaluación
 
-    Si fila no es igual a 9 entonces
-        Si el contador de soluciones (solutionCount) es menor o igual a 1 entonces
-            // Calcular siguiente celda
-            siguienteFila ← (columna es 8) ? fila + 1 : fila
-            siguienteColumna ← (columna + 1) módulo 9
+| Criterio             | Descripción                                                                                 | Puntaje  |
+|----------------------|---------------------------------------------------------------------------------------------|----------|
+| Portada              | Datos de identificación de los miembros del equipo                                          | 5%       |
+| Palabras             | Definición de la lista de palabras a adivinar                                               | 5%       |
+| Selección            | Selección de una palabra al azar de la lista de palabras                                    | 5%       |
+| Palabra              | Mostrar la palabra a adivinar con guiones en lugar de las letras                            | 10%      |
+| Letras               | Permitir al jugador ingresar letras para adivinar la palabras y validar la entrada de datos | 10%      |
+| Adivinadas           | Mostrar las letras adivinadas y los intentos restantes                                      | 10%      |
+| Victoria             | Mostrar un mensaje de victoria si el jugador adivina la palabra                             | 10%      |
+| Derrota              | Mostrar un mensaje de derrota si el jugador se queda sin intentos                           | 10%      |
+| Jugar de nuevo       | Permitir al jugador jugar de nuevo                                                          | 10%      |
+| Despedida            | Mostrar un mensaje de despedida cuando el jugador decide salir del juego                    | 10%      |
+| Código fuente        | Código fuente de la aplicación                                                              | 10%      |
+| Capturas de pantalla | Capturas de pantalla de la aplicación en ejecución                                          | 5%       |
+| **Total**            |                                                                                             | **100%** |
 
-            Si tablero[fila][columna] es diferente de 0 entonces
-                // Celda ya está llena, continuar con la siguiente
-                Llamar a countSolutions(tablero, siguienteFila, siguienteColumna)
-            Sino
-                // Probar los números del 1 al 9
-                Para num desde 1 hasta 9 hacer
-                    Si el número num es válido en la posición (fila, columna) según SudokuValidator entonces
-                        tablero[fila][columna] ← num
-                        Llamar a countSolutions(tablero, siguienteFila, siguienteColumna)
-                        tablero[fila][columna] ← 0 // Retroceso (backtracking)
-                    Fin Si
-                Fin Para
-            Fin Si
-        Fin Si
-    Sino
-        // Si fila es 9, significa que ya recorrimos todo el tablero (solución completa)
-        Incrementar solutionCount
-    Fin Si
-Fin Función
-```
+> **Nota:** La aplicación debe ser desarrollada en Java. No se aceptarán aplicaciones desarrolladas en otro lenguaje de
+> programación.
 
-Toma en cuenta que el pseudocódigo anterior es solo una referencia y no es un código Java válido. Debes adaptarlo a
-Java y a la estructura de tu clase `SudokuValidator`. Recuerda que el método `countSolutions` debe ser recursivo y
-debe utilizar el algoritmo de backtracking para contar el número de soluciones que tiene el sudoku. Además, debes
-implementar el método `hasUniqueSolution` utilizando el método `countSolutions` para verificar si el sudoku tiene una
-única solución. Si el sudoku tiene una única solución, el método debe devolver true, en caso contrario debe devolver
-false.
+> **Nota:** Recuerda que puedes hacer uso de las funciones de la clase Arrays de Java para trabajar con arreglos.
 
-> NOTA: El algoritmo previo usa la variable global solutionCount inicializada en 0 antes de iniciar el proceso.
+> Miembro del equipo que no aparece en la portada, no será evaluado.
+> {style="warning"}
+
+> Entregas fuera de la fecha límite, serán evaluadas sobre 70 puntos.
+> {style="warning"}

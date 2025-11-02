@@ -38,4 +38,20 @@
         </description>
         <accepts>modificadores.html</accepts>
     </rule>
+    <rule id="2d47830f">
+        <description>Created after removal of "¿Qué son los principios SOLID?" from Programación Orientada a Objetos
+        </description>
+        <accepts>solid.html</accepts>
+    </rule>
+    <rule id="34fbe406">
+        <description>Created after removal of "Single Responsibility Principle (SRP)" from Programación Orientada a
+            Objetos
+        </description>
+        <accepts>srp.html</accepts>
+    </rule>
+    <rule id="2b46e889">
+        <description>Created after removal of "Open/Closed Principle (OCP)" from Programación Orientada a Objetos
+        </description>
+        <accepts>ocp.html</accepts>
+    </rule>
 </rules>

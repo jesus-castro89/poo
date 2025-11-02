@@ -112,11 +112,6 @@
     <toc-element toc-title="Arreglos Asociativos">
         <toc-element topic="hashmap.md"/>
     </toc-element>
-    <toc-element hidden="true" toc-title="SOLID">
-        <toc-element topic="solid.md"/>
-        <toc-element topic="srp.md"/>
-        <toc-element topic="ocp.md"/>
-    </toc-element>
     <toc-element hidden="true" toc-title="Data Streams">
         <toc-element topic="plaint-text.md"/>
         <toc-element topic="objeto-archivo.md"/>
@@ -146,8 +141,8 @@
         <toc-element topic="actividad-8.md"/>
         <toc-element topic="actividad-9.md"/>
         <toc-element topic="actividad-10.md"/>
-        <toc-element hidden="true" topic="actividad-11.md"/>
-        <toc-element hidden="true" topic="actividad-12.md"/>
+        <toc-element topic="actividad-11.md"/>
+        <toc-element topic="actividad-12.md"/>
         <toc-element hidden="true" topic="actividad-13.md"/>
     </toc-element>
 </instance-profile>

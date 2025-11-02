@@ -1,155 +1,78 @@
-# Actividad 12: Los sudokus Parte Final
+# Actividad 12: Sistema de Inventario “TechStore”
 
-Para esta última actividad del curso, deberemos de realizar una serie de cambios en el código que hemos
-desarrollado en las actividades anteriores.
+## Descripción
 
-En concreto, la lógica de trabajo de las aplicaciones finales son la siguientes:
+La empresa TechStore requiere un sistema para registrar, consultar y administrar productos.
+Cada producto puede ser de un tipo distinto (por ejemplo, Laptop, Smartphone, Tablet, etc.), pero todos comparten
+características básicas como nombre, precio y cantidad en inventario.
 
-- La aplicación deberá solicitar mediante JOptionPane al usuario el nivel de dificultad del sudoku a generar.
-- El nivel de dificultad del sudoku se representará mediante un tipo enum que contendrá los siguientes valores:
-    - RESUELTO, 81 celdas visibles
-    - FÁCIL, 70 celdas visibles
-    - MEDIO. 60 celdas visibles
-    - DIFÍCIL, 50 celdas visibles
-- El sistema deberá generar un sudoku con una única solución y el número de celdas visibles según el nivel de dificultad
-  seleccionado por el usuario.
-- El sudoku generado se mostrará en un cuadro de diálogo.
-- El sudoku generado se guardará en un archivo de texto con el nombre `sudoku.txt` y en un archivo `.sudoku` con el
-  nombre `sudoku.sudoku`.
+El sistema debe permitir al usuario (mediante JOptionPane) realizar operaciones como:
 
-Por otra parte, deberemos de contar con otra función de la App que nos permita indicarle de ante mano la ubicación del
-archivo `sudoku.sudoku` y que nos permita cargar el sudoku en memoria, y con ello resolverlo y mostrarlo en un cuadro de
-diálogo.
+* Agregar productos al inventario
+* Consultar productos
+* Mostrar todos los productos registrados
+* Buscar productos por nombre o por código
+* Eliminar productos del inventario
 
-## Desarrollo
+El inventario se almacenará utilizando una tabla hash (HashMap) para búsquedas rápidas por código.
 
-1. La clase `SudokuGenerator` deberá contar ahora con las siguientes funciones:
-    * `clearBoard`: Este método se encargará de limpiar el tablero del sudoku.
-    * `shuffledNumbers`: Este método se encargará de devolver un array de enteros con los números del 1 al 9 en orden
-      aleatorio.
-    * `fillBoard`: Este método se encargará de llenar el tablero del sudoku con números aleatorios. Para ello, se te
-      pide que utilices el método `shuffledNumbers` para obtener los números aleatorios y el método `isValid` de la
-      clase `SudokuValidator` para verificar si el número es válido en la posición (fila, columna) según las reglas del
-      sudoku.
-    * `solveSudoku`: Este método recibirá como entrada un objeto de tipo `SudokuPuzzle` y se encargará de resolver el
-      sudoku. Toma en cuenta que ya cuentas con la función `fillBoard` que se encargará de llenar el tablero del sudoku
-      con números aleatorios.
-    * `generateOneSolutionPuzzle`: Este método se encargará de generar un sudoku con una única solución. Para ello, se
-      te pide que utilices el método `hasUniqueSolution` de la clase `SudokuValidator` para verificar si el sudoku
-      contiene una única solución. Si el sudoku no tiene una única solución, el método `generateOneSolutionPuzzle` debe
-      devolver null. Y el número de intentos debe ser de 10. Si el sudoku no tiene una única solución en 10 intentos,
-      el método `generateOneSolutionPuzzle` debe devolver null.
-    * Y como único atributo final y estático, una matriz de enteros de 9x9 que representará el tablero del sudoku.
-    * > Las funciones de esta clase no deberán de ser estáticas, de lo contario causaremos un conflicto con el resto de
-      > la App.
-2. La clase `SudokuValidator` deberá contar ahora con las siguientes funciones:
-    * `isValid`: Este método se encargará de verificar si el número es válido en la posición (fila, columna) según las
-      reglas del sudoku. Para ello, se te pide que implementes un algoritmo que verifique si el número es válido en la
-      posición (fila, columna) según las reglas del sudoku.
-    * `isValidRow`: Este método se encargará de verificar si el número es válido en la fila (fila) según las reglas del
-      sudoku. Para ello, se te pide que implementes un algoritmo que verifique si el número es válido en la fila (fila)
-      según las reglas del sudoku.
-    * `isValidColumn`: Este método se encargará de verificar si el número es válido en la columna (columna) según las
-      reglas del sudoku. Para ello, se te pide que implementes un algoritmo que verifique si el número es válido en la
-      columna (columna) según las reglas del sudoku.
-    * `isValidBox`: Este método se encargará de verificar si el número es válido en la caja (fila, columna) según las
-      reglas del sudoku. Para ello, se te pide que implementes un algoritmo que verifique si el número es válido en la
-      caja (fila, columna) según las reglas del sudoku.
-    * `hasUniqueSolution`: Este método se encargará de verificar si el sudoku tiene una única solución. Para ello, se te
-      pide que implementes un algoritmo de backtracking que verifique si el sudoku tiene una única solución. Si el
-      sudoku tiene una única solución, el método debe devolver true, en caso contrario debe devolver false.
-    * `countSolutions`: Este método se encargará de contar el número de soluciones que tiene el sudoku. Para ello, se te
-      pide que implementes un algoritmo de backtracking que cuente el número de soluciones que tiene el sudoku. Si el
-      sudoku tiene una única solución, el método debe devolver 1, en caso contrario debe devolver el número de
-      soluciones que tiene el sudoku.
-    * Y dós atributos estáticos, por un lado, una matriz de enteros de 9x9 que representará el tablero del sudoku y,
-      por otro lado, un entero que representará el número de soluciones que tiene el sudoku.
-3. La clase `SudokuPuzzle` deberá contar ahora con los siguientes métodos:
-    * `isSolved`: Este método se encargará de verificar si el sudoku está resuelto. Para ello, se te pide que
-      implementes un algoritmo que verifique si el sudoku está resuelto. El método `isSolved` debe devolver true si el
-      sudoku está resuelto, en caso contrario debe devolver false.
-    * `applyDifficulty`: Este método se encargará de aplicar la dificultad al sudoku. Para ello, se te pide que
-      implementes un algoritmo que aplique la dificultad al sudoku. El método `applyDifficulty` debe recibir como
-      parámetro el nivel de dificultad del sudoku y devolver un objeto de tipo `SudokuPuzzle` que contenga el sudoku
-      generado.
-    * `setPuzzle`: Este método se encargará de establecer el sudoku en el objeto `SudokuPuzzle`. Para ello, se te pide
-      que implementes un algoritmo que copie la matriz de entrada como sudoku en el objeto `SudokuPuzzle`.
-    * `getPuzzle`: Este método se encargará de devolver el sudoku en el objeto `SudokuPuzzle`. Para ello, se te pide
-      que implementes un algoritmo que devuelva la matriz de sudoku en el objeto `SudokuPuzzle`.
-    * `getPrintablePuzzle`: Este método se encargará de devolver el sudoku en un formato imprimible. Para ello, se
-      te pide que implementes un algoritmo que devuelva el sudoku en un formato imprimible.
-    * Así mismo, tres constructores:
-        * `SudokuPuzzle()`: No recibe parametros y se encargará de inicializar el sudoku con una matriz de enteros de
-          9x9 que representará el sudoku.
-        * `SudokuPuzzle(int[][] puzzle)`: Recibe como parámetro una matriz de enteros de 9x9 que
-          representará el sudoku con espacios vacíos representados por el número 0.
-        * `SudokuPuzzle(int visibleCells)`: Recibe como parámetro el número de celdas visibles y se encargará de
-          inicializar el sudoku con una matriz de enteros de 9x9 que representará el sudoku con espacios vacíos
-          representados por el número 0. Toma en cuenta que el número de celdas visibles esta dado por el tipo enumerado
-          `SudokuDifficultyLevel` y que el sudoku debe de ser un sudoku válido y completo.
-    * Por último un unico atributo de tipo matriz de enteros de 9x9 que representará el sudoku.
-    * > Las funciones de esta clase no deberán de ser estáticas, de lo contario causaremos un conflicto con el resto de
-      > la App.
-4. La clase `SudokuSolver` deberá de contar ahora con los siguientes métodos:
-    * `solve`: Este método se encargará de resolver el sudoku. Para ello, se te pide que implementes un algoritmo que
-      resuelva el sudoku. El método `solve` debe devolver un objeto de tipo `SudokuPuzzle` que contenga el sudoku
-      resuelto.
-5. El Enumerado `SudokuDifficultyLevel` deberá de contar ahora con los siguientes valores:
-    * `RESUELTO`, 81 celdas visibles
-    * `FÁCIL`, 70 celdas visibles
-    * `MEDIO` 60 celdas visibles
-    * `DIFÍCIL`, 50 celdas visibles
-    * Adicionalmente, el enumerado deberá de contar con un método `getCellsToRemove` que devolverá el número de celdas
-      a eliminar según el nivel de dificultad del sudoku. Así como un método `getValues` que devolverá el arreglo de
-      dificultades a elegir sin contar la opción `RESUELTO`. Y por último, su función `toString` deberá de devolver el
-      nombre del nivel de dificultad y el número de celdas visibles.
-6. La clase `SudokuApp` deberá de contar ahora con los siguientes métodos:
-    * `start`: Este método se encargará de iniciar la aplicación. La función deberá solicitar un nivel de dificultad al
-      usuario mediante un cuadro de diálogo y generar un sudoku con una única solución. El sudoku generado se
-      mostrará en un cuadro de diálogo y se guardará en un archivo de texto con el nombre `sudoku.txt` y en un archivo
-      `.sudoku` con el nombre `sudoku.sudoku`.
-    * `load`: Este método se encargará de cargar el sudoku desde un archivo `.sudoku`. Para ello, se te pide que
-      implementes un algoritmo que cargue el sudoku desde un archivo `.sudoku` y lo muestre en un cuadro de diálogo.
-    * `populateSolution`: Este método se encargará de llenar el sudoku con los números del 1 al 9. Para ello, se te pide
-      que implementes un algoritmo que llene el sudoku con los números del 1 al 9.
-    * `exportSudoku`: Este método se encargará de exportar el sudoku a un archivo de texto. Para ello, se te pide que
-      implementes un algoritmo que exporte el sudoku a un archivo de texto con el nombre `sudoku.txt` y un archivo
-      `.sudoku` con el nombre `sudoku.sudoku`.
+## Requerimientos
 
-> NOTA: Recuerda agregar una exception para manejar los casos cuando un sudoku tiene más de una solución.
-
-## Requisitos
-
-- El sudoku debe de ser un rompecabezas de 9x9.
-- El sudoku debe de ser un sudoku válido y completo.
-- El sudoku puede ser mostrado en consola o JOptionPane, dependiendo de tu preferencia, pero utilizando caracteres
-  ASCII para representar las celdas y contornos de la matriz.
-- El sistema deberá exportar el sudoku a un archivo de texto con el nombre `sudoku.txt` y en un archivo `.sudoku` con el
-  nombre `sudoku.sudoku`.
-- El sistema deberá permitir cargar el sudoku desde un archivo `.sudoku`, resolverlo y mostrarlo en un cuadro de
-  diálogo.
+1. La aplicación debe permitir agregar productos al inventario, solicitando al usuario el nombre, precio, cantidad y
+   tipo de producto.
+2. La aplicación debe permitir consultar un producto por su código único.
+3. La aplicación debe permitir mostrar todos los productos registrados en el inventario.
+4. La aplicación debe permitir buscar productos por nombre.
+5. La aplicación debe permitir eliminar productos del inventario por su código.
+6. La aplicación debe utilizar la clase `HashMap` para almacenar los productos en el inventario.
+7. La aplicación debe interactuar con el usuario a través de ventanas emergentes (JOptionPane).
+8. La aplicación debe contar con al menos 3 tipos de productos diferentes (por ejemplo, Laptop, Smartphone, Tablet).
+9. La aplicación debe contar con al menos 2 interfaces `Stockable` y `Sellable` que definan métodos relacionados con el
+   inventario y la venta de productos.
+    * La interfaz `Stockable` debe incluir métodos para agregar, eliminar y consultar productos en el inventario.
+        * Siendo más específico, debe incluir métodos como `addStock()`, `removeStock()` y `checkStock()`.
+    * La interfaz `Sellable` debe incluir métodos para calcular el precio de venta con impuestos y descuentos.
+        * Siendo más específico, debe incluir métodos como `calculatePriceWithTax()` y `applyDiscount()`.
+    * **Es importante destacar que no todos los productos necesitan implementar ambas interfaces; algunos pueden
+      implementar solo una de ellas según sus características.**
+10. La aplicación debe ser desarrollada en Java.
+11. La aplicación debe estar modularizada, dividiendo la lógica del programa en clases y métodos manejables.
+12. La aplicación debe de contar con una lista de productos predefinidos para facilitar las pruebas.
+13. La aplicación debe estar documentada y comentada adecuadamente usando JavaDoc.
 
 ## Entregables
 
-- Código fuente del sistema.
-- Pruebas funcionales que demuestren el correcto funcionamiento de cada una de las funcionalidades.
-- Portada con datos de identificación del equipo de trabajo.
+En un solo documento PDF, incluir los siguientes elementos:
+
+1. Portada con datos de identificación de los miembros del equipo.
+2. Código fuente de la aplicación.
+    * El código fuente debe estar organizado en clases y métodos, así como modularizado, es decir, debe estar dividido
+      en partes más pequeñas y manejables dentro de archivos `.java`.
+3. Capturas de pantalla de la aplicación en ejecución.
 
 ## Criterios de Evaluación
 
-| Criterio    | Descripción                                                   | Puntuación |
-|-------------|---------------------------------------------------------------|------------|
-| Portada     | Presentación y datos de identificación del equipo de trabajo. | 10%        |
-| Código      | Calidad del código, modularidad y uso de buenas prácticas.    | 20%        |
-| Pruebas     | Cobertura de pruebas funcionales y casos de prueba.           | 20%        |
-| Modularidad | Separación de clases y responsabilidades.                     | 20%        |
-| Exportar    | Exportación del sudoku a un archivo de texto.                 | 10%        |
-| Cargar      | Carga del sudoku desde un archivo `.sudoku`.                  | 10%        |  
-| Imprimir    | Presentación del sudoku en JOptionPane.                       | 10%        |
-| **Total**   | **Total de puntos posibles.**                                 | **100%**   |
+| Criterio             | Descripción                                                               | Puntaje  |
+|----------------------|---------------------------------------------------------------------------|----------|
+| Portada              | Datos de identificación de los miembros del equipo                        | 5%       |
+| Agregar productos    | Permitir agregar productos al inventario                                  | 15%      |
+| Consultar productos  | Permitir consultar un producto por su código único                        | 10%      |
+| Mostrar productos    | Permitir mostrar todos los productos registrados                          | 10%      |
+| Buscar productos     | Permitir buscar productos por nombre                                      | 10%      |
+| Eliminar productos   | Permitir eliminar productos del inventario por su código                  | 10%      |
+| Uso de HashMap       | Utilizar la clase `HashMap` para almacenar los productos en el inventario | 10%      |
+| Interfaces           | Implementar las interfaces `Stockable` y `Sellable` adecuadamente         | 15%      |
+| Código fuente        | Código fuente de la aplicación                                            | 10%      |
+| Capturas de pantalla | Capturas de pantalla de la aplicación en ejecución                        | 5%       |
+| **Total**            |                                                                           | **100%** |
 
-## Notas
+> **Nota:** La aplicación debe ser desarrollada en Java. No se aceptarán aplicaciones desarrolladas en otro lenguaje de
+> programación.
 
-- El sistema debe ser entregado en un archivo comprimido (zip) que contenga el código fuente y las pruebas.
-- La fecha de entrega es el 28 de mayo de 2025 a las 23:59 horas.
-- Trabajo entregado en fecha posterior no será tomado en cuenta.
+> **Nota:** Recuerda que puedes hacer uso de las funciones de la clase Arrays de Java para trabajar con arreglos.
+
+> Miembro del equipo que no aparece en la portada, no será evaluado.
+> {style="warning"}
+
+> Entregas fuera de la fecha límite, serán evaluadas sobre 70 puntos.
+> {style="warning"}
