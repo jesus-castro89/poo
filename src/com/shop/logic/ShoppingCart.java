@@ -6,26 +6,26 @@ import java.util.HashMap;
 
 public class ShoppingCart {
 
-    private HashMap<Product, Integer> inventory;
+    private HashMap<Product, Integer> cartProducts;
 
     public ShoppingCart() {
-        this.inventory = new HashMap<>();
+        this.cartProducts = new HashMap<>();
     }
 
     public void addProduct(Product product, int quantity) {
 
-        this.inventory.put(product,
-                this.inventory.getOrDefault(product, 0) + quantity);
+        this.cartProducts.put(product,
+                this.cartProducts.getOrDefault(product, 0) + quantity);
     }
 
     public void removeProduct(Product product, int quantity) throws Exception {
 
-        if (this.inventory.containsKey(product)) {
-            int currentQuantity = this.inventory.get(product);
+        if (this.cartProducts.containsKey(product)) {
+            int currentQuantity = this.cartProducts.get(product);
             if (currentQuantity <= quantity) {
-                this.inventory.remove(product);
+                this.cartProducts.remove(product);
             } else {
-                this.inventory.put(product, currentQuantity - quantity);
+                this.cartProducts.put(product, currentQuantity - quantity);
             }
         } else {
             IO.println("El producto no existe en el carrito.");
@@ -33,14 +33,41 @@ public class ShoppingCart {
         }
     }
 
+    public <T extends Product> double getTotalTypePrice(Class<T> type) {
+        double total = 0;
+        for (Product product : this.cartProducts.keySet()) {
+            if (type.isInstance(product)) {
+                total += product.getPrice() * this.cartProducts.get(product);
+            }
+        }
+        return total;
+    }
+
     public void clearCart() {
-        this.inventory.clear();
+        this.cartProducts.clear();
+    }
+
+    public HashMap<Product, Integer> makeSale() {
+        printCart();
+        return this.cartProducts;
+    }
+
+    public void printCart() {
+        IO.println("Carrito de compras:");
+        for (Product product : this.cartProducts.keySet()) {
+            IO.println("%s - Cantidad: %d - Precio unitario: $%.2f".formatted(
+                    product.getName(),
+                    this.cartProducts.get(product),
+                    product.getPrice()
+            ));
+        }
+        IO.println("Total: $" + getTotal());
     }
 
     public double getTotal() {
         double total = 0;
-        for (Product product : this.inventory.keySet()) {
-            total += product.getPrice() * this.inventory.get(product);
+        for (Product product : this.cartProducts.keySet()) {
+            total += product.getPrice() * this.cartProducts.get(product);
         }
         return total;
     }

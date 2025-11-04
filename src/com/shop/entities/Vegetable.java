@@ -1,8 +1,6 @@
 package com.shop.entities;
 
-import com.shop.interfaces.Reciclable;
-
-public class Vegetable extends Product implements Reciclable {
+public class Vegetable extends Product {
 
     private boolean isOrganic;
 

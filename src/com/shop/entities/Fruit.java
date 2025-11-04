@@ -1,8 +1,6 @@
 package com.shop.entities;
 
-import com.shop.interfaces.Reciclable;
-
-public class Fruit extends Product implements Reciclable {
+public class Fruit extends Product {
 
     private String origin;
 

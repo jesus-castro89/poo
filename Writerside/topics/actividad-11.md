@@ -31,6 +31,12 @@ palabra y un mensaje de derrota si el jugador se queda sin intentos.
 11. La aplicación debe ser desarrollada usando arreglos para almacenar las palabras a adivinar y las letras adivinadas.
 12. La aplicación debe ser desarrollada usando funciones para dividir la lógica del juego en partes más pequeñas.
 13. La aplicación debe ser desarrollada usando ventanas emergentes para mostrar mensajes al jugador (JOptionPane).
+14. La aplicación debe guardar el registro de palabras seleccionadas.
+15. La aplicación debe validar la entrada del jugador para asegurarse de que solo se ingresen letras válidas (A-Z, a-z).
+16. La aplicación debe ser capaz de manejar tanto letras mayúsculas como minúsculas.
+17. La aplicación debe evitar que el jugador ingrese la misma letra más de una vez.
+18. La aplicación debe mostrar la palabra completa al final del juego, ya sea que el jugador gane o pierda.
+19. La aplicación debe evitar el uso de palabras seleccionadas previamente en juegos anteriores durante la misma sesión.
 
 ## Entregables
 
@@ -63,7 +69,8 @@ palabra y un mensaje de derrota si el jugador se queda sin intentos.
 | Derrota              | Mostrar un mensaje de derrota si el jugador se queda sin intentos                           | 10%      |
 | Jugar de nuevo       | Permitir al jugador jugar de nuevo                                                          | 10%      |
 | Despedida            | Mostrar un mensaje de despedida cuando el jugador decide salir del juego                    | 10%      |
-| Código fuente        | Código fuente de la aplicación                                                              | 10%      |
+| Código fuente        | Código fuente de la aplicación                                                              | 5%       |
+| Comentarios          | Código fuente comentado y documentado                                                       | 5%       |
 | Capturas de pantalla | Capturas de pantalla de la aplicación en ejecución                                          | 5%       |
 | **Total**            |                                                                                             | **100%** |
 

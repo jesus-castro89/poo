@@ -1,78 +1,56 @@
-# Actividad 12: Sistema de Inventario “TechStore”
+# Actividad 12: Generador de Sudokus en Java
 
-## Descripción
+## Objetivo
 
-La empresa TechStore requiere un sistema para registrar, consultar y administrar productos.
-Cada producto puede ser de un tipo distinto (por ejemplo, Laptop, Smartphone, Tablet, etc.), pero todos comparten
-características básicas como nombre, precio y cantidad en inventario.
+Desarrollar un programa en Java que genere tableros de Sudoku válidos de manera aleatoria.
+De al menos tres dificultades: fácil, medio y difícil, para ellos usaremos un HashMap para almacenar las posiciones y
+valores del Sudoku.
+El programa debe permitir al usuario seleccionar la dificultad y mostrar el tablero generado en la consola.
 
-El sistema debe permitir al usuario (mediante JOptionPane) realizar operaciones como:
+## Requisitos
 
-* Agregar productos al inventario
-* Consultar productos
-* Mostrar todos los productos registrados
-* Buscar productos por nombre o por código
-* Eliminar productos del inventario
+1. **Generación del tablero**:
+    - Crear una función que genere un tablero de Sudoku válido.
+    - Asegurarse de que el tablero cumpla con las reglas del Sudoku (cada número del 1 al 9 debe aparecer una sola vez
+      en cada fila, columna y subcuadro 3x3).
+2. **Dificultad**:
+    - Implementar diferentes niveles de dificultad (fácil, medio, difícil) que determinen cuántos números se ocultan en
+      el tablero generado.
+3. **Uso de HashMap**:
+    - Utilizar un `HashMap` para almacenar las posiciones (clave) y los valores (valor) del tablero de Sudoku.
+4. **Interfaz de usuario**:
+    - Permitir al usuario seleccionar la dificultad del Sudoku.
+    - Mostrar el tablero generado en la consola de manera clara y legible.
 
-El inventario se almacenará utilizando una tabla hash (HashMap) para búsquedas rápidas por código.
+## Algoritmo sugerido
 
-## Requerimientos
+El algoritmo para generar un Sudoku mediante un HashMap y Backtracking seguiremos los siguientes pasos:
 
-1. La aplicación debe permitir agregar productos al inventario, solicitando al usuario el nombre, precio, cantidad y
-   tipo de producto.
-2. La aplicación debe permitir consultar un producto por su código único.
-3. La aplicación debe permitir mostrar todos los productos registrados en el inventario.
-4. La aplicación debe permitir buscar productos por nombre.
-5. La aplicación debe permitir eliminar productos del inventario por su código.
-6. La aplicación debe utilizar la clase `HashMap` para almacenar los productos en el inventario.
-7. La aplicación debe interactuar con el usuario a través de ventanas emergentes (JOptionPane).
-8. La aplicación debe contar con al menos 3 tipos de productos diferentes (por ejemplo, Laptop, Smartphone, Tablet).
-9. La aplicación debe contar con al menos 2 interfaces `Stockable` y `Sellable` que definan métodos relacionados con el
-   inventario y la venta de productos.
-    * La interfaz `Stockable` debe incluir métodos para agregar, eliminar y consultar productos en el inventario.
-        * Siendo más específico, debe incluir métodos como `addStock()`, `removeStock()` y `checkStock()`.
-    * La interfaz `Sellable` debe incluir métodos para calcular el precio de venta con impuestos y descuentos.
-        * Siendo más específico, debe incluir métodos como `calculatePriceWithTax()` y `applyDiscount()`.
-    * **Es importante destacar que no todos los productos necesitan implementar ambas interfaces; algunos pueden
-      implementar solo una de ellas según sus características.**
-10. La aplicación debe ser desarrollada en Java.
-11. La aplicación debe estar modularizada, dividiendo la lógica del programa en clases y métodos manejables.
-12. La aplicación debe de contar con una lista de productos predefinidos para facilitar las pruebas.
-13. La aplicación debe estar documentada y comentada adecuadamente usando JavaDoc.
-
-## Entregables
-
-En un solo documento PDF, incluir los siguientes elementos:
-
-1. Portada con datos de identificación de los miembros del equipo.
-2. Código fuente de la aplicación.
-    * El código fuente debe estar organizado en clases y métodos, así como modularizado, es decir, debe estar dividido
-      en partes más pequeñas y manejables dentro de archivos `.java`.
-3. Capturas de pantalla de la aplicación en ejecución.
-
-## Criterios de Evaluación
-
-| Criterio             | Descripción                                                               | Puntaje  |
-|----------------------|---------------------------------------------------------------------------|----------|
-| Portada              | Datos de identificación de los miembros del equipo                        | 5%       |
-| Agregar productos    | Permitir agregar productos al inventario                                  | 15%      |
-| Consultar productos  | Permitir consultar un producto por su código único                        | 10%      |
-| Mostrar productos    | Permitir mostrar todos los productos registrados                          | 10%      |
-| Buscar productos     | Permitir buscar productos por nombre                                      | 10%      |
-| Eliminar productos   | Permitir eliminar productos del inventario por su código                  | 10%      |
-| Uso de HashMap       | Utilizar la clase `HashMap` para almacenar los productos en el inventario | 10%      |
-| Interfaces           | Implementar las interfaces `Stockable` y `Sellable` adecuadamente         | 15%      |
-| Código fuente        | Código fuente de la aplicación                                            | 10%      |
-| Capturas de pantalla | Capturas de pantalla de la aplicación en ejecución                        | 5%       |
-| **Total**            |                                                                           | **100%** |
-
-> **Nota:** La aplicación debe ser desarrollada en Java. No se aceptarán aplicaciones desarrolladas en otro lenguaje de
-> programación.
-
-> **Nota:** Recuerda que puedes hacer uso de las funciones de la clase Arrays de Java para trabajar con arreglos.
-
-> Miembro del equipo que no aparece en la portada, no será evaluado.
-> {style="warning"}
-
-> Entregas fuera de la fecha límite, serán evaluadas sobre 70 puntos.
-> {style="warning"}
+1. **Inicialización**:
+    - Crear un `HashMap<Integer, Integer>` para almacenar las posiciones y valores del Sudoku.
+        - El clave será un número entero que representa la posición en el tablero (0-80 para un tablero 9x9).
+        - El valor será el número del Sudoku (1-9) en esa posición.
+    - Crear una función para imprimir el tablero de Sudoku en la consola.
+        - Para esto, recorrer el `HashMap` y mostrar los valores en una estructura de 9x9.
+        - Si una posición no tiene un valor asignado (`null`), mostrar un espacio en blanco o un punto.
+2. **Generación del tablero completo**:
+    - Implementar una función `generateFullBoard()` que utilice backtracking para llenar el `HashMap` con un Sudoku
+      completo y válido.
+        - Comenzar desde la primera posición (0) y tratar de asignar un número del 1 al 9.
+        - Verificar si el número puede ser colocado en esa posición sin violar las reglas del Sudoku (verificar fila,
+          columna y subcuadro 3x3).
+        - Si el número es válido, asignarlo en el `HashMap` y proceder a la siguiente posición.
+        - Si no se puede colocar ningún número válido, retroceder (backtrack) y probar con otro número en la posición
+          anterior.
+3. **Ocultación de números según la dificultad**:
+    - Crear una función `removeNumbers(int difficulty)` que oculte números en el tablero generado según la dificultad
+      seleccionada.
+        - Definir cuántos números se deben ocultar para cada nivel de dificultad (por ejemplo, 40 para fácil, 50 para
+          medio, 60 para difícil).
+        - Seleccionar posiciones aleatorias en el `HashMap` y establecer su valor a `null` hasta alcanzar el número
+          deseado de posiciones ocultas.
+4. **Interfaz de usuario**:
+    - Implementar una función `main()` que permita al usuario seleccionar la dificultad del Sudoku.
+        - Llamar a `generateFullBoard()` para crear un tablero completo.
+        - Llamar a `removeNumbers(difficulty)` para ocultar números según la dificultad seleccionada.
+        - Llamar a la función de impresión para mostrar el tablero generado en la consola.
