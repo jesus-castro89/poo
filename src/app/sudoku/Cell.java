@@ -1,6 +1,8 @@
 package app.sudoku;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable {
     private int value;
     private boolean isFixed;
 

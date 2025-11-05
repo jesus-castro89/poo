@@ -1,8 +1,9 @@
 package app.sudoku;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Board {
+public class Board implements Serializable {
 
     private HashMap<Integer, Cell> cells;
 

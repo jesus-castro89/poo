@@ -4,7 +4,6 @@ import org.util.InputHandler;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -74,21 +73,18 @@ public class HangedMan {
 
     public void showIncompleteWord() {
         StringBuilder displayWord = new StringBuilder();
-        for (char c : currentWord.toCharArray()) {
-            switch (c) {
-                case 'Á' -> c = 'A';
-                case 'É' -> c = 'E';
-                case 'Í' -> c = 'I';
-                case 'Ó' -> c = 'O';
-                case 'Ú', 'Ü' -> c = 'U';
-            }
-            if (guessedLetters.toString().contains(String.valueOf(c))) {
-                displayWord.append(c).append(" ");
-            } else {
-                displayWord.append("_ ");
-            }
+        for (int i = 0; i < incompleteWord.length(); i++) {
+            displayWord.append(incompleteWord.charAt(i)).append(" ");
         }
-        IO.println("Palabra: " + displayWord.toString().trim());
+        IO.println("Palabra: " + displayWord);
+    }
+
+    private void fillAndDisplayWord(String[] letters) {
+        for (String letter : letters) {
+            fillIncompleteWord(letter);
+        }
+        IO.println("¡Letra correcta!");
+        showIncompleteWord();
     }
 
     public void playTurn() {
@@ -110,10 +106,7 @@ public class HangedMan {
                         attemptsLeft--;
                         IO.println("Letra incorrecta. Te quedan " + attemptsLeft + " intentos.");
                     } else {
-                        fillIncompleteWord(letter);
-                        fillIncompleteWord("Á");
-                        IO.println("¡Letra correcta!");
-                        showIncompleteWord();
+                        fillAndDisplayWord(new String[]{"A", "Á"});
                     }
                 }
                 case "E" -> {
@@ -122,10 +115,7 @@ public class HangedMan {
                         attemptsLeft--;
                         IO.println("Letra incorrecta. Te quedan " + attemptsLeft + " intentos.");
                     } else {
-                        fillIncompleteWord(letter);
-                        fillIncompleteWord("É");
-                        IO.println("¡Letra correcta!");
-                        showIncompleteWord();
+                        fillAndDisplayWord(new String[]{"E", "É"});
                     }
                 }
                 case "I" -> {
@@ -134,10 +124,7 @@ public class HangedMan {
                         attemptsLeft--;
                         IO.println("Letra incorrecta. Te quedan " + attemptsLeft + " intentos.");
                     } else {
-                        fillIncompleteWord(letter);
-                        fillIncompleteWord("Í");
-                        IO.println("¡Letra correcta!");
-                        showIncompleteWord();
+                        fillAndDisplayWord(new String[]{"I", "Í"});
                     }
                 }
                 case "O" -> {
@@ -146,10 +133,7 @@ public class HangedMan {
                         attemptsLeft--;
                         IO.println("Letra incorrecta. Te quedan " + attemptsLeft + " intentos.");
                     } else {
-                        fillIncompleteWord(letter);
-                        fillIncompleteWord("Ó");
-                        IO.println("¡Letra correcta!");
-                        showIncompleteWord();
+                        fillAndDisplayWord(new String[]{"O", "Ó"});
                     }
                 }
                 case "U" -> {
@@ -159,11 +143,7 @@ public class HangedMan {
                         attemptsLeft--;
                         IO.println("Letra incorrecta. Te quedan " + attemptsLeft + " intentos.");
                     } else {
-                        fillIncompleteWord(letter);
-                        fillIncompleteWord("Ú");
-                        fillIncompleteWord("Ü");
-                        IO.println("¡Letra correcta!");
-                        showIncompleteWord();
+                        fillAndDisplayWord(new String[]{"U", "Ú", "Ü"});
                     }
                 }
                 default -> {
@@ -171,9 +151,7 @@ public class HangedMan {
                         attemptsLeft--;
                         IO.println("Letra incorrecta. Te quedan " + attemptsLeft + " intentos.");
                     } else {
-                        fillIncompleteWord(letter);
-                        IO.println("¡Letra correcta!");
-                        showIncompleteWord();
+                        fillAndDisplayWord(new String[]{letter});
                     }
                 }
             }
