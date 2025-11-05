@@ -2,9 +2,9 @@ package com.shop.logic;
 
 import com.shop.entities.Fruit;
 import com.shop.entities.Product;
-import com.shop.interfaces.Reciclable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +14,17 @@ public class Inventory {
 
     public Inventory() {
         this.inventory = new HashMap<>();
+    }
+
+    public void updateInventory(ShoppingCart cart) {
+        HashMap<Product, Integer> soldProducts = cart.makeSale();
+        for (Product p : soldProducts.keySet()) {
+            try {
+                this.removeProduct(p, soldProducts.get(p));
+            } catch (Exception e) {
+                IO.println("Error al actualizar el inventario: " + e.getMessage());
+            }
+        }
     }
 
     public void showInventory() {
@@ -28,10 +39,12 @@ public class Inventory {
     public void addProduct(Product product, int quantity) {
 
         this.inventory.put(product,
-                this.inventory.getOrDefault(product, 0) + quantity);
+                this.inventory.getOrDefault(product, 0)
+                        + quantity);
     }
 
-    public void removeProduct(Product product, int quantity) throws Exception {
+    public void removeProduct(Product product, int quantity)
+            throws Exception {
 
         if (this.inventory.containsKey(product)) {
             int currentQuantity = this.inventory.get(product);
@@ -46,43 +59,13 @@ public class Inventory {
         }
     }
 
-    public List<Reciclable> getReciclableProducts() {
-        List<Reciclable> reciclables = new ArrayList<>();
+    public <T extends Product> ArrayList<T> getProducts(Class<T> tClass) {
+        ArrayList<T> products = new ArrayList<>();
         for (Product p : this.inventory.keySet()) {
-            if (p instanceof Reciclable) {
-                reciclables.add((Reciclable) p);
+            if (tClass.isInstance(p)) {
+                products.add(tClass.cast(p));
             }
         }
-        return reciclables;
-    }
-
-    public List<Product> getFruits() {
-        List<Product> fruits = new ArrayList<>();
-        for (Product p : this.inventory.keySet()) {
-            if (p instanceof Fruit) {
-                fruits.add(p);
-            }
-        }
-        return fruits;
-    }
-
-    public List<Product> getVegetables() {
-        List<Product> vegetables = new ArrayList<>();
-        for (Product p : this.inventory.keySet()) {
-            if (p instanceof com.shop.entities.Vegetable) {
-                vegetables.add(p);
-            }
-        }
-        return vegetables;
-    }
-
-    public List<Product> getGroceries() {
-        List<Product> groceries = new ArrayList<>();
-        for (Product p : this.inventory.keySet()) {
-            if (p instanceof com.shop.entities.Grocery) {
-                groceries.add(p);
-            }
-        }
-        return groceries;
+        return products;
     }
 }
