@@ -24,33 +24,50 @@ El programa debe permitir al usuario seleccionar la dificultad y mostrar el tabl
 
 ## Algoritmo sugerido
 
-El algoritmo para generar un Sudoku mediante un HashMap y Backtracking seguiremos los siguientes pasos:
+Se usa **backtracking** puro para llenar un tablero vacío con una solución válida.
 
-1. **Inicialización**:
-    - Crear un `HashMap<Integer, Integer>` para almacenar las posiciones y valores del Sudoku.
-        - El clave será un número entero que representa la posición en el tablero (0-80 para un tablero 9x9).
-        - El valor será el número del Sudoku (1-9) en esa posición.
-    - Crear una función para imprimir el tablero de Sudoku en la consola.
-        - Para esto, recorrer el `HashMap` y mostrar los valores en una estructura de 9x9.
-        - Si una posición no tiene un valor asignado (`null`), mostrar un espacio en blanco o un punto.
-2. **Generación del tablero completo**:
-    - Implementar una función `generateFullBoard()` que utilice backtracking para llenar el `HashMap` con un Sudoku
-      completo y válido.
-        - Comenzar desde la primera posición (0) y tratar de asignar un número del 1 al 9.
-        - Verificar si el número puede ser colocado en esa posición sin violar las reglas del Sudoku (verificar fila,
-          columna y subcuadro 3x3).
-        - Si el número es válido, asignarlo en el `HashMap` y proceder a la siguiente posición.
-        - Si no se puede colocar ningún número válido, retroceder (backtrack) y probar con otro número en la posición
-          anterior.
-3. **Ocultación de números según la dificultad**:
-    - Crear una función `removeNumbers(int difficulty)` que oculte números en el tablero generado según la dificultad
-      seleccionada.
-        - Definir cuántos números se deben ocultar para cada nivel de dificultad (por ejemplo, 40 para fácil, 50 para
-          medio, 60 para difícil).
-        - Seleccionar posiciones aleatorias en el `HashMap` y establecer su valor a `null` hasta alcanzar el número
-          deseado de posiciones ocultas.
-4. **Interfaz de usuario**:
-    - Implementar una función `main()` que permita al usuario seleccionar la dificultad del Sudoku.
-        - Llamar a `generateFullBoard()` para crear un tablero completo.
-        - Llamar a `removeNumbers(difficulty)` para ocultar números según la dificultad seleccionada.
-        - Llamar a la función de impresión para mostrar el tablero generado en la consola.
+Idea:
+
+* Rellenas casillas de izquierda a derecha y de arriba abajo.
+* En cada celda, intentas un número del 1 al 9 (en orden aleatorio).
+* Si el número cumple las reglas del Sudoku (sin repetir en fila, columna, ni cuadrante 3×3), lo colocas y pasas a la
+  siguiente celda.
+* Si no puedes colocar ningún número, haces backtrack (retrocedes) y cambias el valor anterior.
+
+✅ Al final obtienes un tablero completo y válido.
+
+> Nota: Backtracking es un enfoque de fuerza bruta, pero es eficiente para este problema específico.
+> {style="note"}
+
+> Puedes usar un enfoque similar para eliminar números y crear diferentes niveles de dificultad. Sin embargo asegurarnos
+> de que el Sudoku resultante tenga una única solución puede ser más complejo y requerir un análisis adicional.
+> {style="warning"}
+
+Por consiguiente en nuestro código implementaremos este algoritmo para generar el Sudoku, sin embargo, lo haremos
+mediante el uso de dos clases iniciales:
+
+* `Cell`: Representa una celda individual del Sudoku.
+* `SudokuBoard`: Maneja la generación y visualización del tablero de Sudoku.
+
+## 🧩 Concepto básico: Dificultad según cantidad de pistas
+
+Un Sudoku tiene 81 celdas (9×9). Al eliminar números, dejamos solo “pistas” que el jugador puede usar para deducir el
+resto.
+
+| Nivel   | Cantidad de celdas vacías | Pistas visibles aproximadas | Definición                                                                                                     |
+|---------|---------------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------|
+| Fácil   | 36 – 45                   | 36 – 45 vacías              | El jugador puede resolverlo casi sin hipótesis; la mayoría de los números se deducen por eliminación directa.  |
+| Medio   | 30 – 35                   | 46 – 51 vacías              | Se requieren más pasos lógicos; algunos números deben deducirse por intersección o patrón.                     |
+| Difícil | 22 – 29                   | 52 – 59 vacías              | Se necesita razonamiento avanzado (por ejemplo, cadenas o pares ocultos). Ideal para jugadores experimentados. |
+
+📏 En términos de código, nosotros usaremos los siguientes valores:
+
+| Nivel   | Celdas vacías | Celdas visibles |
+|---------|---------------|-----------------|
+| Fácil   | 36            | 45              |
+| Medio   | 46            | 35              |
+| Difícil | 54            | 27              |
+
+> Estos valores son aproximados y pueden variar ligeramente según la implementación, pero proporcionan una buena base
+> para definir la dificultad.
+> {style="info"}
