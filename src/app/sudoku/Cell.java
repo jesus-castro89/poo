@@ -45,6 +45,15 @@ public class Cell {
     }
 
     /**
+     * Verifica si la celda está vacía (valor 0).
+     *
+     * @return true si la celda está vacía, false en caso contrario.
+     */
+    public boolean isEmpty() {
+        return this.value == 0;
+    }
+
+    /**
      * Representación en cadena de la celda.
      * Si el valor es 0, se representa como un espacio en blanco, de lo contrario, se muestra el valor.
      *

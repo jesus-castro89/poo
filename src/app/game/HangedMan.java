@@ -2,7 +2,6 @@ package app.game;
 
 import org.util.InputHandler;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.function.Predicate;
@@ -12,53 +11,71 @@ import java.util.function.Predicate;
  * Proporciona la lógica básica para jugar al juego del Ahorcado.
  */
 public class HangedMan {
+
     /**
      * Lista de palabras disponibles para el juego.
      */
-    private String[] words;
+    private final String[] words;
+
     /**
-     * Número máximo de intentos permitidos.
+     * Lista de palabras completadas en sesiones anteriores.
      */
-    private final int maxAttempts = 6;
-    /**
-     * Palabra actual que el jugador debe adivinar.
-     */
-    private String currentWord;
+    private final ArrayList<String> playedWords;
+
     /**
      * Letras adivinadas por el jugador.
      */
     private ArrayList<String> guessedLetters;
+
+    /**
+     * Número máximo de intentos permitidos.
+     */
+    private final int maxAttempts = 6;
+
+    /**
+     * Palabra actual que el jugador debe adivinar.
+     */
+    private String currentWord;
+
     /**
      * Representación de la palabra incompleta con letras adivinadas.
      */
     private String incompleteWord;
+
     /**
      * Número de intentos restantes.
      */
     private int attemptsLeft;
-    /**
-     * Lista de palabras completadas en sesiones anteriores.
-     */
-    private ArrayList<String> completedWords;
 
+    /**
+     * Constructor de la clase HangedMan.
+     * Inicializa la lista de palabras y las palabras jugadas.
+     */
     public HangedMan() {
+
         this.words = new String[]{
                 "programador", "java", "sistemas", "lógica", "teclado",
                 "monitor", "administración", "software", "hardware", "aplicativo",
                 "programación"
         };
-        this.completedWords = new ArrayList<>();
+        this.playedWords = new ArrayList<>();
     }
 
+    /**
+     * Obtiene una palabra aleatoria de la lista de palabras.
+     *
+     * @return Una palabra aleatoria.
+     */
     public String getRandomWord() {
+        // Creamos una instancia de Random
         Random rand = new Random();
         // Obtenemos un índice entre 0 y
         // la longitud del arreglo de palabras - 1
         int index = rand.nextInt(words.length);
-        if (completedWords.contains(words[index])) {
+        if (playedWords.contains(words[index])) {
             return getRandomWord();
         } else {
-            completedWords.add(words[index]);
+            playedWords.add(words[index]);
             return words[index];
         }
     }
@@ -89,7 +106,7 @@ public class HangedMan {
 
     public void playTurn() {
         Predicate<String> letterValidator =
-                p -> p.matches("^[a-zA-ZñÑ]$");
+                p -> p.matches("[a-zA-ZñÑ]");
         String letter = InputHandler.getInput("Ingresa una letra: ",
                 letterValidator,
                 "Por favor, ingresa una sola letra.",

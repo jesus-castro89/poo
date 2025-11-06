@@ -14,6 +14,7 @@ public class SudokuBoard {
      * Mapa que representa las celdas del tablero de Sudoku.
      */
     private final Map<String, Cell> board = new HashMap<>();
+
     /**
      * Generador de números aleatorios.
      */
@@ -57,15 +58,26 @@ public class SudokuBoard {
      * Imprime el tablero de Sudoku en la consola.
      */
     public void printBoard() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗\n");
         for (int row = 0; row < 9; row++) {
-            if (row % 3 == 0) System.out.println("+-------+-------+-------+");
             for (int col = 0; col < 9; col++) {
-                if (col % 3 == 0) System.out.print("| ");
-                System.out.print(getCell(row, col).toString() + " ");
+                if (col % 3 == 0)
+                    sb.append("║");
+                else
+                    sb.append("│");
+                sb.append(String.format(" %s ", getCell(row, col).toString()));
+                if (col == 8)
+                    sb.append("║\n");
             }
-            System.out.println("|");
+            switch (row) {
+                case 2, 5 -> sb.append("╠═══╪═══╪═══╬═══╪═══╪═══╬═══╪═══╪═══╣\n");
+                case 8 -> sb.append("╚═══╧═══╧═══╩═══╧═══╧═══╩═══╧═══╧═══╝\n");
+                default -> sb.append("╟───┼───┼───╫───┼───┼───╫───┼───┼───╢\n");
+            }
         }
-        System.out.println("+-------+-------+-------+");
+        IO.println(sb.toString());
     }
 
     /**
@@ -79,7 +91,7 @@ public class SudokuBoard {
             // Recorremos cada columna de la fila actual
             for (int col = 0; col < 9; col++) {
                 // Si la celda está vacía (valor 0)
-                if (getCell(row, col).getValue() == 0) {
+                if (getCell(row, col).isEmpty()) {
                     // Obtenemos una lista de números del 1 al 9 en orden aleatorio
                     List<Integer> numbers = getRandomNumbers();
                     // Intentamos colocar cada número en la celda
@@ -112,7 +124,7 @@ public class SudokuBoard {
     private List<Integer> getRandomNumbers() {
 
         List<Integer> nums = new ArrayList<>();
-        for (int i = 1; i <= 9; i++) nums.add(i);
+        IntStream.range(1, 10).forEach(nums::add);
         Collections.shuffle(nums);
         return nums;
     }
@@ -125,7 +137,8 @@ public class SudokuBoard {
      * @return true si es seguro, false en caso contrario.
      */
     private boolean isSafeRow(int row, int num) {
-        return IntStream.range(0, 9).noneMatch(col -> getCell(row, col).getValue() == num);
+        return IntStream.range(0, 9)
+                .noneMatch(col -> getCell(row, col).getValue() == num);
     }
 
     /**
@@ -136,7 +149,8 @@ public class SudokuBoard {
      * @return true si es seguro, false en caso contrario.
      */
     private boolean isSafeCol(int col, int num) {
-        return IntStream.range(0, 9).noneMatch(row -> getCell(row, col).getValue() == num);
+        return IntStream.range(0, 9)
+                .noneMatch(row -> getCell(row, col).getValue() == num);
     }
 
     /**
@@ -148,7 +162,9 @@ public class SudokuBoard {
      * @return true si es seguro, false en caso contrario.
      */
     private boolean isSafeBox(int startRow, int startCol, int num) {
-        return IntStream.range(startRow, startRow + 3).noneMatch(r -> IntStream.range(startCol, startCol + 3).anyMatch(c -> getCell(r, c).getValue() == num));
+        return IntStream.range(startRow, startRow + 3)
+                .noneMatch(r -> IntStream.range(startCol, startCol + 3)
+                        .anyMatch(c -> getCell(r, c).getValue() == num));
     }
 
     /**
@@ -165,63 +181,90 @@ public class SudokuBoard {
      */
     private boolean isSafe(int row, int col, int num) {
 
+        int startBoxRow = row - row % 3;
+        int startBoxCol = col - col % 3;
         return isSafeRow(row, num) &&
                 isSafeCol(col, num) &&
-                isSafeBox(row - row % 3, col - col % 3, num);
+                isSafeBox(startBoxRow, startBoxCol, num);
     }
 
-    // ---------------------------------------------------------
-    // 2️⃣ Verificación de unicidad de la solución
-    // ---------------------------------------------------------
+    /**
+     * Cuenta el número de soluciones posibles para el tablero actual.
+     *
+     * @return Número de soluciones (0, 1 o más).
+     */
     public int countSolutions() {
         return countSolutionsHelper(0);
     }
 
+    /**
+     * Función recursiva auxiliar para contar soluciones.
+     *
+     * @param cellIndex Índice lineal de la celda actual (0-80).
+     * @return Número de soluciones encontradas desde esta celda en adelante.
+     */
     private int countSolutionsHelper(int cellIndex) {
+        // Si hemos llegado al final del tablero, hemos encontrado una solución
         if (cellIndex == 81) return 1;
-
+        // En otro caso, obtenemos la fila y columna de la celda actual
         int row = cellIndex / 9;
         int col = cellIndex % 9;
         Cell cell = getCell(row, col);
-
+        // Si la celda ya tiene un valor, pasamos a la siguiente celda
         if (cell.getValue() != 0)
             return countSolutionsHelper(cellIndex + 1);
-
+        // Si la celda está vacía, intentamos colocar números del 1 al 9
         int count = 0;
+        // Contamos las soluciones encontradas
         for (int num = 1; num <= 9 && count < 2; num++) {
+            // Verificamos si es seguro colocar el número
             if (isSafe(row, col, num)) {
+                // Colocamos el número y continuamos recursivamente
                 cell.setValue(num);
+                // Sumamos las soluciones encontradas en la siguiente celda
                 count += countSolutionsHelper(cellIndex + 1);
+                // Restauramos la celda a vacía (backtrack)
                 cell.setValue(0);
             }
         }
+        // Retornamos el número total de soluciones encontradas
         return count;
     }
 
-    // ---------------------------------------------------------
-    // 3️⃣ Eliminación controlada de celdas
-    // ---------------------------------------------------------
+    /**
+     * Elimina celdas del tablero hasta alcanzar el número objetivo de celdas en blanco,
+     * asegurando que el tablero resultante tenga una única solución.
+     *
+     * @param targetBlanks Número objetivo de celdas en blanco.
+     */
     public void removeCells(int targetBlanks) {
+
         List<String> positions = new ArrayList<>(board.keySet());
         Collections.shuffle(positions);
-
         for (String pos : positions) {
+            // Si ya hemos alcanzado el número objetivo de celdas en blanco, salimos del bucle
             if (getBlankCount() >= targetBlanks) break;
-
+            // Guardamos el valor actual de la celda y la vaciamos
             Cell cell = board.get(pos);
             int backup = cell.getValue();
             cell.setValue(0);
-
+            // Verificamos si el tablero sigue teniendo una única solución
             if (countSolutions() != 1) {
-                cell.setValue(backup); // restaurar si pierde unicidad
+                // restaurar si pierde unicidad
+                cell.setValue(backup);
             }
         }
     }
 
+    /**
+     * Cuenta el número de celdas en blanco (valor 0) en el tablero.
+     *
+     * @return Número de celdas en blanco.
+     */
     private int getBlankCount() {
-        int count = 0;
-        for (Cell c : board.values())
-            if (c.getValue() == 0) count++;
-        return count;
+        return (int) board
+                .values()
+                .stream()
+                .filter(c -> c.getValue() == 0).count();
     }
 }
