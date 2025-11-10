@@ -38,6 +38,97 @@ palabra y un mensaje de derrota si el jugador se queda sin intentos.
 18. La aplicación debe mostrar la palabra completa al final del juego, ya sea que el jugador gane o pierda.
 19. La aplicación debe evitar el uso de palabras seleccionadas previamente en juegos anteriores durante la misma sesión.
 
+## Metodología
+
+Para el desarrollo de esta actividad, se recomienda seguir los siguientes pasos:
+
+1. Definiremos una clase con tres arreglos:
+    * uno para las palabras a adivinar
+    * otro para las letras adivinadas
+    * otro para las palabras ya seleccionadas.
+    * NOTA: Pueden o no ser arreglos dinámicos.
+2. La clase deberá contar con un número fijo de intentos máximos y el contador de intentos restantes.
+3. De igual manera deberás mantener una variable para la palabra seleccionada en el juego actual y su representación con
+   guiones.
+4. Implementaremos métodos para:
+    * Seleccionar una palabra al azar de la lista de palabras, asegurándonos de que no haya sido seleccionada
+      previamente.
+    * Mostrar la palabra a adivinar con guiones en lugar de las letras.
+    * Permitir al jugador ingresar letras para adivinar la palabra, validando la entrada.
+    * Mostrar las letras adivinadas y los intentos restantes.
+    * Verificar si el jugador ha ganado o perdido el juego.
+    * Permitir al jugador jugar de nuevo o salir del juego.
+
+### Seleccionando una palabra al azar
+
+Para la selección de una palabra al azar, podemos utilizar la clase `Random` de Java, para ello usaremos la función
+`nextInt(VALUE)`, donde `VALUE` es el tamaño del arreglo de palabras. Esto nos devolverá un número entero aleatorio
+entre `0` y `VALUE - 1`, que podemos usar como índice para seleccionar una palabra del arreglo.
+
+> **Nota:** Aquí estamos tomando en cuenta que el índice del arreglo comienza en `0`, como es habitual en Java.
+> Y que el índice máximo es el tamaño del arreglo menos `1`.
+> {style="note"}
+
+Por otro lado, para asegurarnos de que la palabra seleccionada no haya sido usada previamente, usaremos el arreglo de
+palabras ya seleccionadas. Cada vez que seleccionemos una palabra, verificaremos si está en este arreglo. Si está,
+seleccionaremos otra palabra hasta encontrar una que no haya sido usada.
+
+> **Nota:** Para verificar si una palabra está en el arreglo de palabras ya seleccionadas, podemos usar un ciclo `for`
+> para recorrer el arreglo y comparar cada palabra con la palabra seleccionada. O bien usar la clase `Arrays` de Java y
+> su función `asList()` para convertir el arreglo en una lista y luego usar la función `contains()` para verificar si la
+> palabra está en la lista. Aunque podemos ahorrarnos el uso de la clase `Arrays` si la lista en cuestión es un
+`ArrayList`.
+> {style="note"}
+
+### Validando la entrada del jugador
+
+Para validar la entrada del jugador, podemos usar la función `matches()` de la clase `String` para verificar si la
+entrada es una letra válida de la `A` a la `Z` (mayúscula o minúscula), incluyendo la ñ y la Ñ. La expresión regular
+para
+esto sería `"^[a-zA-ZñÑ]$"`.
+
+> **Nota:** La función `matches()` devuelve `true` si la cadena coincide con la expresión regular y `false` en caso
+> contrario. Y que la expresión regular `"^[a-zA-ZñÑ]$"` verifica si la cadena contiene solo una letra válida.
+> {style="note"}
+
+Una vez entendido lo anterior, podemos crear un objeto de tipo `Predicate<String>` que contenga la expresión regular y
+usar su método `test()` para validar la entrada del jugador.
+
+> **Nota:** Un `Predicate` es una interfaz funcional en Java que representa una función que toma un solo argumento y
+> devuelve un valor booleano. En este caso, el argumento es una cadena (la entrada del jugador) y el valor booleano
+> indica si la cadena es una letra válida o no. Y ya contemos con nuestra clase `InputHandler` para la gestión de
+> entradas, podemos incluir este `Predicate` como un atributo de la función de validación de entradas.
+> {style="note"}
+
+Si el usuario ingresa una letra válida, procederemos a verificar si ya ha sido adivinada previamente. Si es así,
+mostraremos un mensaje indicando que la letra ya fue adivinada y solicitaremos una nueva entrada. Si la letra no ha sido
+adivinada, la agregaremos al arreglo de letras adivinadas y procederemos a verificar si la letra está en la palabra a
+adivinar.
+
+Para ellos podemos hacer de la misma lógica que usamos para verificar si una palabra ya fue seleccionada previamente.
+Pero en este caso, verificando si la letra ya está en el arreglo de letras adivinadas.
+
+> **Nota:** Recuerda que las letras pueden ser un arreglo de caracteres (`char`) o un arreglo de cadenas (`String`),
+> dependiendo de cómo decidas implementarlo.
+> {style="note"}
+
+### Agregando la letra adivinada a la palabra mostrada
+
+Para agregar la letra adivinada a la palabra mostrada, podemos recorrer la palabra a adivinar y verificar si cada
+letra coincide con la letra adivinada. Si coincide, reemplazamos el guion correspondiente en la palabra mostrada con la
+letra adivinada.
+
+Sin embargo, debemos de tomar en consideración que la letra puede ser una vocal o una consonante, y que puede aparecer
+en mayúscula o minúscula en la palabra a adivinar. Por lo tanto, al comparar las letras, debemos ignorar el caso (
+mayúscula o minúscula) y considerar las variantes de las vocales con acentos y/o diéresis.
+
+> **Nota:** Para ignorar el caso al comparar las letras, podemos usar el método `equalsIgnoreCase()` de la clase
+> `String`. Y para considerar las variantes de las vocales con acentos y/o diéresis, **podemos crear un método que
+> normalice las letras, es decir, que convierta las letras con acentos y/o diéresis a su forma base (sin acentos ni
+> diéresis) antes de compararlas**. Sin embargo, al mostrar la palabra al jugador, debemos mantener las letras con
+> acentos y/o diéresis en su forma original.
+> {style="note"}
+
 ## Entregables
 
 1. Código fuente de la aplicación.
