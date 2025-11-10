@@ -112,6 +112,9 @@
     <toc-element toc-title="Arreglos Asociativos">
         <toc-element topic="hashmap.md"/>
     </toc-element>
+    <toc-element toc-title="Predicados">
+        <toc-element topic="bipredicate.md"/>
+    </toc-element>
     <toc-element toc-title="Data Streams">
         <toc-element topic="streams-datos.md"/>
         <toc-element topic="mark-interface.md"/>

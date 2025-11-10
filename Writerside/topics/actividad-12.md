@@ -89,9 +89,11 @@ Para la clase `Cell`, que representa una celda individual del Sudoku, la definir
       fija.
     - `Cell(int row, int col)`: Inicializa la celda con fila y columna, valor 0 y no fija.
 * Métodos:
+    - `isEmpty()`: Devuelve true si el valor es 0.
     - `getValue()`: Devuelve el valor de la celda.
     - `setValue(int value)`: Establece el valor de la celda.
     - `isFixed()`: Devuelve si la celda es fija.
+    - `setFixed(boolean isFixed)`: Establece si la celda es fija.
     - `toString()`: Devuelve vacío si el valor es 0, o el valor como cadena.
     - `getAreaIndex()`: Devuelve el índice del área 3x3 a la que pertenece la celda.
         - Para calcular el índice del área 3x3, usamos la fórmula: `(row / 3) * 3 + (col / 3)`.

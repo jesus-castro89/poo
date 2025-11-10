@@ -21,6 +21,9 @@ public class SudokuBoard {
      * Predicado para verificar la presencia de un número en una columna.
      */
     private final BiPredicate<Integer, Integer> colContains;
+    /**
+     * Predicado para verificar la presencia de un número en una región 3x3.
+     */
     private final BiPredicate<Integer, Integer> areaContains;
 
     /**
