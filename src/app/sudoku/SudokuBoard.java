@@ -1,8 +1,7 @@
 package app.sudoku;
 
-import app.sudoku.Cell;
-
 import java.util.*;
+import java.util.function.BiPredicate;
 import java.util.stream.IntStream;
 
 /**
@@ -13,11 +12,16 @@ public class SudokuBoard {
     /**
      * Mapa que representa las celdas del tablero de Sudoku.
      */
-    private final Map<String, Cell> board = new HashMap<>();
+    private final HashMap<String, Cell> board = new HashMap<>();
     /**
-     * Generador de números aleatorios.
+     * Predicado para verificar la presencia de un número en una fila.
      */
-    private final Random random = new Random();
+    private final BiPredicate<Integer, Integer> rowContains;
+    /**
+     * Predicado para verificar la presencia de un número en una columna.
+     */
+    private final BiPredicate<Integer, Integer> colContains;
+    private final BiPredicate<Integer, Integer> areaContains;
 
     /**
      * Constructor para un tablero de Sudoku vacío.
@@ -26,9 +30,30 @@ public class SudokuBoard {
         // Inicializar el tablero vacío
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                board.put(key(row, col), new Cell(row, col, 0));
+                board.put(key(row, col), new Cell(row, col));
             }
         }
+        // Inicializar los predicados de verificación
+        this.rowContains = makeChecker(true);
+        this.colContains = makeChecker(false);
+        this.areaContains = (areaIndex, num) -> {
+            int startRow = (areaIndex / 3) * 3;
+            int startCol = (areaIndex % 3) * 3;
+            return IntStream.range(startRow, startRow + 3)
+                    .anyMatch(r -> IntStream.range(startCol, startCol + 3)
+                            .anyMatch(c -> getCell(r, c).getValue() == num));
+        };
+    }
+
+    /**
+     * Crea un predicado para verificar la presencia de un número en una fila o columna.
+     *
+     * @param iterateRows true para filas, false para columnas.
+     * @return Predicado que verifica la presencia de un número.
+     */
+    private BiPredicate<Integer, Integer> makeChecker(boolean iterateRows) {
+        return (fixed, num) -> IntStream.range(0, 9)
+                .anyMatch(i -> getCell(iterateRows ? i : fixed, iterateRows ? fixed : i).getValue() == num);
     }
 
     /**
@@ -119,40 +144,6 @@ public class SudokuBoard {
 
     /**
      * Verifica si es seguro colocar un número en una celda específica.
-     *
-     * @param row Fila del valor a verificar.
-     * @param num Número a verificar.
-     * @return true si es seguro, false en caso contrario.
-     */
-    private boolean isSafeRow(int row, int num) {
-        return IntStream.range(0, 9).noneMatch(col -> getCell(row, col).getValue() == num);
-    }
-
-    /**
-     * Verifica si es seguro colocar un número en una columna específica.
-     *
-     * @param col Columna del valor a verificar.
-     * @param num Número a verificar.
-     * @return true si es seguro, false en caso contrario.
-     */
-    private boolean isSafeCol(int col, int num) {
-        return IntStream.range(0, 9).noneMatch(row -> getCell(row, col).getValue() == num);
-    }
-
-    /**
-     * Verifica si es seguro colocar un número en una caja 3x3 específica.
-     *
-     * @param startRow Fila inicial de la caja 3x3.
-     * @param startCol Columna inicial de la caja 3x3.
-     * @param num      Número a verificar.
-     * @return true si es seguro, false en caso contrario.
-     */
-    private boolean isSafeBox(int startRow, int startCol, int num) {
-        return IntStream.range(startRow, startRow + 3).noneMatch(r -> IntStream.range(startCol, startCol + 3).anyMatch(c -> getCell(r, c).getValue() == num));
-    }
-
-    /**
-     * Verifica si es seguro colocar un número en una celda específica.
      * Para el caso de las regiones sub-3x3, calcula la posición inicial de la caja mediante
      * la fórmula (row - row % 3, col - col % 3).
      * Por ejemplo, para la celda (5,7), la caja 3x3 correspondiente comienza en (3,6).
@@ -165,18 +156,27 @@ public class SudokuBoard {
      */
     private boolean isSafe(int row, int col, int num) {
 
-        return isSafeRow(row, num) &&
-                isSafeCol(col, num) &&
-                isSafeBox(row - row % 3, col - col % 3, num);
+        Cell cell = getCell(row, col);
+        return !rowContains.test(row, num) &&
+                !colContains.test(col, num) &&
+                !areaContains.test(cell.getAreaIndex(), num);
     }
 
-    // ---------------------------------------------------------
-    // 2️⃣ Verificación de unicidad de la solución
-    // ---------------------------------------------------------
+    /**
+     * Cuenta el número de soluciones posibles para el tablero actual.
+     *
+     * @return Número de soluciones (0, 1 o más).
+     */
     public int countSolutions() {
         return countSolutionsHelper(0);
     }
 
+    /**
+     * Función recursiva auxiliar para contar soluciones.
+     *
+     * @param cellIndex Índice lineal de la celda actual (0-80).
+     * @return Número de soluciones encontradas desde esta celda en adelante.
+     */
     private int countSolutionsHelper(int cellIndex) {
         if (cellIndex == 81) return 1;
 
@@ -198,9 +198,12 @@ public class SudokuBoard {
         return count;
     }
 
-    // ---------------------------------------------------------
-    // 3️⃣ Eliminación controlada de celdas
-    // ---------------------------------------------------------
+    /**
+     * Elimina celdas del tablero para crear un rompecabezas de Sudoku con un número específico de espacios en blanco,
+     * asegurando que el rompecabezas tenga una solución única.
+     *
+     * @param targetBlanks Número objetivo de celdas en blanco.
+     */
     public void removeCells(int targetBlanks) {
         List<String> positions = new ArrayList<>(board.keySet());
         Collections.shuffle(positions);
@@ -218,6 +221,11 @@ public class SudokuBoard {
         }
     }
 
+    /**
+     * Cuenta el número de celdas en blanco (valor 0) en el tablero.
+     *
+     * @return Número de celdas en blanco.
+     */
     private int getBlankCount() {
         int count = 0;
         for (Cell c : board.values())

@@ -21,6 +21,8 @@ public class Cell {
      */
     private int value;
 
+    private boolean isFixed;
+
     /**
      * Constructor para una celda del Sudoku con un valor inicial.
      *
@@ -28,10 +30,11 @@ public class Cell {
      * @param col   Columna de la celda.
      * @param value Valor inicial de la celda.
      */
-    public Cell(int row, int col, int value) {
+    public Cell(int row, int col, int value, boolean isFixed) {
         this.row = row;
         this.col = col;
         this.value = value;
+        this.isFixed = isFixed;
     }
 
     /**
@@ -41,7 +44,7 @@ public class Cell {
      * @param col Columna de la celda.
      */
     public Cell(int row, int col) {
-        this(row, col, 0); // Valor por defecto 0 (vacío)
+        this(row, col, 0, false); // Valor por defecto 0 (vacío)
     }
 
     /**
@@ -53,6 +56,15 @@ public class Cell {
     @Override
     public String toString() {
         return value == 0 ? " " : String.valueOf(value);
+    }
+
+    /**
+     * Obtiene el índice del área 3x3 a la que pertenece la celda.
+     *
+     * @return Índice del área (0-8).
+     */
+    public int getAreaIndex() {
+        return (row / 3) * 3 + (col / 3);
     }
 
     // Getters y Setters estándar

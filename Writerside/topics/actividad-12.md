@@ -71,3 +71,50 @@ resto.
 > Estos valores son aproximados y pueden variar ligeramente según la implementación, pero proporcionan una buena base
 > para definir la dificultad.
 > {style="info"}
+
+## Estructura del código
+
+### Clase Cell
+
+Para la clase `Cell`, que representa una celda individual del Sudoku, la definiremos de la siguiente manera:
+
+* Atributos:
+    - `row`: Fila de la celda.
+    - `col`: Columna de la celda.
+    - `value`: Valor actual de la celda (0 si está vacía).
+    - `isFixed`: Indica si el valor es fijo (parte del Sudoku inicial) o puede ser modificado. Esto nos servira para
+      diferenciar entre las celdas que el usuario puede cambiar y las que no para futuras implementaciones.
+* Constructores:
+    - `Cell(int row, int col, int value, boolean isFixed)`: Inicializa la celda con la fila, columna, valor y si es
+      fija.
+    - `Cell(int row, int col)`: Inicializa la celda con fila y columna, valor 0 y no fija.
+* Métodos:
+    - `getValue()`: Devuelve el valor de la celda.
+    - `setValue(int value)`: Establece el valor de la celda.
+    - `isFixed()`: Devuelve si la celda es fija.
+    - `toString()`: Devuelve vacío si el valor es 0, o el valor como cadena.
+    - `getAreaIndex()`: Devuelve el índice del área 3x3 a la que pertenece la celda.
+        - Para calcular el índice del área 3x3, usamos la fórmula: `(row / 3) * 3 + (col / 3)`.
+        - Esto divide el tablero en nueve áreas 3x3 y asigna un índice de 0 a 8 basados en la posición de la celda.
+        - Por ejemplo, la celda en la fila 4, columna 5 pertenece al área 4 (segunda fila, segunda columna de áreas).
+
+### Clase SudokuBoard
+
+La clase `SudokuBoard` manejará la generación y visualización del tablero de Sudoku:
+
+* Atributos:
+    - `board`: Mapa de celdas del Sudoku del tipo `HashMap<String, Cell>`.
+    - `rowContains`: BiPredicate para verificar si un número está en una fila.
+    - `colContains`: BiPredicate para verificar si un número está en una columna.
+    - `areaContains`: BiPredicate para verificar si un número está en un área 3x3.
+* Constructores:
+    - `SudokuBoard()`: Inicializa el tablero vacío y los predicados.
+* Métodos:
+    - `makeChecker(boolean iterateRows)`: Crea los predicados para verificar filas y columnas.
+    - `key(int row, int col)`: Genera una clave única para una celda basada en su fila y columna.
+    - `getCell(int row, int col)`: Devuelve la celda en la posición dada.
+    - `isSafe(int row, int col, int num)`: Verifica si es seguro colocar un número en una celda.
+    - `fillBoard()`: Llena el tablero usando backtracking.
+    - `removeCells(int cellsToRemove)`: Elimina celdas para crear el Sudoku con la dificultad deseada.
+    - `printBoard()`: Imprime el tablero en la consola.
+    - `generateSudoku(int difficulty)`: Genera un Sudoku completo y luego elimina celdas según la dificultad.
