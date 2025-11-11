@@ -1,18 +1,35 @@
 package app.sudoku;
 
-import org.util.InputHandler;
-
-import java.util.Random;
-import java.util.function.Predicate;
-import java.util.stream.IntStream;
+import app.sudoku.entities.SudokuBoard;
+import app.sudoku.entities.SudokuLevel;
+import app.sudoku.util.SudokuPrinter;
+import app.sudoku.util.SudokuGenerator;
+import app.sudoku.util.SudokuUtils;
 
 public class Main {
 
     void main() {
 
         SudokuBoard sudokuBoard = new SudokuBoard();
-        sudokuBoard.printBoard();
-        sudokuBoard.fillBoard();
-        sudokuBoard.printBoard();
+        SudokuGenerator maker = new SudokuGenerator(sudokuBoard);
+        if (maker.fillBoard()) {
+            System.out.println("Tablero de Sudoku generado correctamente.");
+        } else {
+            System.out.println("Error al generar el tablero de Sudoku.");
+            System.exit(1);
+        }
+        SudokuPrinter.printSudoku(sudokuBoard);
+        SudokuLevel level = SudokuLevel.EXPERT;
+        System.out.println("Nivel seleccionado: " + level);
+        SudokuBoard hiddenBoard;
+        try {
+            hiddenBoard = sudokuBoard.clone();
+            SudokuUtils utils = new SudokuUtils(hiddenBoard);
+            hiddenBoard = utils.hideCells(level);
+            System.out.println("Tablero con celdas ocultas:");
+            SudokuPrinter.printSudoku(hiddenBoard);
+        } catch (Exception e) {
+            System.err.println("Error al ocultar celdas: " + e.getMessage());
+        }
     }
 }

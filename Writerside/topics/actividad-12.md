@@ -106,17 +106,96 @@ La clase `SudokuBoard` manejará la generación y visualización del tablero de 
 
 * Atributos:
     - `board`: Mapa de celdas del Sudoku del tipo `HashMap<String, Cell>`.
-    - `rowContains`: BiPredicate para verificar si un número está en una fila.
-    - `colContains`: BiPredicate para verificar si un número está en una columna.
-    - `areaContains`: BiPredicate para verificar si un número está en un área 3x3.
+    - `existInRow`: BiPredicate para verificar si un número está en una fila.
+        - Para crear este predicado, usaremos las funciones range y anyMatch de un IntStream.
+        - El predicado tomará dos enteros: el índice de la fila y el número a verificar.
+        - Usaremos `IntStream.range(0, 9).anyMatch(col -> getCell(row, col).getValue() == num)` para verificar si el
+          número ya existe en la fila.
+    - `existInColumn`: BiPredicate para verificar si un número está en una columna.
+        - Para crear este predicado, usaremos la misma lógica que para las filas, pero iterando sobre las filas en lugar
+          de las
+          columnas.
+        - El predicado tomará dos enteros: el índice de la columna y el número a verificar.
+        - Usaremos `IntStream.range(0, 9).anyMatch(row -> getCell(row, col).getValue() == num)` para verificar si el
+          número ya existe en la columna.
+    - `existInBox`: BiPredicate para verificar si un número está en un área 3x3.
+        - Para crear este predicado, usaremos dos bucles anidados para iterar sobre las filas y columnas del área
+          3x3.
+        - El predicado tomará dos enteros: el índice del área y el número a verificar.
+        - Calcularemos la fila y columna inicial del área usando `startRow = (box / 3) * 3` y
+          `startCol = (box % 3) * 3`.
+        - Luego, usaremos dos bucles anidados para iterar sobre las filas y columnas del área 3x3 y verificar si el
+          número ya existe.
+        - Si encontramos el número, devolveremos true; de lo contrario, devolveremos false.
 * Constructores:
     - `SudokuBoard()`: Inicializa el tablero vacío y los predicados.
 * Métodos:
-    - `makeChecker(boolean iterateRows)`: Crea los predicados para verificar filas y columnas.
     - `key(int row, int col)`: Genera una clave única para una celda basada en su fila y columna.
+        - Definimos la clave como una cadena en el formato "row-col".
     - `getCell(int row, int col)`: Devuelve la celda en la posición dada.
+        - Recuperamos la celda del mapa `board` usando la clave generada por el método `key(row, col)`.
     - `isSafe(int row, int col, int num)`: Verifica si es seguro colocar un número en una celda.
+        - Usando los predicados `existInRow`, `existInColumn` y `existInBox`, verificamos si el número ya existe en la
+          fila,
+          columna o área 3x3 correspondiente.
+        - Si el número no existe en ninguna de estas, devolvemos true; de lo contrario, devolvemos false.
     - `fillBoard()`: Llena el tablero usando backtracking.
-    - `removeCells(int cellsToRemove)`: Elimina celdas para crear el Sudoku con la dificultad deseada.
+        - Recorremos cada celda del tablero, esto mediante dos bucles anidados para filas y columnas.
+        - Obtenemos una lista de números del 1 al 9 y la mezclamos para asegurar aleatoriedad.
+        - Si la celda está vacía (0), intentamos colocar números del 1 al 9 en orden aleatorio.
+        - Para cada número, verificamos si es seguro colocarlo usando el método `isSafe`.
+        - Si es seguro, colocamos el número en la celda y llamamos recursivamente a `fillBoard` para llenar la siguiente
+          celda.
+        - Si no podemos colocar ningún número, hacemos backtrack (retrocedemos) y restablecemos la celda a 0.
+        - Si llenamos todo el tablero, devolvemos true.
     - `printBoard()`: Imprime el tablero en la consola.
-    - `generateSudoku(int difficulty)`: Genera un Sudoku completo y luego elimina celdas según la dificultad.
+        - Podemos usar la siguiente función para imprimir el tablero de manera legible:
+    ```java
+      public void printBoard() {
+    
+            StringBuilder sb = new StringBuilder();
+            sb.append("╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗\n");
+            for (int row = 0; row < 9; row++) {
+                for (int col = 0; col < 9; col++) {
+                    if (col % 3 == 0)
+                        sb.append("║");
+                    else
+                        sb.append("│");
+                    sb.append(String.format(" %s ", getCell(row, col).toString()));
+                    if (col == 8)
+                        sb.append("║\n");
+                }
+                switch (row) {
+                    case 2, 5 -> sb.append("╠═══╪═══╪═══╬═══╪═══╪═══╬═══╪═══╪═══╣\n");
+                    case 8 -> sb.append("╚═══╧═══╧═══╩═══╧═══╧═══╩═══╧═══╧═══╝\n");
+                    default -> sb.append("╟───┼───┼───╫───┼───┼───╫───┼───┼───╢\n");
+                }
+            }
+            IO.println(sb.toString());
+      }
+    ```
+
+## Entregables
+
+1. Código fuente de la aplicación.
+    * El código fuente debe estar organizado en clases y métodos, así como modularizado, es decir, debe estar dividido
+      en partes más pequeñas y manejables dentro de archivos `.java`.
+2. Capturas de pantalla de la aplicación en ejecución.
+    * Incluir capturas de pantalla de la aplicación mostrando la palabra a adivinar, las letras adivinadas y los
+      intentos restantes.
+3. Portada con datos de identificación de los miembros del equipo.
+4. Archivo PDF con los entregables 2 y 3.
+5. El juego debe de implementarse en Java, por lo que no se aceptarán aplicaciones desarrolladas en otro lenguaje de
+   programación.
+6. El código fuente debe estar comentado y documentado.
+
+## Criterios de Evaluación
+
+| Criterio          | Descripción                                                                                                             | Puntuación |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------|------------|
+| Funcionalidad     | El programa genera tableros de Sudoku válidos y permite seleccionar la dificultad.                                      | 40%        |
+| Uso de HashMap    | El programa utiliza un HashMap para almacenar las posiciones y valores del Sudoku.                                      | 20%        |
+| Uso de Predicados | Se hace uso de  `BiPredicate` para la evaluación de existencia de un elemento dentro de una fila, columna o zona de 3x3 | 20%        |
+| Documentación     | El código está bien comentado y documentado.                                                                            | 10%        |
+| Presentación      | El informe y las capturas de pantalla están bien organizados y presentados.                                             | 10%        |
+| **Total**         |                                                                                                                         | **100%**   |

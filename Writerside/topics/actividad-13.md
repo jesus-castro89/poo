@@ -1,83 +1,132 @@
-# Actividad 6: El Juego de Ahorcado
+# Actividad 13: Ocultando Celdas y Exportando el Sudoku en texto plano
 
 ## Descripción
 
-El juego de ahorcado es un juego en el que el jugador debe adivinar una palabra, letra por letra. El jugador tiene un
-número limitado de intentos para adivinar la palabra. Cada vez que el jugador adivina una letra, se muestra en la
-palabra. Si el jugador adivina una letra que no está en la palabra, pierde un intento. Si el jugador adivina la palabra
-antes de quedarse sin intentos, gana el juego.
+En esta actividad, aprenderás a ocultar ciertas celdas en un Sudoku y a exportar el Sudoku en formato de texto plano.
+Esto es útil para compartir puzzles con otros o para imprimirlos.
 
 ## Objetivos
 
-Desarrollar una aplicación que permita jugar al ahorcado. La aplicación debe mostrar la palabra a adivinar con guiones
-en lugar de las letras. El jugador debe poder ingresar letras para adivinar la palabra. La aplicación debe mostrar las
-letras adivinadas y los intentos restantes. La aplicación debe mostrar un mensaje de victoria si el jugador adivina la
-palabra y un mensaje de derrota si el jugador se queda sin intentos.
+- Aprender a ocultar celdas específicas en un Sudoku.
+- Exportar el Sudoku en formato de texto plano.
+- Practicar la manipulación de datos en estructuras de Sudoku.
+- Desarrollar habilidades para compartir y presentar puzzles de Sudoku en formato legible.
 
-## Requerimientos
+## Instrucciones
 
-1. La aplicación debe definir una lista de palabras a adivinar (al menos 5 palabras).
-2. La aplicación debe seleccionar una palabra al azar de la lista de palabras.
-3. La aplicación debe mostrar la palabra a adivinar con guiones en lugar de las letras.
-4. La aplicación debe permitir al jugador ingresar letras para adivinar la palabra.
-5. La aplicación debe mostrar las letras adivinadas y los intentos restantes.
-    * Cada letra adivinada debe mostrarse en la palabra.
-    * El número de intentos debe ser de al menos 5, pero puede ser mayor.
-6. La aplicación debe mostrar un mensaje de victoria si el jugador adivina la palabra.
-7. La aplicación debe mostrar un mensaje de derrota si el jugador se queda sin intentos.
-8. La aplicación debe permitir al jugador jugar de nuevo.
-9. La aplicación debe mostrar un mensaje de despedida cuando el jugador decide salir del juego.
-10. La aplicación debe ser desarrollada en Java.
-11. La aplicación debe ser desarrollada usando arreglos para almacenar las palabras a adivinar y las letras adivinadas.
-12. La aplicación debe ser desarrollada usando funciones para dividir la lógica del juego en partes más pequeñas.
-13. La aplicación debe ser desarrollada usando ventanas emergentes para mostrar mensajes al jugador (JOptionPane).
+1. **Crear un enumerado para las celdas ocultas**:
+    - Define un enumerado llamado `SudokuLevel` con los siguientes niveles:
+        - `Easy`, 36 celdas vacías
+        - `Medium`, 46 celdas vacías
+        - `Hard`, 54 celdas vacías
+2. **Función para ocultar celdas**:
+    - Implementa una función `hideCells(sudoku: SudokuBoard, level: SudokuLevel) -> SudokuBoard` que tome un Sudoku
+      completo y un nivel de dificultad, y oculte el número correspondiente de celdas al azar.
+    - Siguiendo el siguiente algoritmo:
+        - Crea una lista de todas las posiciones de celdas en el Sudoku.
+        - Mezcla la lista de posiciones.
+        - Selecciona las primeras N posiciones de la lista, donde N es el número de celdas a ocultar según el nivel.
+        - Establece el valor de esas celdas en vacío (0 o None).
+3. **Validar la unicidad del Sudoku**:
+    - Asegúrate de que el Sudoku resultante después de ocultar las celdas tenga una solución única.
+    - Si no es así, repite el proceso de ocultar celdas hasta que se logre una solución única.
+    - Por lo que tenemos que tener una función `hasUniqueSolution(sudoku: SudokuBoard) -> Bool` que verifique si el
+      Sudoku tiene una
+      solución única.
+    - Y la función `countSolutions(sudoku: SudokuBoard) -> int` que cuente el número de soluciones posibles para el
+      Sudoku dado.
+4. **Función para exportar el Sudoku en texto plano**:
+    - Implementa una función `exportSudokuToText(sudoku: SudokuBoard) -> String` que convierta el Sudoku en una
+      representación de texto plano.
+    - El formato debe ser el siguiente:
+        - Cada fila del Sudoku debe estar en una línea separada.
+        - Los números deben estar separados por espacios.
+        - Oh bien usar el builder de la función `printSudoku` como referencia.
+5. **Prueba las funciones**:
+    - Crea un Sudoku completo utilizando la función `generateSudoku`.
+    - Usa la función `hideCells` para ocultar celdas según diferentes niveles de dificultad.
+    - Exporta el Sudoku resultante a texto plano usando `exportSudokuToText`.
+    - Imprime el resultado en la consola para verificar que las celdas ocultas y el formato de texto plano sean
+      correctos.
 
-## Entregables
+## Metodología
 
-1. Código fuente de la aplicación.
-    * El código fuente debe estar organizado en clases y métodos, así como modularizado, es decir, debe estar dividido
-      en partes más pequeñas y manejables dentro de archivos `.java`.
-2. Capturas de pantalla de la aplicación en ejecución.
-    * Incluir capturas de pantalla de la aplicación mostrando la palabra a adivinar, las letras adivinadas y los
-      intentos restantes.
-3. Portada con datos de identificación de los miembros del equipo.
-4. Archivo PDF con los entregables 2 y 3.
-5. El juego debe de implementarse en Java, por lo que no se aceptarán aplicaciones desarrolladas en otro lenguaje de
-   programación.
-6. El código fuente debe estar comentado y documentado.
-7. El código fuente debe implementar el uso de la clase JOptionPane para mostrar mensajes al jugador.
-    * La aplicación debe interactuar con el usuario a través de ventanas emergentes.
-    * Otra interacción con el usuario no será evaluada.
+Para completar esta actividad, sigue estos pasos:
 
-## Criterios de Evaluación
+### Reestructurar el proyecto
 
-| Criterio             | Descripción                                                                                 | Puntaje  |
-|----------------------|---------------------------------------------------------------------------------------------|----------|
-| Portada              | Datos de identificación de los miembros del equipo                                          | 5%       |
-| Palabras             | Definición de la lista de palabras a adivinar                                               | 5%       |
-| Selección            | Selección de una palabra al azar de la lista de palabras                                    | 5%       |
-| Palabra              | Mostrar la palabra a adivinar con guiones en lugar de las letras                            | 10%      |
-| Letras               | Permitir al jugador ingresar letras para adivinar la palabras y validar la entrada de datos | 10%      |
-| Adivinadas           | Mostrar las letras adivinadas y los intentos restantes                                      | 10%      |
-| Victoria             | Mostrar un mensaje de victoria si el jugador adivina la palabra                             | 10%      |
-| Derrota              | Mostrar un mensaje de derrota si el jugador se queda sin intentos                           | 10%      |
-| Jugar de nuevo       | Permitir al jugador jugar de nuevo                                                          | 10%      |
-| Despedida            | Mostrar un mensaje de despedida cuando el jugador decide salir del juego                    | 10%      |
-| Código fuente        | Código fuente de la aplicación                                                              | 10%      |
-| Capturas de pantalla | Capturas de pantalla de la aplicación en ejecución                                          | 5%       |
-| **Total**            |                                                                                             | **100%** |
+Debemos reestructurar el proyecto en los siguientes paquetes y clases:
 
-> **Nota:** La aplicación debe ser desarrollada en Java. No se aceptarán aplicaciones desarrolladas en otro lenguaje de
-> programación.
+* `sudoku.entities`:
+    - `SudokuCell`: Clase que representa una celda individual en el Sudoku.
+    - `SudokuBoard`: Clase que representa el tablero de Sudoku.
+    - `SudokuLevel`: Enumerado que define los niveles de dificultad y la cantidad de celdas a ocultar.
+* `sudoku.utils`:
+    - `SudokuUtils`: Clase que contendrá las funciones `hideCells`, `hasUniqueSolution` y `countSolutions`.
+    - `SudokuGenerator`: Clase que contendrá la función `fillBoard`.
+    - `SudokuPrinter`: Clase que contendrá la función `printSudoku`.
+    - `SudokuValidator`: Clase que contendrá la función `isSafe`.
+    - `SudokuExporter`: Clase que contendrá la función `exportToText`.
+* `sudoku.main`:
+    - `Main`: Clase principal para ejecutar el programa y probar las funciones implementadas.
 
-> **Nota:** Recuerda que puedes hacer uso de las funciones de la clase Arrays de Java para trabajar con arreglos.
+```
+📦 Sudoku
+└─ src
+   └─ app
+      └─ sudoku
+         ├─ entities
+         │  ├─ SudokuCell.java
+         │  ├─ SudokuBoard.java
+         │  └─ SudokuLevel.java
+         ├─ util
+         │  ├─ SudokuGenerator.java
+         │  ├─ SudokuPrinter.java
+         │  ├─ SudokuUtils.java
+         │  └─ SudokuValidator.java
+         └─ Main.java
+```
 
-> Miembro del equipo que no aparece en la portada, no será evaluado.
-> {style="warning"}
+©generated by [Project Tree Generator](https://woochanleee.github.io/project-tree-generator)
 
-> Entregas fuera de la fecha límite, serán evaluadas sobre 70 puntos.
-> {style="warning"}
+Lo anterior es solo una sugerencia de estructura, adaptada a los principios **SOLID** y a la separación de
+responsabilidades, pero puedes ajustarla según tus necesidades y preferencias.
 
-## Fecha de Entrega
+### Crear el enumerado SudokuLevel
 
-La fecha límite de entrega es el viernes 28 de marzo de 2025 a las 11:59 p.m.
+Deberemos de crear un nuevo enumerado llamado `SudokuLevel` para definir los niveles de dificultad y la cantidad de
+celdas a ocultar. Con los siguientes atributos:
+
+* `String description`: Una descripción del nivel de dificultad.
+* `int hiddenCells`: El número de celdas vacías que se deben ocultar
+
+> Recuerda que los niveles son: `Easy`, 36 celdas vacías; `Medium`, 46 celdas vacías; `Hard`, 54 celdas vacías.
+> {style="note"}
+
+### Implementar la función hideCells y hasUniqueSolution
+
+Para la implementación de la función `hideCells`, `hasUniqueSolution` y `countSolutions`, sigue estos pasos:
+
+* Crea la clase `SudokuUtils` en el paquete `sudoku.utils`.
+* Implementa la función `hideCells` siguiendo el siguiente algoritmo:
+    - Comienza los intentos en 0.
+    - Mientras los intentos sean menores a un límite (por ejemplo, 1000):
+        - Crea una copia del Sudoku original.
+        - Mientras el número de celdas ocultas sea menor que el requerido por el nivel:
+            - Genera una posición aleatoria en el Sudoku.
+            - Si la celda en esa posición no está vacía, ocúltala (establece su valor en 0 o None).
+        - Verifica si el Sudoku resultante tiene una solución única usando `hasUniqueSolution`.
+        - Si tiene una solución única, retorna el Sudoku con las celdas ocultas.
+        - Incrementa el contador de intentos.
+    - Si no se logra un Sudoku con solución única después de los intentos, lanza una excepción o retorna un valor nulo.
+* Implementa la función `hasUniqueSolution` que utilice `countSolutions` para verificar si el Sudoku tiene exactamente
+  una solución.
+* Implementa la función `countSolutions` que cuente el número de soluciones posibles para el Sudoku dado utilizando un
+  enfoque de backtracking mediante el siguiente algoritmo:
+    - Si no hay celdas vacías, incrementa el contador de soluciones y retorna.
+    - Para cada número del 1 al 9:
+        - Si el número es seguro para colocar en la celda vacía actual:
+            - Coloca el número en la celda.
+            - Llama recursivamente a `countSolutions` para la siguiente celda vacía.
+            - Remueve el número (backtrack).
+    - Retorna el contador de soluciones.

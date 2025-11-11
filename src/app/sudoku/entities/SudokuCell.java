@@ -1,11 +1,9 @@
-package app.sudoku;
-
-import java.io.Serializable;
+package app.sudoku.entities;
 
 /**
  * Clase que representa una celda en un tablero de Sudoku.
  */
-public class Cell {
+public class SudokuCell {
     /**
      * Fila de la celda en el tablero.
      */
@@ -30,7 +28,7 @@ public class Cell {
      * @param col   Columna de la celda.
      * @param value Valor inicial de la celda.
      */
-    public Cell(int row, int col, int value, boolean isFixed) {
+    public SudokuCell(int row, int col, int value, boolean isFixed) {
         this.row = row;
         this.col = col;
         this.value = value;
@@ -43,7 +41,7 @@ public class Cell {
      * @param row Fila de la celda.
      * @param col Columna de la celda.
      */
-    public Cell(int row, int col) {
+    public SudokuCell(int row, int col) {
         this(row, col, 0, false); // Valor por defecto 0 (vacío)
     }
 
