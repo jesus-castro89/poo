@@ -50,14 +50,13 @@ public class SudokuUtils {
                 if (attempts++ > MAX_ATTEMPTS) {
                     throw new Exception("No se pudieron ocultar suficientes celdas en el tablero de Sudoku.");
                 }
-                while (hiddenCells > 0 && hiddenCells < 81) {
+                IntStream.range(0, hiddenCells).forEach(i -> {
                     int row = random.nextInt(9);
                     int col = random.nextInt(9);
                     if (!copyBoard.getCell(row, col).isEmpty()) {
                         copyBoard.getCell(row, col).setValue(0);
-                        hiddenCells--;
                     }
-                }
+                });
             } while (!hasUniqueSolution());
             board = copyBoard;
         } catch (CloneNotSupportedException e) {

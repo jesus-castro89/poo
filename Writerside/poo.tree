@@ -123,6 +123,7 @@
     </toc-element>
     <toc-element toc-title="SOLID">
         <toc-element topic="solid.md"/>
+        <toc-element topic="srp.md"/>
     </toc-element>
     <toc-element hidden="true" topic="filemanager.md"/>
     <toc-element toc-title="Actividades">
