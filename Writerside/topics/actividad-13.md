@@ -59,7 +59,12 @@ Debemos reestructurar el proyecto en los siguientes paquetes y clases:
 
 * `sudoku.entities`:
     - `SudokuCell`: Clase que representa una celda individual en el Sudoku.
+        - Contendrá atributos como `row`, `col`, `value` y `isFixed`.
+        - Métodos para obtener y establecer valores.
     - `SudokuBoard`: Clase que representa el tablero de Sudoku.
+        - Contendrá un HashMap `SudokuCell`.
+        - Métodos para inicializar el tablero, obtener una celda, clonar el tablero y la función generación de "llaves"
+          para el hashmap.
     - `SudokuLevel`: Enumerado que define los niveles de dificultad y la cantidad de celdas a ocultar.
 * `sudoku.utils`:
     - `SudokuUtils`: Clase que contendrá las funciones `hideCells`, `hasUniqueSolution` y `countSolutions`.
@@ -91,6 +96,9 @@ Debemos reestructurar el proyecto en los siguientes paquetes y clases:
 
 Lo anterior es solo una sugerencia de estructura, adaptada a los principios **SOLID** y a la separación de
 responsabilidades, pero puedes ajustarla según tus necesidades y preferencias.
+
+> Recuerda que debes adaptar las funciones existentes a esta nueva estructura.
+> {style="note"}
 
 ### Crear el enumerado SudokuLevel
 
@@ -130,3 +138,5 @@ Para la implementación de la función `hideCells`, `hasUniqueSolution` y `count
             - Llama recursivamente a `countSolutions` para la siguiente celda vacía.
             - Remueve el número (backtrack).
     - Retorna el contador de soluciones.
+
+### Implementar la función exportSudokuToText
