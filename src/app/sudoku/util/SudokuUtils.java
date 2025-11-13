@@ -1,9 +1,12 @@
 package app.sudoku.util;
 
 import app.sudoku.entities.SudokuBoard;
+import app.sudoku.entities.SudokuCell;
 import app.sudoku.entities.SudokuLevel;
 
 import java.util.Random;
+import java.util.function.BiConsumer;
+import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
 public class SudokuUtils {
@@ -45,20 +48,14 @@ public class SudokuUtils {
             SudokuBoard copyBoard = board.clone();
             int hiddenCells = level.getHiddenCells();
             int attempts = 0;
-            Random random = new Random();
             do {
                 if (attempts++ > MAX_ATTEMPTS) {
                     throw new Exception("No se pudieron ocultar suficientes celdas en el tablero de Sudoku.");
                 }
-                IntStream.range(0, hiddenCells).forEach(i -> {
-                    int row = random.nextInt(9);
-                    int col = random.nextInt(9);
-                    if (!copyBoard.getCell(row, col).isEmpty()) {
-                        copyBoard.getCell(row, col).setValue(0);
-                    }
-                });
+                IntStream.range(0, hiddenCells).forEach(hideCellConsumer(copyBoard));
             } while (!hasUniqueSolution());
             board = copyBoard;
+            board.getBoard().forEach(fixCellsConsumer());
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
@@ -94,17 +91,39 @@ public class SudokuUtils {
                 if (!board.getCell(row, col).isEmpty()) {
                     countSolutions(nextRow, nextCol);
                 } else {
-                    IntStream.range(0, 9).forEach(i -> {
-                        if (validator.isSafe(row, col, i)) {
-                            board.getCell(row, col).setValue(i);
-                            countSolutions(nextRow, nextCol);
-                            board.getCell(row, col).setValue(0);
-                        }
-                    });
+                    IntStream.range(0, 9)
+                            .filter(i -> validator.isSafe(row, col, i))
+                            .forEach(tryNumberConsumer(row, col, nextRow, nextCol));
                 }
             }
         } else {
             countSolutions++;
         }
+    }
+
+    private static BiConsumer<String, SudokuCell> fixCellsConsumer() {
+        return (key, cell) -> {
+            if (!cell.isEmpty()) {
+                cell.setFixed(true);
+            }
+        };
+    }
+
+    private IntConsumer hideCellConsumer(SudokuBoard copyBoard) {
+        return i -> {
+            Random random = new Random();
+            int row = random.nextInt(9);
+            int col = random.nextInt(9);
+            if (!copyBoard.getCell(row, col).isEmpty())
+                copyBoard.getCell(row, col).setValue(0);
+        };
+    }
+
+    private IntConsumer tryNumberConsumer(int row, int col, int nextRow, int nextCol) {
+        return i -> {
+            board.getCell(row, col).setValue(i);
+            countSolutions(nextRow, nextCol);
+            board.getCell(row, col).setValue(0);
+        };
     }
 }

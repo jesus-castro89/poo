@@ -140,3 +140,20 @@ Para la implementación de la función `hideCells`, `hasUniqueSolution` y `count
     - Retorna el contador de soluciones.
 
 ### Implementar la función exportSudokuToText
+
+Para la implementación de la función `exportSudokuToText`, sigue estos pasos:
+
+1. Crea la clase `SudokuExporter` en el paquete `sudoku.utils`.
+2. Modifica la función `printSudoku` para que devuelva una cadena en lugar de imprimir directamente en la consola.
+3. Implementa la función `exportSudokuToText` que utilice la lógica de `printSudoku` para construir una representación
+   de texto plano del Sudoku.
+4. Crea una variable `File` para guardar el resultado en un archivo de texto.
+5. Escribe la cadena resultante en el archivo de texto.
+6. Cierra el archivo para asegurarte de que los datos se guarden correctamente.
+7. Prueba la función exportando un Sudoku a un archivo de texto y verifica su contenido.
+
+> Recuerda manejar posibles excepciones al trabajar con archivos, como errores de escritura o permisos. Y de igual
+> forma, asegúrate de que el formato de salida sea claro y legible. Siempre puedes consultar el apartado "[Guardando
+> datos en archivos de texto plano](plaint-text.md)" para más detalles.
+> {style="note"}
+

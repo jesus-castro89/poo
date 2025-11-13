@@ -4,7 +4,7 @@ import app.sudoku.entities.SudokuBoard;
 
 public class SudokuPrinter {
 
-    public static void printSudoku(SudokuBoard board) {
+    public static String printSudoku(SudokuBoard board) {
 
         StringBuilder sb = new StringBuilder();
         sb.append("╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗\n");
@@ -24,6 +24,6 @@ public class SudokuPrinter {
                 default -> sb.append("╟───┼───┼───╫───┼───┼───╫───┼───┼───╢\n");
             }
         }
-        IO.println(sb.toString());
+        return sb.toString();
     }
 }

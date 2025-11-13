@@ -66,4 +66,8 @@ public class SudokuBoard implements Cloneable {
     public SudokuCell getCell(int row, int col) {
         return board.get(key(row, col));
     }
+
+    public HashMap<String, SudokuCell> getBoard() {
+        return board;
+    }
 }
