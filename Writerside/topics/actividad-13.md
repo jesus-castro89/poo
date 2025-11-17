@@ -157,3 +157,24 @@ Para la implementación de la función `exportSudokuToText`, sigue estos pasos:
 > datos en archivos de texto plano](plaint-text.md)" para más detalles.
 > {style="note"}
 
+## Entrega
+
+En un solo documento `PDF`, incluye lo siguiente:
+
+1. Portada con lo siguiente:
+    - Nombre del curso
+    - Nombre de la actividad
+    - Nombre de los integrantes del equipo
+2. Código fuente bien documentado.
+3. Capturas de pantalla de las pruebas realizadas, mostrando los Sudokus generados, las celdas ocultas y el contenido
+   del archivo de texto exportado.
+4. Breve explicación de cómo implementaste cada función y cualquier desafío que enfrentaste durante el proceso.
+
+## Criterios de evaluación
+
+| Criterio                             | Descripción                                                                                                               | Puntuación |
+|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------|
+| Implementación de hideCells          | La función oculta correctamente el número adecuado de celdas según el nivel de dificultad y garantiza una solución única. | 40%        |
+| Implementación de exportSudokuToText | La función exporta el Sudoku en el formato de texto plano especificado y maneja correctamente la escritura en archivos.   | 40%        |
+| Documentación y pruebas              | El código está bien documentado y se incluyen capturas de pantalla de las pruebas realizadas.                             | 20%        |
+| **Total**                            |                                                                                                                           | **100%**   |
