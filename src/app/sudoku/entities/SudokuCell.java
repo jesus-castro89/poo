@@ -1,9 +1,11 @@
 package app.sudoku.entities;
 
+import java.io.Serializable;
+
 /**
  * Clase que representa una celda en un tablero de Sudoku.
  */
-public class SudokuCell {
+public class SudokuCell implements Serializable {
     /**
      * Fila de la celda en el tablero.
      */
@@ -19,6 +21,9 @@ public class SudokuCell {
      */
     private int value;
 
+    /**
+     * Indica si la celda es fija (no modificable).
+     */
     private boolean isFixed;
 
     /**

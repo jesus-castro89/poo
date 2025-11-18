@@ -1,44 +1,30 @@
 package app.test;
 
-import app.nomina.comparators.EmployeeAgeComparator;
-import app.nomina.comparators.EmployeeComparators;
-import app.nomina.comparators.EmployeePositionComparator;
-import app.nomina.comparators.EmployeeSalaryComparator;
-import app.nomina.entities.Department;
-import app.nomina.entities.Employee;
-import app.nomina.entities.Position;
-import org.util.InputHandler;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Test {
 
     void main() {
-        Item[] items = new Item[5];
-        items[0] = new Item("Articulo A", 10.50);
-        items[1] = new Item("Articulo B", 11.50);
-        items[2] = new Item("Articulo C", 12.50);
-        items[3] = new Item("Articulo D", 13.50);
-        items[4] = new Item("Articulo E", 14.50);
-
-        ShoppingCart cart = new ShoppingCart();
-        cart.addItem(items[3]);
-        cart.addItem(items[0]);
-        cart.addItem(items[1]);
-
-        cart.showCart();
-
-        cart.addItem(items[3]);
-        cart.addItem(items[3]);
-
-        cart.showCart();
-
-        cart.incrementQuantity(items[3], 5);
-        cart.incrementQuantity(items[4], 5);
-
-        cart.showCart();
+        // 1. Crear un objeto File que represente la ruta del archivo
+        // NOTA: Asegúrate de que el directorio "files" exista antes
+        // de ejecutar este código.
+        File file = new File("files/sudokuText.txt");//<= ruta relativa
+        // 2. Creamos un BufferedWriter para escribir en el archivo
+        // Este recibirá un FileWriter que apunta al archivo mencionado
+        // anteriormente. Es este FileWriter el que realmente crea el archivo.
+        // NOTA: Si el archivo ya existe, se sobrescribirá. Pero si no existe, se creará.
+        // De igual manera, si no existe el directorio o no se tienen permisos de escritura,
+        // se lanzará una IOException.
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write("Este es un archivo de prueba para el Sudoku.");
+            writer.newLine();
+            writer.write("Aquí se pueden escribir más líneas si es necesario.");
+            System.out.println("Archivo creado y escrito exitosamente en " + file.getAbsolutePath());
+        } catch (IOException e) {
+            System.out.println("Error al crear o escribir en el archivo: " + e.getMessage());
+        }
     }
 }

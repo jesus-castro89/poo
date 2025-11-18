@@ -85,6 +85,7 @@ Debemos reestructurar el proyecto en los siguientes paquetes y clases:
          │  ├─ SudokuBoard.java
          │  └─ SudokuLevel.java
          ├─ util
+         │  ├─ SudokuExporter.java
          │  ├─ SudokuGenerator.java
          │  ├─ SudokuPrinter.java
          │  ├─ SudokuUtils.java
@@ -153,8 +154,8 @@ Para la implementación de la función `exportSudokuToText`, sigue estos pasos:
 7. Prueba la función exportando un Sudoku a un archivo de texto y verifica su contenido.
 
 > Recuerda manejar posibles excepciones al trabajar con archivos, como errores de escritura o permisos. Y de igual
-> forma, asegúrate de que el formato de salida sea claro y legible. Siempre puedes consultar el apartado "[Guardando
-> datos en archivos de texto plano](plaint-text.md)" para más detalles.
+> forma, asegúrate de que el formato de salida sea claro y legible. Siempre puedes consultar el apartado **"[Guardando
+> datos en archivos de texto plano](plaint-text.md)"** para más detalles.
 > {style="note"}
 
 ## Entrega

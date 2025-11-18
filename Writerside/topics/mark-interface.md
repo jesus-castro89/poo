@@ -5,6 +5,20 @@ indicar que una clase que implementa dicha interfaz posee ciertas propiedades o 
 interfaces se utilizan comúnmente para proporcionar metadatos a las clases sin imponer la necesidad de implementar
 métodos específicos.
 
+## Clasificación de Interfaces en Java
+
+En Java, las interfaces se pueden clasificar en tres categorías principales:
+
+1. **Interfaces normales**: Son las interfaces que contienen métodos abstractos que deben ser implementados por las
+   clases que las implementan.
+2. **Interfaces funcionales**: Son interfaces que contienen un solo método abstracto. Estas interfaces son
+   utilizadas principalmente en expresiones lambda y referencias a métodos.
+3. **Interfaces de marcado**: Son interfaces que no contienen ningún método o campo. Su propósito es indicar que una
+   clase posee ciertas propiedades o comportamientos especiales.
+
+En este documento, nos centraremos en las interfaces de marcado, ya que si bien no contienen métodos, su implementación
+puede tener un impacto significativo en el comportamiento de la clase que las implementa.
+
 ## Ejemplos de Interfaces de Marcado
 
 Algunos ejemplos comunes de interfaces de marcado en Java incluyen:
