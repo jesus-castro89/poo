@@ -1,8 +1,9 @@
 package app.test;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
 
     private HashMap<Item, ItemCounter> items;
 
@@ -16,6 +17,15 @@ public class ShoppingCart {
             IO.println(counter);
         });
         IO.println("+------------------------------+");
+    }
+
+    public Item getItemByName(String name) {
+        for (Item item : items.keySet()) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     public void addItem(Item item) {

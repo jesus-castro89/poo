@@ -1,6 +1,8 @@
 package app.test;
 
-public class ItemCounter {
+import java.io.Serializable;
+
+public class ItemCounter implements Serializable {
 
     private Item item;
     private int count;
@@ -21,7 +23,7 @@ public class ItemCounter {
 
     public void decrement(int quantity) throws Exception {
         count -= quantity;
-        if(count < 0) {
+        if (count < 0) {
             count = 0;
             throw new Exception("Eliminado del carrito");
         }

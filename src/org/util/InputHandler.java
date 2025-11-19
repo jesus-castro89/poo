@@ -16,7 +16,7 @@ public class InputHandler {
 
     static {
 
-        MESSAGE_FONT = loadCustomFont("text.ttf", 20, Font.BOLD);
+        MESSAGE_FONT = new Font("Consolas", Font.PLAIN, 20);
         INPUT_FONT = loadCustomFont("input.ttf", 18, Font.PLAIN);
         BUTTON_FONT = loadCustomFont("button.ttf", 48, Font.BOLD);
 

@@ -1,9 +1,12 @@
 package app.test;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 
     private String name;
     private double price;
+    private String brand;
 
     public Item(String name, double price) {
         this.price = price;
@@ -21,5 +24,9 @@ public class Item {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getBrand() {
+        return brand;
     }
 }

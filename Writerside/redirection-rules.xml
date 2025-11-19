@@ -54,4 +54,8 @@
         </description>
         <accepts>ocp.html</accepts>
     </rule>
+    <rule id="ec50b6b">
+        <description>Created after removal of "FileManager" from Programación Orientada a Objetos</description>
+        <accepts>filemanager.html</accepts>
+    </rule>
 </rules>
