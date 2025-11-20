@@ -1,7 +1,10 @@
 package app.sudoku.util;
 
 import app.sudoku.entities.SudokuBoard;
+import app.sudoku.entities.SudokuLevel;
+import org.util.InputHandler;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +16,35 @@ public class SudokuGenerator {
 
     public SudokuGenerator(SudokuBoard board) {
         this.board = board;
+        fillBoard();
+        getPlayableBoard();
     }
+
+    private void getPlayableBoard() {
+
+        // Mostrando mensaje de bienvenida
+        InputHandler.showMessage("¡Bienvenido al Generador de Sudoku!",
+                "Generador de Sudoku", JOptionPane.INFORMATION_MESSAGE);
+        // Solicitando al usuario el nivel de dificultad
+        SudokuLevel level = InputHandler.getInput("Seleccione el nivel de dificultad: ",
+                SudokuLevel.values());
+        try {
+            // Mostrando mensaje de generación
+            InputHandler.showMessage("Generando Sudoku de nivel " + level + "...",
+                    "Generando Sudoku", JOptionPane.INFORMATION_MESSAGE);
+            // Ocultando celdas según el nivel seleccionado
+            SudokuUtils utils = new SudokuUtils(board);
+            board= utils.hideCells(level);
+            // Exportando el Sudoku generado a un archivo de texto
+            SudokuExporter.exportSudokuToText(board);
+            // Mostrando mensaje de éxito
+            InputHandler.showMessage("Sudoku generado y exportado exitosamente.",
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            IO.println("Error al exportar el Sudoku a texto: " + e.getMessage());
+        }
+    }
+
 
     /**
      * Generación completa del tablero de Sudoku mediante backtracking.
@@ -64,5 +95,9 @@ public class SudokuGenerator {
         IntStream.range(1, 10).forEach(nums::add);
         Collections.shuffle(nums);
         return nums;
+    }
+
+    public SudokuBoard getBoard() {
+        return board;
     }
 }

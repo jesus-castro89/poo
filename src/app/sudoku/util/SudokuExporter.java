@@ -17,21 +17,17 @@ public class SudokuExporter {
      * @param sudokuBoard El tablero de Sudoku a exportar.
      */
     public static void exportSudokuToText(SudokuBoard sudokuBoard) {
-        // 1. Creamos el archivo de texto
-        // Asegúrate de que la carpeta "files" exista en el directorio raíz del proyecto.
-        // Si no existe, debes crearla antes de ejecutar este código.
+        // 1. Generar el atributo de tipo File
         File file = new File("files/sudokuText.txt");
-        // 2. Creamos el BufferedWriter para escribir en el archivo mediante FileWriter
-        // Recuerda que esto lo haremos con el bloque try-with-resources para
-        // cerrar el BufferedWriter automáticamente
+        // 2. Iniciar el try-with-resources para el BufferedWriter que
+        //    escribirá en el archivo mediante un FileWriter
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            // 3. Escribimos el contenido del Sudoku en el archivo
-            // Usamos la clase SudokuPrinter para obtener la representación en
-            // texto del Sudoku
+            // 3. Escribir el Sudoku en el archivo usando la función
+            //    printSudoku de la clase SudokuPrinter
             bw.write(SudokuPrinter.printSudoku(sudokuBoard));
         } catch (IOException e) {
-            // 4. Manejamos la excepción en caso de error
-            System.err.println("Error al exportar el Sudoku a texto: " + e.getMessage());
+            // 4. Manejar la excepción en caso de error de E/S
+            IO.println("Error al exportar el Sudoku a texto: " + e.getMessage());
         }
     }
 }
