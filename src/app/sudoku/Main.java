@@ -1,20 +1,31 @@
 package app.sudoku;
 
-import app.sudoku.entities.SudokuBoard;
-import app.sudoku.entities.SudokuLevel;
-import app.sudoku.util.SudokuExporter;
-import app.sudoku.util.SudokuPrinter;
 import app.sudoku.util.SudokuGenerator;
-import app.sudoku.util.SudokuUtils;
+import app.sudoku.util.SudokuImporter;
 import org.util.InputHandler;
-
-import javax.swing.*;
 
 public class Main {
 
     void main() {
 
-        SudokuGenerator generator = new SudokuGenerator(new SudokuBoard());
-        SudokuBoard board = generator.getBoard();
+        startProgram();
+    }
+
+    private static void startProgram() {
+        String[] options = {"Generar Sudoku", "Importar Sudoku"};
+        String choice;
+        do {
+            choice = InputHandler.getInput("Seleccione una opción:", options);
+            switch (choice) {
+                case "Generar Sudoku":
+                    new SudokuGenerator();
+                    break;
+                case "Importar Sudoku":
+                    new SudokuImporter();
+                    break;
+                default:
+                    IO.println("Opción no válida.");
+            }
+        } while (!choice.equals("Generar Sudoku") && !choice.equals("Importar Sudoku"));
     }
 }

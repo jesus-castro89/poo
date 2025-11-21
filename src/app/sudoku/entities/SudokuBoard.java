@@ -1,11 +1,12 @@
 package app.sudoku.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Clase que representa un tablero de Sudoku.
  */
-public class SudokuBoard implements Cloneable {
+public class SudokuBoard implements Cloneable, Serializable {
 
     /**
      * Mapa que representa las celdas del tablero de Sudoku.

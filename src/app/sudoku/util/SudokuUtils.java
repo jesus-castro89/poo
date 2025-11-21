@@ -9,6 +9,11 @@ import java.util.function.BiConsumer;
 import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
+/**
+ * Clase de utilidades para manipular tableros de Sudoku,
+ * incluyendo la funcionalidad para ocultar celdas
+ * y asegurar una solución única.
+ */
 public class SudokuUtils {
 
     /**
@@ -101,6 +106,11 @@ public class SudokuUtils {
         }
     }
 
+    /**
+     * Consumidor para fijar las celdas no vacías del tablero de Sudoku.
+     *
+     * @return BiConsumer que fija las celdas no vacías.
+     */
     private static BiConsumer<String, SudokuCell> fixCellsConsumer() {
         return (key, cell) -> {
             if (!cell.isEmpty()) {
@@ -109,6 +119,12 @@ public class SudokuUtils {
         };
     }
 
+    /**
+     * Consumidor para ocultar una celda aleatoria en el tablero de Sudoku.
+     *
+     * @param copyBoard Tablero de Sudoku en el que se ocultará la celda.
+     * @return IntConsumer que oculta una celda aleatoria.
+     */
     private IntConsumer hideCellConsumer(SudokuBoard copyBoard) {
         return i -> {
             Random random = new Random();
@@ -119,6 +135,15 @@ public class SudokuUtils {
         };
     }
 
+    /**
+     * Consumidor para intentar colocar un número en una celda y contar soluciones recursivamente.
+     *
+     * @param row     Fila de la celda.
+     * @param col     Columna de la celda.
+     * @param nextRow Fila de la siguiente celda.
+     * @param nextCol Columna de la siguiente celda.
+     * @return IntConsumer que intenta colocar un número y cuenta soluciones.
+     */
     private IntConsumer tryNumberConsumer(int row, int col, int nextRow, int nextCol) {
         return i -> {
             board.getCell(row, col).setValue(i);

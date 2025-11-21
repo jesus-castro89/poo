@@ -6,18 +6,31 @@ import app.sudoku.entities.SudokuBoard;
 import java.util.function.BiPredicate;
 import java.util.stream.IntStream;
 
+/**
+ * Clase responsable de validar movimientos en un tablero de Sudoku.
+ */
 public class SudokuValidator {
 
+    /**
+     * Tablero de Sudoku a validar.
+     */
     private SudokuBoard board;
 
+    /**
+     * Predicado para verificar si un número ya existe en una fila específica.
+     */
     private final BiPredicate<Integer, Integer> existInRow = (row, num) ->
-            IntStream.range(0, 9)
-                    .anyMatch(col -> board.getCell(row, col).getValue() == num);
+            IntStream.range(0, 9).anyMatch(col -> board.getCell(row, col).getValue() == num);
 
+    /**
+     * Predicado para verificar si un número ya existe en una columna específica.
+     */
     private final BiPredicate<Integer, Integer> existInColumn = (col, num) ->
-            IntStream.range(0, 9)
-                    .anyMatch(row -> board.getCell(row, col).getValue() == num);
+            IntStream.range(0, 9).anyMatch(row -> board.getCell(row, col).getValue() == num);
 
+    /**
+     * Predicado para verificar si un número ya existe en una caja 3x3 específica.
+     */
     private final BiPredicate<Integer, Integer> existInBox = (areaIndex, num) -> {
         int startRow = (areaIndex / 3) * 3;
         int startCol = (areaIndex % 3) * 3;
@@ -26,6 +39,11 @@ public class SudokuValidator {
                         .anyMatch(c -> board.getCell(r, c).getValue() == num));
     };
 
+    /**
+     * Constructor que toma un tablero de Sudoku como parámetro.
+     *
+     * @param board Tablero de Sudoku a validar.
+     */
     public SudokuValidator(SudokuBoard board) {
         this.board = board;
     }

@@ -2,8 +2,17 @@ package app.sudoku.util;
 
 import app.sudoku.entities.SudokuBoard;
 
+/**
+ * Clase responsable de imprimir el tablero de Sudoku en formato legible.
+ */
 public class SudokuPrinter {
 
+    /**
+     * Imprime el tablero de Sudoku en un formato legible.
+     *
+     * @param board El tablero de Sudoku a imprimir.
+     * @return Una cadena que representa el tablero de Sudoku.
+     */
     public static String printSudoku(SudokuBoard board) {
 
         StringBuilder sb = new StringBuilder();

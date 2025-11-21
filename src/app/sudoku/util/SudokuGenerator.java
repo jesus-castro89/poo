@@ -10,16 +10,38 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/**
+ * Clase responsable de generar tableros de Sudoku jugables.
+ */
 public class SudokuGenerator {
 
+    /**
+     * El tablero de Sudoku generado.
+     */
     private SudokuBoard board;
 
-    public SudokuGenerator(SudokuBoard board) {
-        this.board = board;
+    /**
+     * Constructor que inicializa el generador y crea un tablero jugable.
+     */
+    public SudokuGenerator() {
+        this.board = new SudokuBoard();
         fillBoard();
         getPlayableBoard();
+        SudokuExporter.exportSudokuToObject(board);
     }
 
+    /**
+     * Constructor que recibe un tablero de Sudoku existente.
+     *
+     * @param board El tablero de Sudoku a utilizar.
+     */
+    public SudokuGenerator(SudokuBoard board) {
+        this.board = board;
+    }
+
+    /**
+     * Genera un tablero de Sudoku jugable ocultando celdas según el nivel de dificultad seleccionado.
+     */
     private void getPlayableBoard() {
 
         // Mostrando mensaje de bienvenida
@@ -34,7 +56,7 @@ public class SudokuGenerator {
                     "Generando Sudoku", JOptionPane.INFORMATION_MESSAGE);
             // Ocultando celdas según el nivel seleccionado
             SudokuUtils utils = new SudokuUtils(board);
-            board= utils.hideCells(level);
+            board = utils.hideCells(level);
             // Exportando el Sudoku generado a un archivo de texto
             SudokuExporter.exportSudokuToText(board);
             // Mostrando mensaje de éxito
@@ -95,9 +117,5 @@ public class SudokuGenerator {
         IntStream.range(1, 10).forEach(nums::add);
         Collections.shuffle(nums);
         return nums;
-    }
-
-    public SudokuBoard getBoard() {
-        return board;
     }
 }
